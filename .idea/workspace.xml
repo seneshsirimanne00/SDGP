@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9014125b-8c89-4908-b152-965c1ef437d8" name="Default Changelist" comment="" />
+    <list default="true" id="9014125b-8c89-4908-b152-965c1ef437d8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/SDGP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SDGP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlaskBackend/SignUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/FlaskBackend/SignUp.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +20,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -29,6 +42,10 @@
       <option name="presentableId" value="Default" />
       <updated>1612349696661</updated>
       <workItem from="1612349700031" duration="20000" />
+      <workItem from="1612351428417" duration="24000" />
+      <workItem from="1612351472603" duration="217000" />
+      <workItem from="1612351707826" duration="44000" />
+      <workItem from="1612351774138" duration="3315000" />
     </task>
     <servers />
   </component>
