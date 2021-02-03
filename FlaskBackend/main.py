@@ -14,4 +14,4 @@ class main:
     def signUp(self):
         return
 
-    print("Yolo")
+    SignUp.SignUp().emailvalidate()
