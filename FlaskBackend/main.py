@@ -14,3 +14,6 @@ class main:
 
     def signUp(self):
         return
+
+
+    SignUp.SignUp().emailvalidate()
