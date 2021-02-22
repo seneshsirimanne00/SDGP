@@ -6,7 +6,11 @@ class Database:
     accounts = []
     products = []
 
+    def __init__(self):
+        print("-Database Object Created-")
+
     def getCredentials(self):
+        print("-Some Credentials-")
         return
 
     def createNewFolder(self):
@@ -25,4 +29,7 @@ class Database:
         return
 
     def getProducts(self):
+        return
+
+    def addAccount(self , email , username , password):
         return
