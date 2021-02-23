@@ -5,13 +5,13 @@ class SalesData:
     __profits = []
 
     def getSalesAmounts(self):
-        return
+        return self.__salesAmounts
 
     def getSalesDates(self):
-        return
+        return self.__salesDates
 
     def getProfits(self):
-        return
+        return self.__profits
 
     def addSales(self , amount , date , profit):
         self.__salesAmounts.append(amount)

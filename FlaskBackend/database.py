@@ -1,4 +1,4 @@
-import Product,Stock
+import product,stock
 
 
 class Database:

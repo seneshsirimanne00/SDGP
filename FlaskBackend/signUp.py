@@ -15,8 +15,7 @@ class SignUp:
     def signUpAccount(self):
         return
 
-<<<<<<< HEAD
-=======
+
     #Validates and checks if the password matches the required criteria.
     # A password requires 8 plus characters and at least one number.
     def passwordValidate(self , password):
@@ -43,7 +42,5 @@ class SignUp:
 
 
 
-
->>>>>>> 646f44cbef1317cd1de3231bf9d1ea1443b6b456
 
 

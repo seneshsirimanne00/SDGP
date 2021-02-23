@@ -1,9 +1,9 @@
-import MonitorSCM , Database
+import monitorSCM , database
 class Account:
 
     __email = ""
     __password = ""
-    __monitorSCM = MonitorSCM.MonitorSCM()
+    __monitorSCM = monitorSCM.MonitorSCM()
 
     def __init__(self, accountId, firstName, lastName, accountType, email , password):
         self.accountId = accountId

@@ -1,9 +1,9 @@
-import Account , SignUp
+import account , signUp
 
 
 class Login:
 
-    signUp = SignUp.SignUp()
+    signUp = signUp.SignUp()
 
     def getAccount(self):
         return

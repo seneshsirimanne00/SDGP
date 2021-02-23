@@ -1,5 +1,5 @@
-import SignUp
-import Database
+import signUp
+import database
 
 class main:
 
@@ -16,4 +16,4 @@ class main:
         return
 
 
-    SignUp.SignUp().emailvalidate()
+    signUp.SignUp().emailvalidate()
