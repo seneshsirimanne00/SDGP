@@ -4,11 +4,13 @@ import product
 class Stock:
     __productList = []
     __quantityList = []
+    __rawMatNames = []
+    __rawMatQuantities = []
 
-    def addProduct(self , name , amount):
+    def addProduct(self, name, amount):
         self.__productList.append(name)
         self.__quantityList.append(amount)
-        print("Debug AddProduct :" + name + " Amount :" + str(amount) )
+        print("Debug AddProduct :" + name + " Amount :" + str(amount))
         return
 
     def removeProduct(self, name):
@@ -19,8 +21,8 @@ class Stock:
             self.__productList.remove(targetIndex)
             self.__quantityList.remove(targetIndex)
 
-    def restockProduct(self, name , amount):
-        #Returns True if item is found and updated , else False
+    def restockProduct(self, name, amount):
+        # Returns True if item is found and updated , else False
 
         if name in self.__productList:
             targetIndex = self.__productList.index(name)
@@ -35,3 +37,18 @@ class Stock:
 
     def getQuantityList(self):
         return self.__quantityList
+
+    def addRawMat(self, name, quantity):
+        self.__rawMatNames.append(name)
+        self.__rawMatQuantities.append(quantity)
+
+    def restockRawMat(self, name, amount):
+        self.__rawMatQuantities[self.__rawMatNames.index(name)] += amount
+        return
+
+    def reduceRawMat(self, name, amount):
+        if self.__rawMatQuantities[self.__rawMatNames.index(name)] >= amount:
+            self.__rawMatQuantities[self.__rawMatNames.index(name)] -= amount
+            return True
+        else:
+            return False
