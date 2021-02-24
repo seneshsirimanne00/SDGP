@@ -7,5 +7,10 @@ class Company:
     def __init__(self):
         self.__database = Database()
 
+    def createAccount(self, username , password):
+        newUser = Account()
+        self.__accounts.append()
+
+
 
 
