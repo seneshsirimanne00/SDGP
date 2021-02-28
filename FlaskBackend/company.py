@@ -1,4 +1,5 @@
 from database import  Database
+from account import Account
 
 class Company:
 
@@ -7,9 +8,21 @@ class Company:
     def __init__(self):
         self.__database = Database()
 
-    def createAccount(self, username , password):
-        newUser = Account()
-        self.__accounts.append()
+    def createAccount(self, accountId, firstName, lastName, accountType, email , password):
+        #The Account details must be validated at Sign Up class, before entering this point.
+        newUser = Account(accountId, firstName, lastName, accountType, email , password)
+        self.__accounts.append(newUser)
+        
+    def displayAccounts(self):
+        for account in self.__accounts:
+            print(account.toString())
+
+    def findAccount(self , id):
+        for account in self.__accounts:
+            if account.getCredentials()[0] == id:
+                return account
+        return None
+
 
 
 
