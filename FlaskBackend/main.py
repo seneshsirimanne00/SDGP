@@ -1,4 +1,3 @@
-import signUp
 import database
 from monitorSCM import MonitorSCM
 import time
@@ -6,13 +5,14 @@ from company import Company
 from account import Account
 from appDatabase import AppDatabase
 import pandas as pd
+from product import Product
+from database import Database
 
 class main:
-
     activeCompany = None
     appDatabase = AppDatabase()
 
-    def getIntInput(self , message):
+    def getIntInput(self, message):
         number = input(message)
         try:
             number = int(number)
@@ -30,14 +30,13 @@ class main:
     def signUpAccount(self):
         return
 
+    # Sign-up Segment <!---
 
-    #Sign-up Segment <!---
-
-    #Validates and checks if the password matches the required criteria.
+    # Validates and checks if the password matches the required criteria.
     # A password requires 8 plus characters and at least one number.
-    def passwordValidate(self , password):
+    def passwordValidate(self, password):
 
-        if(len(password)>8 and any(elem.isdigit()) for elem in password):
+        if (len(password) > 8 and any(elem.isdigit()) for elem in password):
             passwordStatus = "true"
 
         else:
@@ -56,12 +55,13 @@ class main:
         return
 
     """
+
     def username(self):
         return
 
-    #Sign-Up Segment --!>
+    # Sign-Up Segment --!>
 
-    #Login Segment <!--
+    # Login Segment <!--
 
     def getAccount(self):
         return
@@ -75,8 +75,20 @@ class main:
     # Login Segment --!>
 
 
-
-
+"""
 pd.set_option("max_columns", None)
 df = pd.read_excel("savedata/BatchCost_Edited.xlsx")
 print(df.head(5))
+"""
+
+db = Database("inate")
+db.createProduct("Amrita Jasmine" , 30)
+item = db.getProduct("Amrita Jasmine")
+dataframe = pd.read_excel("savedata/BatchCost_Edited.xlsx")
+dataframe.head(7)
+filtered_df = pd.DataFrame(dataframe["Posting Date"] , dataframe["Total Actual Cost"] )
+filtered_df.head(3)
+"""if item is not None:
+    item_sales = item.getSales()
+    item_sales.addMultipleSales()"""
+

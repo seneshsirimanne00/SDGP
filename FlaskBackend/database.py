@@ -20,13 +20,23 @@ class Database:
         return
 
     def load(self):
+        def loadSingle(filename):
+            file = open(filename , "r")
+            file_text = ""
+            for line in file:
+                file_text += line
+            file.close()
+            return file_text
+
+
         try:
-            stockData = open("savedata/" + self.__companyName + "_stock.txt" , "r")
-            productData = open("savedata/" + self.__companyName + "_products.txt" , "r")
-            self.__stock = jsonpickle.decode(stockData)
-            self.__products = jsonpickle.decode(productData)
-            stockData.close()
-            productData.close()
+            stockData_text = loadSingle("savedata/" + self.__companyName + "_stock.txt")
+            productData_text = loadSingle("savedata/" + self.__companyName + "_products.txt")
+
+            if(stockDat)
+
+            self.__stock = jsonpickle.decode(stockData_text)
+            self.__products = jsonpickle.decode(productData_text)
         except FileNotFoundError:
             #Creates empty file if not created
             open("savedata/" + self.__companyName + "_stock.txt" , "w")
@@ -54,7 +64,6 @@ class Database:
         for each_product in self.__products:
             if each_product.getName().upper() == prodName.upper():
                 return each_product
-        return None
 
     def getProducts(self):
         return self.__products
@@ -63,6 +72,6 @@ class Database:
         return
 
 
-    def createProduct(self, name , costPerUnit , rawMatPer):
-        newProd = Product(name , costPerUnit , rawMatPer)
+    def createProduct(self, name , costPerUnit):
+        newProd = Product(name , costPerUnit)
         self.__products.append(newProd)
