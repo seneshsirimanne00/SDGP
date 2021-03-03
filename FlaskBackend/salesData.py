@@ -1,5 +1,6 @@
 class SalesData:
 
+    #Items are sold in batches therefore one item in array is a batch
     __salesAmounts = []
     __salesDates = []
     __profits = []

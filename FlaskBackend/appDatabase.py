@@ -1,4 +1,10 @@
 class AppDatabase:
+    """
+    AppDatabase doesnt actually hold the data, neither does the Database class (No serialisation)
+    The database class will save and load the data of appropriate company depending on what  comapny called the
+    database object
+    """
+
     __companies = []
 
     def __init__(self):

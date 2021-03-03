@@ -1,11 +1,11 @@
 from prediction import Prediction
 from salesData import SalesData
 
+
 class Product:
+    __rawMaterialsPer = []  # 2D array where each new element of array contains [rawMatName , quantity]
 
-    __rawMaterialsPer = [] #2D array where each new element of array contains [rawMatName , quantity]
-
-    def __init__(self , name , costPerUnit , rawMatPer):
+    def __init__(self, name, costPerUnit, rawMatPer):
         self.__name = name
         self.__costPerUnit = costPerUnit
         self.__rawMaterialsPer = rawMatPer
@@ -17,3 +17,6 @@ class Product:
 
     def getPredictions(self):
         return self.__prediction
+
+    def getName(self):
+        return self.__name
