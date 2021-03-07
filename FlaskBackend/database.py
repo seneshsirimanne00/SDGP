@@ -1,6 +1,7 @@
 from product import Product
 from stock import Stock
-import jsonpickle
+from salesData import SalesData
+import pickle
 
 
 class Database:
@@ -9,9 +10,9 @@ class Database:
     that given company
     """
     __products = []
+    savePath = "saveData/"
 
-
-    def __init__(self , companyName ):
+    def __init__(self, companyName):
         self.__stock = Stock()  # Creates empty stock
         self.__companyName = companyName
         self.load()
@@ -20,58 +21,61 @@ class Database:
         return
 
     def load(self):
-        def loadSingle(filename):
-            file = open(filename , "r")
-            file_text = ""
-            for line in file:
-                file_text += line
-            file.close()
-            return file_text
+        def loadFromFile(filename):
+            try:
+                with open(filename, "rb") as file:
+                    data = pickle.load(file)
+                return data
+            except FileNotFoundError:
+                file = open(filename , "wb")
+                file.close()
 
+        self.__stock = Stock()
+        loadedStockData = loadFromFile(self.savePath + "stockData.dat")
+        if loadedStockData is not None:
+            self.__stock.setAllData(loadedStockData)
 
-        try:
-            stockData_text = loadSingle("savedata/" + self.__companyName + "_stock.txt")
-            productData_text = loadSingle("savedata/" + self.__companyName + "_products.txt")
-
-            if(stockDat)
-
-            self.__stock = jsonpickle.decode(stockData_text)
-            self.__products = jsonpickle.decode(productData_text)
-        except FileNotFoundError:
-            #Creates empty file if not created
-            open("savedata/" + self.__companyName + "_stock.txt" , "w")
-            open("savedata/" + self.__companyName + "_products.txt" , "w")
-            print("Debug - stock/products file not found")
-
+        self.__products = []
+        loadedProductData = loadFromFile(self.savePath + "productData.dat")
+        if loadedProductData is not None:
+            for productData in loadedProductData:
+                emptyProduct = Product("empty", 0)
+                emptyProduct.setAllData(productData)
+                self.__products.append(emptyProduct)
 
 
     def save(self):
-        try:
-            stock_encoded = jsonpickle.encode(self.__stock)
-            products_encoded = jsonpickle.encode(self.__products)
-            stock_file = open("savedata/" + self.__companyName + "_stock.txt" , "w")
-            products_file = open("savedata/" + self.__companyName + "_products.txt" , "w")
-            stock_file.close()
-            products_file.close()
-        except Exception as error:
-            print("debug - " + error)
+        def saveToFile(data,filename):
+            with open(filename , "wb") as file:
+                pickle.dump(data , file)
 
+        saveToFile(self.__stock.getAllData(),self.savePath + "stockData.dat")
+
+        product_detail_list = []
+        if len(self.__products) != 0:
+            for prod in self.__products:
+                product_detail_list.append(prod.getAllData())
+
+        saveToFile(product_detail_list ,self.savePath + "productData.dat")
 
     def getStock(self):
-        return [self.__stock.getProductList() , self.__stock.getQuantityList()]
+        return [self.__stock.getProductList(), self.__stock.getQuantityList()]
 
-    def getProduct(self , prodName):
+    def getProduct(self, prodName):
         for each_product in self.__products:
             if each_product.getName().upper() == prodName.upper():
                 return each_product
 
+    def displayProducts(self):
+        for prod in self.__products:
+            print("Product : ",prod.getAllData())
+
     def getProducts(self):
         return self.__products
 
-    def addAccount(self , email , username , password):
+    def addAccount(self, email, username, password):
         return
 
-
-    def createProduct(self, name , costPerUnit):
-        newProd = Product(name , costPerUnit)
+    def createProduct(self, name, costPerUnit):
+        newProd = Product(name, costPerUnit)
         self.__products.append(newProd)

@@ -1,14 +1,11 @@
-import database
-from monitorSCM import MonitorSCM
-import time
-from company import Company
-from account import Account
 from appDatabase import AppDatabase
 import pandas as pd
 from product import Product
 from database import Database
+from salesData import SalesData
 
-class main:
+
+class Main:
     activeCompany = None
     appDatabase = AppDatabase()
 
@@ -81,14 +78,25 @@ df = pd.read_excel("savedata/BatchCost_Edited.xlsx")
 print(df.head(5))
 """
 
-db = Database("inate")
-db.createProduct("Amrita Jasmine" , 30)
+
+"""db = Database("inate")
+
+db.createProduct("Amrita Jasmine", 30)
 item = db.getProduct("Amrita Jasmine")
+item.addRawMaterial("Nice smell" , 2)
+item_sales = item.getSales()
+item_sales.addSales(50400, "15.15.2020", 950000)
+
+db.save()
+"""
+
+db = Database("inate")
+db.displayProducts()
+
+
+"""
 dataframe = pd.read_excel("savedata/BatchCost_Edited.xlsx")
 dataframe.head(7)
-filtered_df = pd.DataFrame(dataframe["Posting Date"] , dataframe["Total Actual Cost"] )
+filtered_df = pd.DataFrame(dataframe["Posting Date"], dataframe["Total Actual Cost"])
 filtered_df.head(3)
-"""if item is not None:
-    item_sales = item.getSales()
-    item_sales.addMultipleSales()"""
-
+"""

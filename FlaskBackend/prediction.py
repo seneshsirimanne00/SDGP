@@ -1,8 +1,7 @@
 class Prediction:
-
     __predictedSales = 0
 
-    def __init__(self , salesData):
+    def __init__(self, salesData):
         self.salesData = salesData
 
     def getSalesData(self):
@@ -12,4 +11,10 @@ class Prediction:
         return
 
     def predictNextMonth(self):
-        return 
+        return
+
+    def getAllData(self):
+        return self.__predictedSales
+
+    def setAllData(self, predictedSales):
+        self.__predictedSales = predictedSales

@@ -2,24 +2,43 @@ from prediction import Prediction
 from salesData import SalesData
 
 
-class Product:
-    __rawMaterialsPer = []  # 2D array where each new element of array contains [rawMatName , quantity]
+class Product(object):
+    rawMaterialsPer = []  # 2D array where each new element of array contains [rawMatName , quantity]
 
     def __init__(self, name, costPerUnit):
         """Raw materials can be set after creating product object"""
-        self.__name = name
-        self.__costPerUnit = costPerUnit
-        self.__salesData = SalesData(costPerUnit)
-        self.__prediction = Prediction(self.__salesData)
+        self.name = name
+        self.costPerUnit = costPerUnit
+        self.salesData = SalesData(costPerUnit)
+        self.prediction = Prediction(self.salesData)
 
-    def addRawMaterial(self, materialName , materialQuantity):
-        self.__rawMaterialsPer.append(  [materialName,materialQuantity]  )
+    def addRawMaterial(self, materialName, materialQuantity):
+        self.rawMaterialsPer.append([materialName, materialQuantity])
+
+    def getRawMaterials(self):
+        return self.rawMaterialsPer
 
     def getSales(self):
-        return self.__salesData
+        return self.salesData
 
     def getPredictions(self):
-        return self.__prediction
+        return self.prediction
 
     def getName(self):
-        return self.__name
+        return self.name
+
+
+    def getAllData(self):
+        return [self.rawMaterialsPer, self.name, self.costPerUnit, self.salesData.getAllData(),
+                self.prediction]
+
+    def setAllData(self, productData):
+        self.rawMaterialsPer = productData[0]
+        self.name = productData[1]
+        self.costPerUnit = productData[2]
+
+        self.salesData = SalesData(self.costPerUnit)
+        self.salesData.setAllData(productData[3])
+
+        self.prediction = Prediction(self.salesData)
+        self.prediction = productData[4]

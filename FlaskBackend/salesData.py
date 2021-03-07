@@ -1,29 +1,29 @@
-class SalesData:
+class SalesData(object):
 
     #Items are sold in batches therefore one item in array is a batch
-    __salesAmounts = []
-    __salesDates = []
-    __profits = []
-    __actualCost = []
+    salesAmounts = []
+    salesDates = []
+    profits = []
+    actualCost = []
 
     def __init__(self, unitCost):
-        self.__unitCost = unitCost
+        self.unitCost = unitCost
 
     def getSalesAmounts(self):
-        return self.__salesAmounts
+        return self.salesAmounts
 
     def getSalesDates(self):
-        return self.__salesDates
+        return self.salesDates
 
     def getProfits(self):
-        return self.__profits
+        return self.profits
 
     def addSales(self , amount , date , actualCost ):
         """Use when adding a single month of sales data   """
-        self.__salesAmounts.append(amount)
-        self.__salesDates.append(date)
-        self.__actualCost.append(actualCost)
-        self.__profits.append( (self.__unitCost*amount) - actualCost )
+        self.salesAmounts.append(amount)
+        self.salesDates.append(date)
+        self.actualCost.append(actualCost)
+        self.profits.append( (self.unitCost*amount) - actualCost )
 
     def addMultipleSales(self, amount , date , actualCost ):
         """
@@ -35,4 +35,12 @@ class SalesData:
             #This can be done because length of amount,data,actualCost must be the same
             self.addSales(amount[index] , date[index] , actualCost[index])
 
+    def getAllData(self):
+        return [self.salesAmounts , self.salesDates , self.profits , self.actualCost , self.unitCost]
 
+    def setAllData(self , salesDataArr):
+        self.salesAmounts = salesDataArr[0]
+        self.salesDates = salesDataArr[1]
+        self.profits = salesDataArr[2]
+        self.actualCost = salesDataArr[3]
+        self.unitCost = salesDataArr[4]

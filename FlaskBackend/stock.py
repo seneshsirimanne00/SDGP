@@ -52,3 +52,12 @@ class Stock:
             return True
         else:
             return False
+
+    def getAllData(self):
+        return [self.__productList , self.__quantityList , self.__rawMatNames , self.__rawMatQuantities]
+
+    def setAllData(self, stockData):
+        self.__productList = stockData[0]
+        self.__quantityList = stockData[1]
+        self.__rawMatNames = stockData[2]
+        self.__rawMatQuantities = stockData[3]
