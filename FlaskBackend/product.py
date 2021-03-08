@@ -27,6 +27,9 @@ class Product(object):
     def getName(self):
         return self.name
 
+    def __str__(self):
+        return "Product[ rawMaterialsPer:" + str(self.rawMaterialsPer) + ",name:" + self.name + ",costPerUnit:"+ str(self.costPerUnit) + "," + str(self.salesData) + "," + str(self.prediction) + " ]"
+
 
     def getAllData(self):
         return [self.rawMaterialsPer, self.name, self.costPerUnit, self.salesData.getAllData(),

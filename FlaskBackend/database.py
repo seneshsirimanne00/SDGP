@@ -17,9 +17,6 @@ class Database:
         self.__companyName = companyName
         self.load()
 
-    def createNewFolder(self):
-        return
-
     def load(self):
         def loadFromFile(filename):
             try:
@@ -27,36 +24,35 @@ class Database:
                     data = pickle.load(file)
                 return data
             except FileNotFoundError:
-                file = open(filename , "wb")
+                file = open(filename, "wb")
                 file.close()
 
         self.__stock = Stock()
-        loadedStockData = loadFromFile(self.savePath + "stockData.dat")
+        loadedStockData = loadFromFile(self.savePath + self.__companyName + "_stockData.dat")
         if loadedStockData is not None:
             self.__stock.setAllData(loadedStockData)
 
         self.__products = []
-        loadedProductData = loadFromFile(self.savePath + "productData.dat")
+        loadedProductData = loadFromFile(self.savePath + self.__companyName + "_productData.dat")
         if loadedProductData is not None:
             for productData in loadedProductData:
                 emptyProduct = Product("empty", 0)
                 emptyProduct.setAllData(productData)
                 self.__products.append(emptyProduct)
 
-
     def save(self):
-        def saveToFile(data,filename):
-            with open(filename , "wb") as file:
-                pickle.dump(data , file)
+        def saveToFile(data, filename):
+            with open(filename, "wb") as file:
+                pickle.dump(data, file)
 
-        saveToFile(self.__stock.getAllData(),self.savePath + "stockData.dat")
+        saveToFile(self.__stock.getAllData(), self.savePath + self.__companyName + "_stockData.dat")
 
         product_detail_list = []
         if len(self.__products) != 0:
             for prod in self.__products:
                 product_detail_list.append(prod.getAllData())
 
-        saveToFile(product_detail_list ,self.savePath + "productData.dat")
+        saveToFile(product_detail_list, self.savePath + self.__companyName + "_productData.dat")
 
     def getStock(self):
         return [self.__stock.getProductList(), self.__stock.getQuantityList()]
@@ -68,7 +64,7 @@ class Database:
 
     def displayProducts(self):
         for prod in self.__products:
-            print("Product : ",prod.getAllData())
+            print("Product : ", str(prod))
 
     def getProducts(self):
         return self.__products

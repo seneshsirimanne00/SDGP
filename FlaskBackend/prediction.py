@@ -13,6 +13,9 @@ class Prediction:
     def predictNextMonth(self):
         return
 
+    def __str__(self):
+        return "Prediction[ predictedSales:" + str(self.__predictedSales) + " ]"
+
     def getAllData(self):
         return self.__predictedSales
 

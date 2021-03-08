@@ -73,13 +73,12 @@ class Main:
 
 
 """
-pd.set_option("max_columns", None)
 df = pd.read_excel("savedata/BatchCost_Edited.xlsx")
 print(df.head(5))
 """
 
-
-"""db = Database("inate")
+"""
+db = Database("inate")
 
 db.createProduct("Amrita Jasmine", 30)
 item = db.getProduct("Amrita Jasmine")
@@ -91,12 +90,17 @@ db.save()
 """
 
 db = Database("inate")
-db.displayProducts()
+
+pd.set_option("max_columns", None)
 
 
-"""
-dataframe = pd.read_excel("savedata/BatchCost_Edited.xlsx")
-dataframe.head(7)
-filtered_df = pd.DataFrame(dataframe["Posting Date"], dataframe["Total Actual Cost"])
-filtered_df.head(3)
-"""
+import pandas as pd
+
+
+df_sales = pd.read_csv('savedata/Original.csv')
+df_sales['date'] = pd.to_datetime(df_sales['date'])
+print(df_sales.head(5))
+print("----------------")
+
+data = df_sales[['date' , 'sales']]
+print(data.head(5))

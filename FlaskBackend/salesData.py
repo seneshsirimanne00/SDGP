@@ -35,6 +35,9 @@ class SalesData(object):
             #This can be done because length of amount,data,actualCost must be the same
             self.addSales(amount[index] , date[index] , actualCost[index])
 
+    def __str__(self):
+        return "SalesData[ salesamounts:" + str(self.salesAmounts) + ",salesDates:" + str(self.salesDates) +",profits:" + str(self.profits) + ",actualCost:" + str(self.actualCost) +",unitCost"+ str(self.unitCost) + " ]"
+
     def getAllData(self):
         return [self.salesAmounts , self.salesDates , self.profits , self.actualCost , self.unitCost]
 
