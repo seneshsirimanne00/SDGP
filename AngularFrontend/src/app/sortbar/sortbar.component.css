@@ -1,0 +1,42 @@
+h3,input{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div{
+    background-color: #206b93;
+    border-top-right-radius: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+
+h3{
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+input{
+    background-color: #173f5f;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 70px;
+    padding-right: 70px;
+    border-radius: 15px;
+    color: white;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input:active{
+    color: rgb(139, 139, 139);
+}

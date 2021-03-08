@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CoPageComponent } from './pages/co-page/co-page.component';
-import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { LeaguetableviewComponent } from './leaguetableview/leaguetableview.component';
+import { PlayedmatchesviewComponent } from './playedmatchesview/playedmatchesview.component';
+import { RandommatchviewComponent } from './randommatchview/randommatchview.component';
 
 const routes: Routes = [
-  { path: '',
-  component: WelcomeComponent
-  },
-  { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-  { path: 'copage',
-    component: CoPageComponent
-  }
+  {path:"",redirectTo:"/leaguetable" , pathMatch:"full"},
+  {path:"leaguetable",component:LeaguetableviewComponent},
+  {path:"randommatch",component:RandommatchviewComponent},
+  {path:"playedmatches",component:PlayedmatchesviewComponent}
 ];
 
 @NgModule({

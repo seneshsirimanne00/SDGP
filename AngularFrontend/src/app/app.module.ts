@@ -3,50 +3,33 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { hi_IN } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
-import hi from '@angular/common/locales/hi';
-import { FormsModule } from '@angular/forms';
+import { SidepanelComponent } from './sidepanel/sidepanel.component';
+import { SidepanelprofileComponent } from './sidepanelprofile/sidepanelprofile.component';
+import { SortbarComponent } from './sortbar/sortbar.component';
+import { LeaguetableviewComponent } from './leaguetableview/leaguetableview.component';
+import { PlayedmatchesviewComponent } from './playedmatchesview/playedmatchesview.component';
+import { RandommatchviewComponent } from './randommatchview/randommatchview.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { IconsProviderModule } from './icons-provider.module';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { CoPageComponent } from './pages/co-page/co-page.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { LayoutModule } from '@angular/cdk/layout';
-
-registerLocaleData(hi);
+import { DatatransferService } from './datatransfer.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    CoPageComponent,
+    SidepanelComponent,
+    SidepanelprofileComponent,
+    SortbarComponent,
+    LeaguetableviewComponent,
+    PlayedmatchesviewComponent,
+    RandommatchviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    IconsProviderModule,
-    NzLayoutModule,
-    NzMenuModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    LayoutModule
+    FormsModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: hi_IN }],
+  providers: [DatatransferService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

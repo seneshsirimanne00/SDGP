@@ -1,0 +1,32 @@
+<div class="content">
+    <app-sidepanel class="grid-item-1" class="sidepanel"></app-sidepanel>
+
+    <div class="interface">
+        <app-sortbar class="grid-item-2"></app-sortbar>
+
+        <table class="grid-item-3">
+            <tr class="tableHeader">
+                <th>Club Name</th>
+                <th>Wins</th>
+                <th>Draws</th>
+                <th>Defeats</th>
+                <th>Goals Scored</th>
+                <th>Goals Recieved</th>
+                <th>Points</th>
+                <th>Location</th>
+            </tr>
+        
+            <tr *ngFor="let record of tableData">
+                <td>{{ record.clubName }}</td>
+                <td>{{ record.wins }}</td>
+                <td>{{ record.draws }}</td>
+                <td>{{ record.defeats }}</td>
+                <td>{{ record.goalsScored }}</td>
+                <td>{{ record.goalsReceived }}</td>
+                <td>{{ record.points }}</td>
+                <td>{{ record.location }}</td>
+            </tr>
+        </table>
+    </div>
+    
+</div>

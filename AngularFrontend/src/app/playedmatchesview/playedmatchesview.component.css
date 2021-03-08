@@ -1,0 +1,54 @@
+.content{
+    display: flex;
+}
+
+.interface{
+    flex: 1;
+}
+
+.sidepanel{
+    width: 200px;
+}
+
+.bar{
+    background-color: #206b93;
+    width: 100%;
+    border-top-right-radius: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+
+input{
+    padding:5px;
+    margin-left: 45%;
+    border-radius: 15px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+table,td,th{
+    border:2px solid #206b93;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tableHeader{
+    width: fit-content;
+    font-size: 20px;
+    background-color: #173f5f;
+    color: white;
+    padding: 20px;
+}
+
+.th,td{
+    font-size: 15px;
+    text-align: center;
+    padding: 10px;
+}
+

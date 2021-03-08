@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoPageComponent } from './co-page.component';
+import { SidepanelComponent } from './sidepanel.component';
 
-describe('CoPageComponent', () => {
-  let component: CoPageComponent;
-  let fixture: ComponentFixture<CoPageComponent>;
+describe('SidepanelComponent', () => {
+  let component: SidepanelComponent;
+  let fixture: ComponentFixture<SidepanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoPageComponent ]
+      declarations: [ SidepanelComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CoPageComponent);
+    fixture = TestBed.createComponent(SidepanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
