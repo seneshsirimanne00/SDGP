@@ -4,6 +4,7 @@ from salesData import SalesData
 
 class Product(object):
     rawMaterialsPer = []  # 2D array where each new element of array contains [rawMatName , quantity]
+    
 
     def __init__(self, name, costPerUnit):
         """Raw materials can be set after creating product object"""

@@ -25,15 +25,17 @@ class SalesData(object):
         self.actualCost.append(actualCost)
         self.profits.append( (self.unitCost*amount) - actualCost )
 
-    def addMultipleSales(self, amount , date , actualCost ):
+    def addMultipleSales(self, dataframe ):
         """
         Use when adding several months of data
-        amount,date,actualCost are arrays
-        unit cost is single integer
+        Pandas dataframe is taken as an argument
+        the dataframe must contain date and sales columns
         """
-        for index in range(len(amount)):
+
+
+        """for index in range(len(amount)):
             #This can be done because length of amount,data,actualCost must be the same
-            self.addSales(amount[index] , date[index] , actualCost[index])
+            self.addSales(amount[index] , date[index] , actualCost[index])"""
 
     def __str__(self):
         return "SalesData[ salesamounts:" + str(self.salesAmounts) + ",salesDates:" + str(self.salesDates) +",profits:" + str(self.profits) + ",actualCost:" + str(self.actualCost) +",unitCost"+ str(self.unitCost) + " ]"

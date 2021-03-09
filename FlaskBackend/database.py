@@ -58,13 +58,23 @@ class Database:
         return [self.__stock.getProductList(), self.__stock.getQuantityList()]
 
     def getProduct(self, prodName):
+        found = False
         for each_product in self.__products:
             if each_product.getName().upper() == prodName.upper():
+                found = True
                 return each_product
+        if not found:
+            raise Exception("Product Not found!")
 
     def displayProducts(self):
         for prod in self.__products:
             print("Product : ", str(prod))
+
+    def addSales(self, prodName , dataframe):
+        """This dataframe should consist of only two columns , date and sales"""
+        prod = self.getProduct(prodName)
+        prod.getSales().addMultipleSales(dataframe)
+
 
     def getProducts(self):
         return self.__products
