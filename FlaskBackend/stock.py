@@ -1,4 +1,4 @@
-import product
+from order import Order
 
 
 class Stock:
@@ -6,6 +6,12 @@ class Stock:
     __quantityList = []
     __rawMatNames = []
     __rawMatQuantities = []
+
+    rawMatOrderId = 0 #Tracking the last used ID for rawMaterialOrders
+    rawMatOrders = []  # List of Order objects
+
+    def __init__(self):
+        self.rawMatOrderId = 0
 
     def addProduct(self, name, amount):
         self.__productList.append(name)
@@ -53,11 +59,46 @@ class Stock:
         else:
             return False
 
+    # Order is placed but one must use an admin account to confirm it
+    def placeRawMatOrder(self, materialName, orderDuration, materialQuantity, price, supplierName):
+        newOrder = Order()
+        newOrder.setRawMatOrder(materialName, orderDuration, materialQuantity, price, self.rawMatOrderId, supplierName)
+        self.rawMatOrderId += 1
+        self.rawMatOrders.append(newOrder)
+
+    # View Raw Mat in console
+    def viewRawMatOrders(self):
+        for order in self.rawMatOrders:
+            print(str(order))
+
+    # Orders should be confirmed only by admin accounts
+    def confirmRawMatOrder(self, id):
+        for eachOrder in self.rawMatOrders:
+            if eachOrder.getId() == int(id):
+                eachOrder.confirmOrder()
+                return
+
+    """
+    ====================================================================================================================
+    """
+
     def getAllData(self):
-        return [self.__productList , self.__quantityList , self.__rawMatNames , self.__rawMatQuantities]
+        orderDataList = []
+        for order in self.rawMatOrders:
+            orderDataList.append(order.getAllData())
+
+        return [self.__productList, self.__quantityList, self.__rawMatNames, self.__rawMatQuantities,
+                self.rawMatOrderId , orderDataList]
 
     def setAllData(self, stockData):
         self.__productList = stockData[0]
         self.__quantityList = stockData[1]
         self.__rawMatNames = stockData[2]
         self.__rawMatQuantities = stockData[3]
+        self.rawMatOrderId = stockData[4]
+
+        self.rawMatOrders = []
+        for orderData in stockData[5]:
+            order = Order()
+            order.setAllData(orderData)
+            self.rawMatOrders.append(order)

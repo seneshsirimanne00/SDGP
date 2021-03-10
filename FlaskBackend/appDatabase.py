@@ -1,3 +1,6 @@
+from company import Company
+
+
 class AppDatabase:
     """
     AppDatabase doesnt actually hold the data, neither does the Database class (No serialisation)
@@ -10,8 +13,9 @@ class AppDatabase:
     def __init__(self):
         pass
 
-    def createCompany(self):
-        pass
+    def createCompany(self , companyName):
+        company = Company(companyName)
+        self.__companies.append( company )
 
     def findAccount(self, id):
         for company in self.__companies:

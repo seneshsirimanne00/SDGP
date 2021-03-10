@@ -5,7 +5,6 @@ class Account:
 
     __email = ""
     __password = ""
-    #__monitorSCM = MonitorSCM()
 
     def __init__(self, accountId, firstName, lastName, accountType, email , password):
         self.__accountId = accountId
@@ -25,15 +24,6 @@ class Account:
 
     def addAllData(self):
         #adding multiple months of data into database
-        return
-
-    def manipulateData(self):
-        return
-
-    def monitorProcess(self):
-        return
-
-    def getMonitorSCM(self):
         return
     
     def toString(self):

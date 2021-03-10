@@ -5,8 +5,12 @@ from account import Account
 class Company:
     __accounts = []  # Holds a list of accounts that belong to the company
 
-    def __init__(self):
-        self.__database = Database()
+
+    def __init__(self , companyName , email , password):
+        # When a company is created a main ACCOUNT is also created with ADMIN status. This admin account can add and
+        # create other admin and user accounts to the company
+        self.__database = Database(companyName)
+        self.companyName = companyName
 
     def createAccount(self, accountId, firstName, lastName, accountType, email, password):
         # The Account details must be validated at Sign Up class, before entering this point.
