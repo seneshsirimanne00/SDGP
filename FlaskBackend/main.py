@@ -91,7 +91,7 @@ class Main:
 
     # Main Methods <!--
 
-"""    def addPoRequest(self, rawMatName, rawMatQty, supplierName, matPricePerUnit):
+    def addPoRequest(self, rawMatName, rawMatQty, supplierName, matPricePerUnit):
         if not self.supplierExists(supplierName):
             return "Supplier Does not exist!"
         supObj = self.database.getSupplier(supplierName)
@@ -101,8 +101,9 @@ class Main:
 
         orderDuration = supObj.getDeliveryTime()
         self.database.getStock().placeRawMatOrder(rawMatName, orderDuration, rawMatQty, matPricePerUnit, supplierName)
+        print("This Print works?")
         self.database.getStock().viewRawMatOrders()  # Displaying to console. Debug
-"""
+
     # Main Methods --!>
 
 

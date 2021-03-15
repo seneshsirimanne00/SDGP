@@ -7,6 +7,7 @@ CORS(app)
 
 main = Main()
 
+
 @app.route("/")
 def helloWorld():
     return jsonify(message="ree")
@@ -16,9 +17,13 @@ def helloWorld():
 def sendPoRequest():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
-    return jsonify("HELLO")
+    response = main.addPoRequest(data[0], data[1], data[2], data[3])
+    return jsonify(response)
 
+"""
+CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 
+IN THE FRONTEND
+"""
 
 if __name__ == '__main__':
     app.run(debug=True)
-

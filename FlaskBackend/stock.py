@@ -68,6 +68,7 @@ class Stock:
 
     # View Raw Mat in console
     def viewRawMatOrders(self):
+        print("Debug[viewRawMatOrders] : " , self.rawMatOrders)
         for order in self.rawMatOrders:
             print(str(order))
 
