@@ -7,6 +7,7 @@ class Main:
     activeCompany = None
     appDatabase = AppDatabase()
 
+
     def __init__(self):
         """self.appDatabase = AppDatabase()
         self.appDatabase.createCompany("inate") # For now a company needs to be created each time becuase references
@@ -16,7 +17,6 @@ class Main:
         # complete
         companyName = "inate"
         self.database = Database(companyName)
-        print("Main[Debug] : initialised")
 
     def login(self):
         return "Empty Login Method"

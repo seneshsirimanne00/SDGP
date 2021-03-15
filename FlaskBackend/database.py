@@ -32,7 +32,7 @@ class Database:
                 with open(filename, "rb") as file:
                     data = pickle.load(file)
                 return data
-            except FileNotFoundError:
+            except Exception:
                 file = open(filename, "wb")
                 file.close()
 
