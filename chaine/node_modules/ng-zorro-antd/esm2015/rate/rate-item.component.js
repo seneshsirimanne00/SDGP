@@ -1,0 +1,89 @@
+/**
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
+ */
+import { __decorate, __metadata } from "tslib";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { InputBoolean } from 'ng-zorro-antd/core/util';
+import * as ɵngcc0 from '@angular/core';
+import * as ɵngcc1 from '@angular/common';
+import * as ɵngcc2 from 'ng-zorro-antd/icon';
+
+const _c0 = ["nz-rate-item", ""];
+function NzRateItemComponent_ng_template_1_Template(rf, ctx) { }
+function NzRateItemComponent_ng_template_3_Template(rf, ctx) { }
+function NzRateItemComponent_ng_template_4_Template(rf, ctx) { if (rf & 1) {
+    ɵngcc0.ɵɵelement(0, "i", 4);
+} }
+export class NzRateItemComponent {
+    constructor() {
+        this.allowHalf = false;
+        this.itemHover = new EventEmitter();
+        this.itemClick = new EventEmitter();
+    }
+    hoverRate(isHalf) {
+        this.itemHover.next(isHalf && this.allowHalf);
+    }
+    clickRate(isHalf) {
+        this.itemClick.next(isHalf && this.allowHalf);
+    }
+}
+NzRateItemComponent.ɵfac = function NzRateItemComponent_Factory(t) { return new (t || NzRateItemComponent)(); };
+NzRateItemComponent.ɵcmp = ɵngcc0.ɵɵdefineComponent({ type: NzRateItemComponent, selectors: [["", "nz-rate-item", ""]], inputs: { allowHalf: "allowHalf", character: "character" }, outputs: { itemHover: "itemHover", itemClick: "itemClick" }, exportAs: ["nzRateItem"], attrs: _c0, decls: 6, vars: 2, consts: [[1, "ant-rate-star-second", 3, "mouseover", "click"], [3, "ngTemplateOutlet"], [1, "ant-rate-star-first", 3, "mouseover", "click"], ["defaultCharacter", ""], ["nz-icon", "", "nzType", "star", "nzTheme", "fill"]], template: function NzRateItemComponent_Template(rf, ctx) { if (rf & 1) {
+        ɵngcc0.ɵɵelementStart(0, "div", 0);
+        ɵngcc0.ɵɵlistener("mouseover", function NzRateItemComponent_Template_div_mouseover_0_listener($event) { ctx.hoverRate(false); return $event.stopPropagation(); })("click", function NzRateItemComponent_Template_div_click_0_listener() { return ctx.clickRate(false); });
+        ɵngcc0.ɵɵtemplate(1, NzRateItemComponent_ng_template_1_Template, 0, 0, "ng-template", 1);
+        ɵngcc0.ɵɵelementEnd();
+        ɵngcc0.ɵɵelementStart(2, "div", 2);
+        ɵngcc0.ɵɵlistener("mouseover", function NzRateItemComponent_Template_div_mouseover_2_listener($event) { ctx.hoverRate(true); return $event.stopPropagation(); })("click", function NzRateItemComponent_Template_div_click_2_listener() { return ctx.clickRate(true); });
+        ɵngcc0.ɵɵtemplate(3, NzRateItemComponent_ng_template_3_Template, 0, 0, "ng-template", 1);
+        ɵngcc0.ɵɵelementEnd();
+        ɵngcc0.ɵɵtemplate(4, NzRateItemComponent_ng_template_4_Template, 1, 0, "ng-template", null, 3, ɵngcc0.ɵɵtemplateRefExtractor);
+    } if (rf & 2) {
+        const _r2 = ɵngcc0.ɵɵreference(5);
+        ɵngcc0.ɵɵadvance(1);
+        ɵngcc0.ɵɵproperty("ngTemplateOutlet", ctx.character || _r2);
+        ɵngcc0.ɵɵadvance(2);
+        ɵngcc0.ɵɵproperty("ngTemplateOutlet", ctx.character || _r2);
+    } }, directives: [ɵngcc1.NgTemplateOutlet, ɵngcc2.NzIconDirective], encapsulation: 2, changeDetection: 0 });
+NzRateItemComponent.propDecorators = {
+    character: [{ type: Input }],
+    allowHalf: [{ type: Input }],
+    itemHover: [{ type: Output }],
+    itemClick: [{ type: Output }]
+};
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Boolean)
+], NzRateItemComponent.prototype, "allowHalf", void 0);
+/*@__PURE__*/ (function () { ɵngcc0.ɵsetClassMetadata(NzRateItemComponent, [{
+        type: Component,
+        args: [{
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                selector: '[nz-rate-item]',
+                exportAs: 'nzRateItem',
+                template: `
+    <div class="ant-rate-star-second" (mouseover)="hoverRate(false); $event.stopPropagation()" (click)="clickRate(false)">
+      <ng-template [ngTemplateOutlet]="character || defaultCharacter"></ng-template>
+    </div>
+    <div class="ant-rate-star-first" (mouseover)="hoverRate(true); $event.stopPropagation()" (click)="clickRate(true)">
+      <ng-template [ngTemplateOutlet]="character || defaultCharacter"></ng-template>
+    </div>
+
+    <ng-template #defaultCharacter>
+      <i nz-icon nzType="star" nzTheme="fill"></i>
+    </ng-template>
+  `
+            }]
+    }], function () { return []; }, { allowHalf: [{
+            type: Input
+        }], itemHover: [{
+            type: Output
+        }], itemClick: [{
+            type: Output
+        }], character: [{
+            type: Input
+        }] }); })();
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmF0ZS1pdGVtLmNvbXBvbmVudC5qcyIsInNvdXJjZXMiOlsiLi4vLi4vLi4vY29tcG9uZW50cy9yYXRlL3JhdGUtaXRlbS5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0EsR0FBRztBQUNIO0FBQ0EsT0FBTyxFQUFFLHVCQUF1QixFQUFFLFNBQVMsRUFBRSxZQUFZLEVBQUUsS0FBSyxFQUFFLE1BQU0sRUFBRSxXQUFXLEVBQUUsaUJBQWlCLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFaEksT0FBTyxFQUFFLFlBQVksRUFBRSxNQUFNLHlCQUF5QixDQUFDOzs7Ozs7Ozs7OztBQW9CdkQsTUFBTSxPQUFPLG1CQUFtQjtBQUNoQyxJQW5CQTtBQUNHLFFBcUJ3QixjQUFTLEdBQVksS0FBSyxDQUFDO0FBQ3RELFFBQXFCLGNBQVMsR0FBRyxJQUFJLFlBQVksRUFBVyxDQUFDO0FBQzdELFFBQXFCLGNBQVMsR0FBRyxJQUFJLFlBQVksRUFBVyxDQUFDO0FBQzdELElBUUEsQ0FBQztBQUNELElBUkUsU0FBUyxDQUFDLE1BQWU7QUFBSSxRQUMzQixJQUFJLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxNQUFNLElBQUksSUFBSSxDQUFDLFNBQVMsQ0FBQyxDQUFDO0FBQ2xELElBQUUsQ0FBQztBQUNILElBQ0UsU0FBUyxDQUFDLE1BQWU7QUFBSSxRQUMzQixJQUFJLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxNQUFNLElBQUksSUFBSSxDQUFDLFNBQVMsQ0FBQyxDQUFDO0FBQ2xELElBQUUsQ0FBQztBQUNIOytDQWpDQyxTQUFTLFNBQUMsa0JBQ1QsZUFBZSxFQUFFO1VBQXVCLENBQUMsTUFBTSxrQkFDL0MsYUFBYSxFQUFFLGlCQUFpQixDQUFDLElBQUksa0JBQ3JDLFFBQVEsRUFBRSxnQkFBZ0Isa0JBQzFCLFFBQVEsRUFBRSxZQUFZLGtCQUN0QixRQUFRLEVBQUU7OzhGQVdULGNBQ0Y7Ozs7Ozs7Ozs7Ozs7O2dIQUNJO0FBQUM7QUFDSSx3QkFFUCxLQUFLO0FBQUssd0JBQ1YsS0FBSztBQUFLLHdCQUNWLE1BQU07QUFBSyx3QkFDWCxNQUFNO0FBQUk7QUFGYztBQUFhLElBQTVCLFlBQVksRUFBRTtBQUFFO0FBQ2hCLHNEQUQwQzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7b0JBQ3REO0FBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vZ2l0aHViLmNvbS9ORy1aT1JSTy9uZy16b3Jyby1hbnRkL2Jsb2IvbWFzdGVyL0xJQ0VOU0VcbiAqL1xuXG5pbXBvcnQgeyBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneSwgQ29tcG9uZW50LCBFdmVudEVtaXR0ZXIsIElucHV0LCBPdXRwdXQsIFRlbXBsYXRlUmVmLCBWaWV3RW5jYXBzdWxhdGlvbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQm9vbGVhbklucHV0IH0gZnJvbSAnbmctem9ycm8tYW50ZC9jb3JlL3R5cGVzJztcbmltcG9ydCB7IElucHV0Qm9vbGVhbiB9IGZyb20gJ25nLXpvcnJvLWFudGQvY29yZS91dGlsJztcblxuQENvbXBvbmVudCh7XG4gIGNoYW5nZURldGVjdGlvbjogQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3kuT25QdXNoLFxuICBlbmNhcHN1bGF0aW9uOiBWaWV3RW5jYXBzdWxhdGlvbi5Ob25lLFxuICBzZWxlY3RvcjogJ1tuei1yYXRlLWl0ZW1dJyxcbiAgZXhwb3J0QXM6ICduelJhdGVJdGVtJyxcbiAgdGVtcGxhdGU6IGBcbiAgICA8ZGl2IGNsYXNzPVwiYW50LXJhdGUtc3Rhci1zZWNvbmRcIiAobW91c2VvdmVyKT1cImhvdmVyUmF0ZShmYWxzZSk7ICRldmVudC5zdG9wUHJvcGFnYXRpb24oKVwiIChjbGljayk9XCJjbGlja1JhdGUoZmFsc2UpXCI+XG4gICAgICA8bmctdGVtcGxhdGUgW25nVGVtcGxhdGVPdXRsZXRdPVwiY2hhcmFjdGVyIHx8IGRlZmF1bHRDaGFyYWN0ZXJcIj48L25nLXRlbXBsYXRlPlxuICAgIDwvZGl2PlxuICAgIDxkaXYgY2xhc3M9XCJhbnQtcmF0ZS1zdGFyLWZpcnN0XCIgKG1vdXNlb3Zlcik9XCJob3ZlclJhdGUodHJ1ZSk7ICRldmVudC5zdG9wUHJvcGFnYXRpb24oKVwiIChjbGljayk9XCJjbGlja1JhdGUodHJ1ZSlcIj5cbiAgICAgIDxuZy10ZW1wbGF0ZSBbbmdUZW1wbGF0ZU91dGxldF09XCJjaGFyYWN0ZXIgfHwgZGVmYXVsdENoYXJhY3RlclwiPjwvbmctdGVtcGxhdGU+XG4gICAgPC9kaXY+XG5cbiAgICA8bmctdGVtcGxhdGUgI2RlZmF1bHRDaGFyYWN0ZXI+XG4gICAgICA8aSBuei1pY29uIG56VHlwZT1cInN0YXJcIiBuelRoZW1lPVwiZmlsbFwiPjwvaT5cbiAgICA8L25nLXRlbXBsYXRlPlxuICBgXG59KVxuZXhwb3J0IGNsYXNzIE56UmF0ZUl0ZW1Db21wb25lbnQge1xuICBzdGF0aWMgbmdBY2NlcHRJbnB1dFR5cGVfYWxsb3dIYWxmOiBCb29sZWFuSW5wdXQ7XG5cbiAgQElucHV0KCkgY2hhcmFjdGVyITogVGVtcGxhdGVSZWY8dm9pZD47XG4gIEBJbnB1dCgpIEBJbnB1dEJvb2xlYW4oKSBhbGxvd0hhbGY6IGJvb2xlYW4gPSBmYWxzZTtcbiAgQE91dHB1dCgpIHJlYWRvbmx5IGl0ZW1Ib3ZlciA9IG5ldyBFdmVudEVtaXR0ZXI8Ym9vbGVhbj4oKTtcbiAgQE91dHB1dCgpIHJlYWRvbmx5IGl0ZW1DbGljayA9IG5ldyBFdmVudEVtaXR0ZXI8Ym9vbGVhbj4oKTtcblxuICBob3ZlclJhdGUoaXNIYWxmOiBib29sZWFuKTogdm9pZCB7XG4gICAgdGhpcy5pdGVtSG92ZXIubmV4dChpc0hhbGYgJiYgdGhpcy5hbGxvd0hhbGYpO1xuICB9XG5cbiAgY2xpY2tSYXRlKGlzSGFsZjogYm9vbGVhbik6IHZvaWQge1xuICAgIHRoaXMuaXRlbUNsaWNrLm5leHQoaXNIYWxmICYmIHRoaXMuYWxsb3dIYWxmKTtcbiAgfVxufVxuIl19

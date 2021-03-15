@@ -1,0 +1,71 @@
+<div class="col-3" style="object-fit: cover; background-color: #001529;max-height: 1000px; height: 1000px;"><app-sidebar></app-sidebar></div>
+
+<div class="col-9" style=" height:68px; background-color:#fcfcfc;">
+  <h1 style=" height:68px; padding-top: 2%;padding-left:2%;"> <span style='font-size:305x;'>&#9900;</span> Create a PO & PR</h1>
+</div>
+<!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
+<div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;">
+
+  <div class="col-4" style="padding-left: 5%; height: 300px;">
+    <h2>Purchase Order Form</h2>
+    <form action="/action_page.php">
+      <label for="fname">Raw Materiel Name :</label>
+      <input type="text" id="fname" name="firstname" >
+      <label for="lname">Vendor Name :</label>
+      <input type="text" id="lname" name="lastname" >
+      
+    </form>
+  </div>
+  <div class="col-4" style="padding-left: 5%; height: 300px;">
+    <form action="/action_page.php" style="padding-top: 15%;">
+      <label for="fname">Material Quantity :</label>
+      <input type="text" id="fname" name="firstname" >
+      <label for="lname">Material Price : </label>
+      <input type="text" id="lname" name="lastname">
+     
+    </form>
+  </div>
+
+  <div class="col-4" style="padding-left: 3%; height: 300px;">
+  
+    <div style="height: 53%;">
+        <h3  style="padding-left: 25%;">Po Info</h3>
+        <p> Material Name : Material 1 </p>
+        <p> Material Qty     : 1000 </p>
+        <p>Vendor Name   : vendor name </p>
+    </div>
+
+    <form action="/action_page.php">
+      <input type="submit" value="Submit">
+    </form>
+    
+  </div>
+
+   <div>
+    <h2>Purchase Requisition Table</h2>
+    <h6>These are the accepted PR’s for the month</h6>
+    <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">
+      <thead>
+        <tr>
+          <th>Material name</th>
+          <th>Vendor name</th>
+          <th>Material Qty</th>
+          <th>Material Price</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.mname}}</td>
+          <td>{{data.mid}}</td>
+          <td>{{data.vname}}</td>
+          <td>{{data.vid}}</td>
+          <td>{{data.mqty}}</td>
+          <td>{{data.odate}}</td>
+          <td>{{data.edate}}</td>
+          <td>{{data.eprice}}</td>
+          <td>{{data.userid}}</td>
+      </tbody>
+    </nz-table>
+  </div>
+  </div>

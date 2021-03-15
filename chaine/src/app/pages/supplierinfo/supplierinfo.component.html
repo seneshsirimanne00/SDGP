@@ -1,0 +1,72 @@
+<div class="col-3" style="object-fit: cover; background-color: #001529;max-height: 1000px; height: 1000px;"><app-sidebar></app-sidebar></div>
+
+
+<div class="col-9" style=" height:68px; background-color:#fcfcfc;">
+    <h1 style=" height:68px; padding-top: 2%;padding-left:2%;"> <span style='font-size:305x;'>&#9900;</span> Supplier Information</h1>
+</div>
+
+  <!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
+<div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;">
+
+  <div class="col-4" style="padding-left: 5%; height: 300px;">
+    <h2>New SupplierForm</h2>
+    <form action="/action_page.php">
+      <label for="fname">Supplier Name :</label>
+      <input type="text" id="fname" name="firstname" >
+      <label for="lname">Material Name:</label>
+      <input type="text" id="lname" name="lastname" >
+      <label for="lname">Average Order Time</label>
+      <input type="text" id="lname" name="lastname" >
+    </form>
+  </div>
+  <div class="col-4" style="padding-left: 5%; height: 300px;">
+    <form action="/action_page.php" style="padding-top: 15%;">
+      <label for="fname">Supplier Id :</label>
+      <input type="text" id="fname" name="firstname" >
+      <label for="lname">Material Id: </label>
+      <input type="text" id="lname" name="lastname">
+      <label for="lname">Description : </label>
+      <input type="text" id="lname" name="lastname">
+    </form>
+  </div>
+
+  <div class="col-4" style="padding-left: 4%; height: 300px;">
+    <div style="height: 65.5%;">
+        <h3  style="padding-left: 25%;">Product Info</h3>
+        <p> Material Name : Material 1 </p>
+    </div>
+
+    <form action="/action_page.php">
+      <input type="submit" value="Submit">
+    </form>
+    
+  </div>
+
+    <div>
+      <h2>Supplier information Table</h2>
+      <h6>Supplier information Table table including data of suppliers</h6>
+      <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">   
+        <thead>
+          <tr>
+            <th>Supplier ID</th>
+            <th>Supplier Name</th>
+            <th>Material Name</th>
+            <th>Material Time</th>
+            <th>Average order Time </th>
+            <th>Average Delivery Time</th>
+             
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{data.mname}}</td>
+            <td>{{data.mid}}</td>
+            <td>{{data.vname}}</td>
+            <td>{{data.vid}}</td>
+            <td>{{data.mqty}}</td>
+            <td>{{data.mqty}}</td>
+        
+        </tbody>
+      </nz-table>
+    </div>
+</div>
