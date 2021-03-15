@@ -1,0 +1,65 @@
+<div class="col-3" style="object-fit: cover; background-color: #001529;max-height: 1000px; height: 1000px; "><app-sidebar></app-sidebar></div>
+
+<div class="col-9" style=" height:68px; background-color:#fcfcfc;">
+  <h1 style=" height:68px; padding-top: 2%;padding-left:2%;"> <span style='font-size:305x;'>&#9900;</span> Moniter Production process</h1>
+</div>
+<!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
+<div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;">
+
+  <div class="col-12" style="position: relative;;margin: left 100px; height: 50vh;  margin: 0; padding: 0; background-color:white;">
+    <h1 style="padding-top: 2%;padding-left: 3%;">Order Status Timeline</h1>
+    <input type="text" [(ngModel)]="percent" id="textInput" placeholder="number">
+      <div class="col-11" style="padding-left: 10%;padding-top: 3%; text-align: center; background-color: white;">
+        <div class="col-12" style="padding: 2%;background-color: white;">
+            <progress-bar [progress]= "percent" [color]="'#488aff'"></progress-bar>
+              <div class="col-3" style="padding: 2%;text-align: left;background-color: white;">
+               |
+                <h3>Start</h3>  
+              </div>
+              <div class="col-3" style="padding: 2%;background-color: white;">
+                |
+                <h3>Process 1</h3>  
+              </div>
+              <div class="col-3" style="padding: 2%;background-color: white;">
+                |
+                <h3>Process 2</h3>  
+              </div>
+              <div class="col-3" style="padding: 2%;background-color: white;">
+                |
+                <h3>Process 3</h3>  
+              </div>
+              <div class="col-3" style="padding: 2%;text-align: right;background-color: white;">
+                |
+                <h3>Completed</h3>  
+              </div>
+        </div>
+      </div>
+    </div>
+  
+   <div>
+    <h2>Production Table</h2>
+    <h6> table including data about products for this month </h6>
+    <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">
+      <thead>
+        <tr>
+          <th>Product name</th>
+          <th> Order Id</th>
+          <th>Qty</th>
+          <th>Start Date</th>
+          <th>Finish Date</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.mname}}</td>
+          <td>{{data.mid}}</td>
+          <td>{{data.vname}}</td>
+          <td>{{data.vid}}</td>
+          <td>{{data.mqty}}</td>
+          <td (click)="debugger()" >{{data.odate}}</td>
+        
+      </tbody>
+    </nz-table>
+  </div>
+  </div>
