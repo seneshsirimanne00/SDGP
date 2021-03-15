@@ -1,4 +1,3 @@
-from monitorSCM import MonitorSCM
 from database import Database
 
 class Account:

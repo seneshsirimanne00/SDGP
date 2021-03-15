@@ -13,8 +13,8 @@ class AppDatabase:
     def __init__(self):
         pass
 
-    def createCompany(self , companyName):
-        company = Company(companyName)
+    def createCompany(self , companyName , email , password):
+        company = Company(companyName , email , password)
         self.__companies.append( company )
 
     def findAccount(self, id):
@@ -23,3 +23,12 @@ class AppDatabase:
             if account is not None:
                 return account
         return None
+
+    def getCompany(self, companyName):
+        found = False
+        for company in self.__companies:
+            if company.companyName.lower() == companyName.lower():
+                found = True
+                return company
+        if not found:
+            raise Exception("Company Does not exist")

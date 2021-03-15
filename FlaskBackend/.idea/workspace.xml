@@ -4,13 +4,13 @@
     <list default="true" id="5599d35c-0850-4295-9ea4-a2cb6e3b55f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appDatabase.py" beforeDir="false" afterPath="$PROJECT_DIR$/appDatabase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/company.py" beforeDir="false" afterPath="$PROJECT_DIR$/company.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitorSCM.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/stock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedata/inate_productData.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/savedata/inate_stockData.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supplier.py" beforeDir="false" afterPath="$PROJECT_DIR$/supplier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +126,7 @@
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="D:\UNI WORK\SDGP\Implementation\Initial Backend\GIT\SDGP\FlaskBackend\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -135,6 +135,11 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Flask server.FlaskBackend" />
+      <item itemvalue="Flask server.Flask (app.py)" />
+      <item itemvalue="Python.main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Flask server.Flask (app.py)" />
@@ -166,7 +171,13 @@
       <workItem from="1614684121742" duration="37970000" />
       <workItem from="1615104038777" duration="11300000" />
       <workItem from="1615172905114" duration="3887000" />
-      <workItem from="1615219710965" duration="28429000" />
+      <workItem from="1615219710965" duration="28704000" />
+      <workItem from="1615430822975" duration="1342000" />
+      <workItem from="1615449904155" duration="2395000" />
+      <workItem from="1615458532656" duration="8446000" />
+      <workItem from="1615699690609" duration="6667000" />
+      <workItem from="1615779777463" duration="4830000" />
+      <workItem from="1615784797460" duration="207000" />
     </task>
     <servers />
   </component>
@@ -186,6 +197,15 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="SalesData" />
@@ -194,8 +214,8 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/FlaskBackend$FlaskBackend.coverage" NAME="FlaskBackend Coverage Results" MODIFIED="1612349913325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/FlaskBackend$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1615264342959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FlaskBackend$FlaskBackend.coverage" NAME="FlaskBackend Coverage Results" MODIFIED="1615784988099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FlaskBackend$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1615784843140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FlaskBackend$main.coverage" NAME="main Coverage Results" MODIFIED="1615177513623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

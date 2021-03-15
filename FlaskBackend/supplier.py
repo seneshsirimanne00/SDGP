@@ -12,6 +12,9 @@ class Supplier:
         self.materials.append(name)
         self.material_pricePerUnit.append(price)
 
+    def getDeliveryTime(self):
+        return self.deliveryTime
+
     def getId(self):
         return self.id
 
@@ -23,6 +26,12 @@ class Supplier:
 
     def getMatPrices(self):
         return self.material_pricePerUnit
+
+    def doesSell(self, matName):
+        for mat in self.materials:
+            if mat.lower() == matName.lower():
+                return True
+        return False
 
     """
     ====================================================================================================================

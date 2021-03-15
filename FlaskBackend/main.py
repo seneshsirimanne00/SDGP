@@ -1,25 +1,25 @@
 from appDatabase import AppDatabase
-import pandas as pd
-from product import Product
 from database import Database
-from salesData import SalesData
+
 
 
 class Main:
     activeCompany = None
     appDatabase = AppDatabase()
 
-    def getIntInput(self, message):
-        number = input(message)
-        try:
-            number = int(number)
-            return number
-        except ValueError:
-            print(number + " is not a Number!")
-            return False
+    def __init__(self):
+        """self.appDatabase = AppDatabase()
+        self.appDatabase.createCompany("inate") # For now a company needs to be created each time becuase references
+        # to companies dont have save functionality yet.
+        self.activeCompany = self.appDatabase.getCompany("inate")"""
+        # Company and their account functionality will be added after base project(SCM System for fixed user) is
+        # complete
+        companyName = "inate"
+        self.database = Database(companyName)
+        print("Main[Debug] : initialised")
 
     def login(self):
-        return
+        return "Empty Login Method"
 
     def signUp(self):
         return
@@ -43,7 +43,7 @@ class Main:
     """
     def emailvalidate(self):
         text = "venurail.com"
-        pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$'
+        pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)+$'
         if re.fullmatch(pattern, text):
             print("Valid email")
         else:
@@ -71,6 +71,40 @@ class Main:
 
     # Login Segment --!>
 
+    # Helper Methods <!--
+
+    def getIntInput(self, message):
+        number = input(message)
+        try:
+            number = int(number)
+            return number
+        except ValueError:
+            print(number + " is not a Number!")
+            return False
+
+    def supplierExists(self, supplierName):
+        if self.database.getSupplier(supplierName) is None:
+            return False
+        return True
+
+    # Helper Methods --!>
+
+    # Main Methods <!--
+
+"""    def addPoRequest(self, rawMatName, rawMatQty, supplierName, matPricePerUnit):
+        if not self.supplierExists(supplierName):
+            return "Supplier Does not exist!"
+        supObj = self.database.getSupplier(supplierName)
+        if not supObj.doesSell(rawMatName):
+            return "Supplier Does not Sell " + rawMatName
+        # If supplier Exists and Sells a given item, the PO request can be made
+
+        orderDuration = supObj.getDeliveryTime()
+        self.database.getStock().placeRawMatOrder(rawMatName, orderDuration, rawMatQty, matPricePerUnit, supplierName)
+        self.database.getStock().viewRawMatOrders()  # Displaying to console. Debug
+"""
+    # Main Methods --!>
+
 
 """
 df = pd.read_excel("savedata/BatchCost_Edited.xlsx")
@@ -89,7 +123,7 @@ item_sales.addSales(50400, "15.15.2020", 950000)
 db.save()
 """
 
-db = Database("inate")
+"""db = Database("inate")
 
 pd.set_option("max_columns", None)
 
@@ -103,4 +137,4 @@ print(df_sales.head(5))
 print("----------------")
 
 data = df_sales[['date' , 'sales']]
-print(data.head(5))
+print(data.head(5))"""
