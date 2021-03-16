@@ -20,14 +20,29 @@ def sendPoRequest():
     response = main.addPoRequest(data[0], data[1], data[2], data[3])
     return jsonify(response)
 
-@app.route("/getPoData" , methods=["GET"])
+
+@app.route("/getPoData", methods=["GET"])
 def getPoTableData():
-    testRecord = {"mname": "Banana",
-                  "vname":"Wickramasinhe",
-                  "mqty":"15",
-                  "mprice":"2"}
+    testRecord = {"mname": "Banana", "vname": "Wickramasinhe", "mqty": "15", "mprice": "2"}
     return jsonify([testRecord])
 
+
+# Product Requisition table holds the data with the CONFIRMED product orders
+@app.route("/getPrData", methods=["GET"])
+def getPrData():
+    testRecord = {"mnamepr": "Children", "vnamepr": "Malith", "mqtypr": "69", "mpricepr": "420"}
+    data = [testRecord, testRecord, testRecord]
+    return jsonify(testRecord)
+
+@app.route("/createSupplier" , methods=["POST"])
+def createSuppler():
+    data = request.get_data().decode('utf-8')
+    data = data.split(",")
+    main.createSupplier(data[0], data[1], data[2], data[3])
+    print("Debug[Flask] - CreateSupplier")
+
+
+    return jsonify()
 
 
 """

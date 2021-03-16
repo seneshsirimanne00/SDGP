@@ -110,9 +110,10 @@ class Database:
                 biggest = supplier.getId()
         return biggest
 
-    def createSupplier(self, supplierName, deliveryTime):
+    def createSupplier(self, supplierName, deliveryTime , description):
         # ID will be automatically set
         supplier = Supplier(self.nextSupplierID(), supplierName, deliveryTime)
+        supplier.setDescription(description)
         # This supplier does not have any materials set YET. Add material method must be called to add materials to a
         # supplier . This is done cause one supplier has the ability to sell multiple materials
         self.suppliers.append(supplier)

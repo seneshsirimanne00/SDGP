@@ -60,13 +60,13 @@ export class CoPageComponent implements OnInit {
   
 
   ngOnInit(): void {
-    this.datatransfer.getPoTableData().subscribe( (data) => this.listOfData2 = data )
-    this.datatransfer.getPrTableData().subscribe( (data) => this.listOfData1 = data )
+    this.datatransfer.getPoTableData().subscribe( (data) => this.listOfData2 = data );
+    this.datatransfer.getPrTableData().subscribe( (data) => this.listOfData1 = data );
   }
 
   submitform(){
-    console.log(" data going ")
-    this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName,this.matPrice).subscribe( (data) => this.listOfData2) 
+    console.log(" data going ");
+    this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName,this.matPrice).subscribe( (data) => this.listOfData2);
   }
 
 

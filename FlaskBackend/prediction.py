@@ -8,9 +8,9 @@ import statsmodels.formula.api as smf
 import warnings
 warnings.filterwarnings("ignore")
 
-#import Keras
-import keras
-from keras.layers import Dense
+
+#import keras
+"""from keras.layers import Dense
 from keras.models import Sequential
 from keras.optimizers import Adam
 from keras.callbacks import EarlyStopping
@@ -18,7 +18,7 @@ from keras.utils import np_utils
 from keras.layers import LSTM
 from sklearn.model_selection import KFold, cross_val_score, train_test_split
 from sklearn.preprocessing import MinMaxScaler
-
+"""
 class Prediction:
     __predictedSales = 0
 
@@ -27,6 +27,7 @@ class Prediction:
         self.setupLearn()
 
     def setupLearn(self):
+        """
         print("debug[starting learn]")
         df_sales = pd.read_csv('savedata/train.csv')
         df_sales['date'] = pd.to_datetime(df_sales['date'])
@@ -109,8 +110,8 @@ class Prediction:
             result_list.append(result_dict)
         df_result = pd.DataFrame(result_list)
         # for multistep prediction, replace act_sales with the predicted sales
-        print(df_result)
-
+        print(df_result)"""
+        return
 
     def getSalesData(self):
         return

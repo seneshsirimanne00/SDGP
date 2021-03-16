@@ -3,11 +3,9 @@ from database import Database
 from prediction import Prediction
 
 
-
 class Main:
     activeCompany = None
     appDatabase = AppDatabase()
-
 
     def __init__(self):
         """self.appDatabase = AppDatabase()
@@ -18,8 +16,6 @@ class Main:
         # complete
         companyName = "inate"
         self.database = Database(companyName)
-        print("Prediction Class init")
-        self.prediction()
 
     def login(self):
         return "Empty Login Method"
@@ -109,6 +105,12 @@ class Main:
         self.database.getStock().placeRawMatOrder(rawMatName, orderDuration, rawMatQty, matPricePerUnit, supplierName)
         print("This Print works?")
         self.database.getStock().viewRawMatOrders()  # Displaying to console. Debug
+
+    # SENEEEEEEEEEEEEEEEEEEEEEEEESh - We decided that one supplier may sell mutiple materials (Adjust GUI for this)
+    def createSupplier(self, supplierName, matName, orderTime, supDescription):
+        self.database.createSupplier(supplierName, orderTime, supDescription)
+        supplierObj = self.database.getSupplier(supplierName)
+        supplierObj.addMaterial(matName , price) #
 
     # Main Methods --!>
 
