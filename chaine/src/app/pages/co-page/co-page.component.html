@@ -44,28 +44,44 @@
    <div>
     <h2>Purchase Requisition Table</h2>
     <h6>These are the accepted PR’s for the month</h6>
-    <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">
+    <!--<nz-table #basicTable [nzData]="listOfData2">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.name }}</td>
+          <td>{{ data.age }}</td>
+          <td>{{ data.address }}</td>
+          <td>
+            <a>Action 一 {{ data.name }}</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>-->
+     <nz-table #basicTable [nzData]="listOfData2" style="padding-top: 1%;">
       <thead>
         <tr>
           <th>Material name</th>
           <th>Vendor name</th>
           <th>Material Qty</th>
           <th>Material Price</th>
-          
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
           <td>{{data.mname}}</td>
-          <td>{{data.mid}}</td>
           <td>{{data.vname}}</td>
-          <td>{{data.vid}}</td>
           <td>{{data.mqty}}</td>
-          <td>{{data.odate}}</td>
-          <td>{{data.edate}}</td>
-          <td>{{data.eprice}}</td>
-          <td>{{data.userid}}</td>
+          <td> Rs. {{data.mprice}}</td>
       </tbody>
-    </nz-table>
+    </nz-table> 
   </div>
   </div>

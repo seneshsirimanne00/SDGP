@@ -12,6 +12,7 @@ export class DatatransferService {
     var obj = rawMatName +"," + matQty +"," + supplierName +"," + matPrice
     console.log(obj);
     return this.http.post<string>( "http://127.0.0.1:5000/enter" , obj);
+    
   }
     
 }

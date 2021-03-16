@@ -39,6 +39,7 @@ import { BarchartComponent } from './barchart/barchart.component';
 
 
 
+
 registerLocaleData(hi);
 
 @NgModule({
