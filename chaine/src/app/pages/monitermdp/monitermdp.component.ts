@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-interface distributionData{
-  pname: string;
-  oid: string;
-  qty: number;
-  sdate: string;
-  fdate: string;
-}
+import { moniterDP_Data } from 'src/app/data_interfaces/moniterDP_data';
 
 @Component({
   selector: 'app-monitermdp',
@@ -16,7 +9,9 @@ interface distributionData{
 export class MonitermdpComponent implements OnInit {
   percent : string;
 
-  listOfData: distributionData[] = [
+  //listOfDataMDP : moniterDP_Data[];
+  //hardcoded for now
+  listOfDataMDP: moniterDP_Data[] = [
     {
       pname: 'prod 1',
       oid: '0001',

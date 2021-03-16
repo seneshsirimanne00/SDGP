@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatatransferService } from 'src/app/datatransfer.service';
 import { poData } from 'src/app/data_interfaces/poData';
-
-interface Person {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-}
-
+import { prData } from 'src/app/data_interfaces/prData';
 
 @Component({
   selector: 'app-co-page',
@@ -17,85 +10,27 @@ interface Person {
 })
 export class CoPageComponent implements OnInit {
 
+
+
+  //variables for the form
   matName : String;
   vendorName : String;
-  matQty : Number;
-  matPrice : Number;
+  matQty : String;
+  matPrice : String;
+
 
   constructor(private datatransfer : DatatransferService) { }
 
-  listOfData: Person[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    }
-  ];
 
-  listOfData2 : poData[];
+  listOfData2 : poData[];// for po table
+
+  listOfData1 : prData[];//for pr table
+
+
+
+
   /*
   listOfData2: poData[] = [
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
     {
       mname: 'material 1',
       vname: 'John Brown',
@@ -126,6 +61,12 @@ export class CoPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.datatransfer.getPoTableData().subscribe( (data) => this.listOfData2 = data )
+    this.datatransfer.getPrTableData().subscribe( (data) => this.listOfData1 = data )
+  }
+
+  submitform(){
+    console.log(" data going ")
+    this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName,this.matPrice).subscribe( (data) => this.listOfData2) 
   }
 
 

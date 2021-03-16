@@ -9,7 +9,7 @@
    <div>
     <h2>Raw Stock Table</h2>
     <h6>These are the details contaning data aboutraw stock for the month </h6>
-    <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">
+    <nz-table #basicTable [nzData]="listOfDataRSM" style="padding-top: 1%;">
       <thead>
         <tr>
             <th>Material name</th>
@@ -21,9 +21,8 @@
       <tbody>
         <tr *ngFor="let data of basicTable.data">
           <td>{{data.mname}}</td>
-          <td>{{data.mid}}</td>
-          <td>{{data.vname}}</td>
-          <td>{{data.vid}}</td>
+          <td>{{data.qty}}</td>
+          <td>{{data.oid}}</td>
 
       </tbody>
     </nz-table>

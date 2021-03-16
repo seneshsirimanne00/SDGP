@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { moniterDP_Data } from './data_interfaces/moniterDP_data';
+import { moniterPP_Data } from './data_interfaces/moniterPP_Data';
 import { poData } from './data_interfaces/poData';
+import { prData } from './data_interfaces/prData';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +23,18 @@ export class DatatransferService {
 
   getPoTableData(){
     return this.http.get<poData[]>(this.baseLocalhost + "getPoData")
+  }
+
+  getPrTableData(){
+    return this.http.get<prData[]>(this.baseLocalhost + "getPrData")
+  }
+
+  getMoniterDPtableData(){
+    return this.http.get<moniterDP_Data[]>(this.baseLocalhost + "getMoniterDPtableData")
+  }
+
+  getMoniterPPTableData(){
+    return this.http.get<moniterPP_Data[]>(this.baseLocalhost + "getMoniterPPTableData")
   }
     
 }

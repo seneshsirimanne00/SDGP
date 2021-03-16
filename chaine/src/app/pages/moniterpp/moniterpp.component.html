@@ -39,7 +39,7 @@
    <div>
     <h2>Production Table</h2>
     <h6> table including data about products for this month </h6>
-    <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">
+    <nz-table #basicTable [nzData]="listOfDataMPP" style="padding-top: 1%;">
       <thead>
         <tr>
           <th>Product name</th>
@@ -52,11 +52,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{data.mname}}</td>
-          <td>{{data.mid}}</td>
-          <td>{{data.vname}}</td>
-          <td>{{data.vid}}</td>
-          <td>{{data.mqty}}</td>
+          <td>{{data.pName}}</td>
+          <td>{{data.mId}}</td>
+          <td>{{data.vName}}</td>
+          <td>{{data.vId}}</td>
+          <td>{{data.mQty}}</td>
           <td (click)="debugger()" >{{data.odate}}</td>
         
       </tbody>

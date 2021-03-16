@@ -36,37 +36,15 @@
     </div>
 
     <form action="/action_page.php">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" (click)="submitform()">
     </form>
     
   </div>
 
    <div>
-    <h2>Purchase Requisition Table</h2>
-    <h6>These are the accepted PR’s for the month</h6>
-    <!--<nz-table #basicTable [nzData]="listOfData2">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Address</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of basicTable.data">
-          <td>{{ data.name }}</td>
-          <td>{{ data.age }}</td>
-          <td>{{ data.address }}</td>
-          <td>
-            <a>Action 一 {{ data.name }}</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a>Delete</a>
-          </td>
-        </tr>
-      </tbody>
-    </nz-table>-->
-     <nz-table #basicTable [nzData]="listOfData2" style="padding-top: 1%;">
+    <h2>Purchase Order Table</h2>
+    <h6>These are the PO’s made for the month</h6>
+    <nz-table #basicTable [nzData]="listOfData2" style="padding-top: 1%;">
       <thead>
         <tr>
           <th>Material name</th>
@@ -80,7 +58,29 @@
           <td>{{data.mname}}</td>
           <td>{{data.vname}}</td>
           <td>{{data.mqty}}</td>
-          <td> Rs. {{data.mprice}}</td>
+          <td> Rs. {{data.mprice}}   <button>ACCEPT</button></td>
+      </tbody>
+    </nz-table> 
+  </div>
+  <div>
+
+    <h2>Purchase Requisition Table</h2>
+    <h6>These are the accepted PR’s for the month</h6>
+    <nz-table #basicTable [nzData]="listOfData1" style="padding-top: 1%;">
+      <thead>
+        <tr>
+          <th>Material name</th>
+          <th>Vendor name</th>
+          <th>Material Qty</th>
+          <th>Material Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.mnamepr}}</td>
+          <td>{{data.vnamepr}}</td>
+          <td>{{data.mqtypr}}</td>
+          <td> Rs. {{data.mpricepr}}</td>
       </tbody>
     </nz-table> 
   </div>
