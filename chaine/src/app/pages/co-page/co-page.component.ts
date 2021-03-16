@@ -24,39 +24,40 @@ export class CoPageComponent implements OnInit {
 
   listOfData2 : poData[];// for po table
 
-  listOfData1 : prData[];//for pr table
+  //listOfData1 : prData[];//for pr table
 
 
 
 
-  /*
-  listOfData2: poData[] = [
+  
+  listOfData1: prData[] = [
     {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
+      mnamepr: 'material 1',
+      vnamepr: 'John Brown',
+      mqtypr: 32,
+      mpricepr: 10000
     },
     {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
+      mnamepr: 'material 1',
+      vnamepr: 'John Brown',
+      mqtypr: 32,
+      mpricepr: 10000
     },
     {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
+      mnamepr: 'material 1',
+      vnamepr: 'John Brown',
+      mqtypr: 32,
+      mpricepr: 10000
     },
     {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
+      mnamepr: 'material 1',
+      vnamepr: 'John Brown',
+      mqtypr: 32,
+      mpricepr: 10000
     }
+    
   ];
-  */
+  
   
 
   ngOnInit(): void {
