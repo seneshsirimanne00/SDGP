@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminregistrationpageComponent } from './pages/adminregistrationpage/adminregistrationpage.component';
 import { CoPageComponent } from './pages/co-page/co-page.component';
+import { CompanyprofilepageComponent } from './pages/companyprofilepage/companyprofilepage.component';
+import { CompanyregistrationpageComponent } from './pages/companyregistrationpage/companyregistrationpage.component';
+import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { MonitermdpComponent } from './pages/monitermdp/monitermdp.component';
 import { MoniterppComponent } from './pages/moniterpp/moniterpp.component';
 import { MoniterrsmComponent } from './pages/moniterrsm/moniterrsm.component';
@@ -36,7 +40,11 @@ const routes: Routes = [
   { path: 'productdistributionreport',component:ReportproddComponent},
   { path: 'salesforcastreport',component:ReportsalesforecastComponent},
   { path: 'productinfo',component:ProductinfoComponent},
-  { path: 'rawmaterialrequirementforecastreport',component:ReportrmrforecastComponent}
+  { path: 'rawmaterialrequirementforecastreport',component:ReportrmrforecastComponent},
+  { path: 'companyProfile',component:CompanyprofilepageComponent},
+  { path: 'loginpage',component:LoginpageComponent},
+  { path: 'companyregistrationpage',component:CompanyregistrationpageComponent},
+  { path: 'adminregistrationpage',component:AdminregistrationpageComponent}
 ];
 
 @NgModule({

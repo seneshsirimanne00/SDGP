@@ -36,6 +36,10 @@ import { ReportrmrforecastComponent } from './pages/reportrmrforecast/reportrmrf
 import {ProgressBarModule} from "angular-progress-bar";
 import { LinechartComponent } from './linechart/linechart.component';
 import { BarchartComponent } from './barchart/barchart.component';
+import { CompanyprofilepageComponent } from './pages/companyprofilepage/companyprofilepage.component';
+import { LoginpageComponent } from './pages/loginpage/loginpage.component';
+import { CompanyregistrationpageComponent } from './pages/companyregistrationpage/companyregistrationpage.component';
+import { AdminregistrationpageComponent } from './pages/adminregistrationpage/adminregistrationpage.component';
 
 
 
@@ -65,6 +69,11 @@ registerLocaleData(hi);
     ReportrmrforecastComponent,
     LinechartComponent,
     BarchartComponent,
+    CompanyprofilepageComponent,
+    LoginpageComponent,
+    CompanyregistrationpageComponent,
+    AdminregistrationpageComponent,
+    
   ],
   imports: [
     BrowserModule,
