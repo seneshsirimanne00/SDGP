@@ -1,5 +1,6 @@
 from appDatabase import AppDatabase
 from database import Database
+from prediction import Prediction
 
 
 
@@ -17,6 +18,8 @@ class Main:
         # complete
         companyName = "inate"
         self.database = Database(companyName)
+        print("Prediction Class init")
+        self.prediction()
 
     def login(self):
         return "Empty Login Method"
@@ -72,6 +75,9 @@ class Main:
     # Login Segment --!>
 
     # Helper Methods <!--
+
+    def prediction(self):
+        prd = Prediction()
 
     def getIntInput(self, message):
         number = input(message)
