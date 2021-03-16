@@ -4,8 +4,9 @@
     <list default="true" id="5599d35c-0850-4295-9ea4-a2cb6e3b55f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/stock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chaine/src/app/datatransfer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chaine/src/app/datatransfer.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chaine/src/app/pages/co-page/co-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../chaine/src/app/pages/co-page/co-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chaine/src/app/pages/co-page/co-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../chaine/src/app/pages/co-page/co-page.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +173,7 @@
       <workItem from="1615458532656" duration="8446000" />
       <workItem from="1615699690609" duration="6667000" />
       <workItem from="1615779777463" duration="4830000" />
-      <workItem from="1615784797460" duration="4744000" />
+      <workItem from="1615784797460" duration="5670000" />
     </task>
     <servers />
   </component>

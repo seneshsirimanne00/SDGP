@@ -20,6 +20,15 @@ def sendPoRequest():
     response = main.addPoRequest(data[0], data[1], data[2], data[3])
     return jsonify(response)
 
+@app.route("/getPoData" , methods=["GET"])
+def getPoTableData():
+    testRecord = {"mname": "BigFatShit",
+                  "vname":"Sandali",
+                  "mqty":"15",
+                  "mprice":"2"}
+    return jsonify([testRecord])
+
+
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 
 IN THE FRONTEND
