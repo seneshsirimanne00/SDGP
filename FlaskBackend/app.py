@@ -22,11 +22,12 @@ def sendPoRequest():
 
 @app.route("/getPoData" , methods=["GET"])
 def getPoTableData():
-    testRecord = {"mname": "BigFatShit",
-                  "vname":"Sandali",
+    testRecord = {"mname": "Banana",
+                  "vname":"Wickramasinhe",
                   "mqty":"15",
                   "mprice":"2"}
     return jsonify([testRecord])
+
 
 
 """
