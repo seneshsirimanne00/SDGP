@@ -40,6 +40,7 @@ import { CompanyprofilepageComponent } from './pages/companyprofilepage/companyp
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
 import { CompanyregistrationpageComponent } from './pages/companyregistrationpage/companyregistrationpage.component';
 import { AdminregistrationpageComponent } from './pages/adminregistrationpage/adminregistrationpage.component';
+import { TabletwoComponent } from './pages/co-page/tabletwo/tabletwo.component';
 
 
 
@@ -73,6 +74,7 @@ registerLocaleData(hi);
     LoginpageComponent,
     CompanyregistrationpageComponent,
     AdminregistrationpageComponent,
+    TabletwoComponent,
     
   ],
   imports: [

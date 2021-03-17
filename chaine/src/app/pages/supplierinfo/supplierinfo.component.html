@@ -41,27 +41,23 @@
     <div>
       <h2>Supplier information Table</h2>
       <h6>Supplier information Table table including data of suppliers</h6>
-      <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">   
+      <nz-table #basicTable [nzData]="listOfDataSupplierInfo" style="padding-top: 1%;">   
         <thead>
           <tr>
-            <th>Supplier ID</th>
             <th>Supplier Name</th>
             <th>Material Name</th>
-            <th>Material Time</th>
             <th>Average order Time </th>
-            <th>Average Delivery Time</th>
+            <th>Material unit Price</th>
              
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of basicTable.data">
+            <td>{{data.sname}}</td>
             <td>{{data.mname}}</td>
-            <td>{{data.mid}}</td>
-            <td>{{data.vname}}</td>
-            <td>{{data.vid}}</td>
-            <td>{{data.mqty}}</td>
-            <td>{{data.mqty}}</td>
-        
+            <td>{{data.avgOtime}} days</td>
+            <td>Rs.{{data.mUp}}</td>
+           
         </tbody>
       </nz-table>
     </div>

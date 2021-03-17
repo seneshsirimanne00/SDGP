@@ -4,6 +4,7 @@ import { moniterDP_Data } from './data_interfaces/moniterDP_data';
 import { moniterPP_Data } from './data_interfaces/moniterPP_Data';
 import { poData } from './data_interfaces/poData';
 import { prData } from './data_interfaces/prData';
+import { supplierData } from './data_interfaces/supplierData';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class DatatransferService {
 
   getMoniterPPTableData(){
     return this.http.get<moniterPP_Data[]>(this.baseLocalhost + "getMoniterPPTableData");
+  }
+
+  getSupplierInfoTableData(){
+    return this.http.get<supplierData[]>(this.baseLocalhost + "getSupplierInfoTableData");
   }
     
 }

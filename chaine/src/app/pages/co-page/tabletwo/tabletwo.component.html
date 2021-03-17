@@ -1,0 +1,17 @@
+<nz-table #basicTable [nzData]="listOfData1" style="padding-top: 1%;">
+      <thead>
+        <tr>
+          <th>Material name</th>
+          <th>Vendor name</th>
+          <th>Material Qty</th>
+          <th>Material Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{data.mnamepr}}</td>
+          <td>{{data.vnamepr}}</td>
+          <td>{{data.mqtypr}}</td>
+          <td> Rs. {{data.mpricepr}}</td>
+      </tbody>
+</nz-table> 

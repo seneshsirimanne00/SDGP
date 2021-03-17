@@ -62,26 +62,11 @@
       </tbody>
     </nz-table> 
   </div>
+
   <div>
 
     <h2>Purchase Requisition Table</h2>
     <h6>These are the accepted PR’s for the month</h6>
-    <nz-table #basicTable [nzData]="listOfData1" style="padding-top: 1%;">
-      <thead>
-        <tr>
-          <th>Material name</th>
-          <th>Vendor name</th>
-          <th>Material Qty</th>
-          <th>Material Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of basicTable.data">
-          <td>{{data.mnamepr}}</td>
-          <td>{{data.vnamepr}}</td>
-          <td>{{data.mqtypr}}</td>
-          <td> Rs. {{data.mpricepr}}</td>
-      </tbody>
-    </nz-table> 
+    <app-tabletwo></app-tabletwo>
   </div>
   </div>

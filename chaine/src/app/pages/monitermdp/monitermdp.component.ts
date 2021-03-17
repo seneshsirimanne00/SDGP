@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
 import { moniterDP_Data } from 'src/app/data_interfaces/moniterDP_data';
 
 @Component({
@@ -9,7 +10,8 @@ import { moniterDP_Data } from 'src/app/data_interfaces/moniterDP_data';
 export class MonitermdpComponent implements OnInit {
   percent : string;
 
-  //listOfDataMDP : moniterDP_Data[];
+  listOfDataMDP : moniterDP_Data[];
+ /* 
   //hardcoded for now
   listOfDataMDP: moniterDP_Data[] = [
     {
@@ -40,12 +42,15 @@ export class MonitermdpComponent implements OnInit {
       fdate: '17/5/2021'
     }
     
-  ];
+  ]; */
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
   ngOnInit(): void {
     this.percent = "60";
+
+   this.datatransfer.getMoniterDPtableData().subscribe( (data) => this.listOfDataMDP = data);
   }
+  
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatatransferService } from 'src/app/datatransfer.service';
 import { poData } from 'src/app/data_interfaces/poData';
-import { prData } from 'src/app/data_interfaces/prData';
+
 
 @Component({
   selector: 'app-co-page',
@@ -9,8 +9,6 @@ import { prData } from 'src/app/data_interfaces/prData';
   styleUrls: ['./co-page.component.css']
 })
 export class CoPageComponent implements OnInit {
-
-
 
   //variables for the form
   matName : String;
@@ -21,48 +19,31 @@ export class CoPageComponent implements OnInit {
 
   constructor(private datatransfer : DatatransferService) { }
 
-
   listOfData2 : poData[];// for po table
-
-  //listOfData1 : prData[];//for pr table
-
-
-
-
-  
-  listOfData1: prData[] = [
+  /*
+  listOfData2: poData[] = [
     {
-      mnamepr: 'material 1',
-      vnamepr: 'John Brown',
-      mqtypr: 32,
-      mpricepr: 10000
+      mname: 'material 1',
+      vname: 'John Brown',
+      mqty: 32,
+      mprice: 10000
     },
     {
-      mnamepr: 'material 1',
-      vnamepr: 'John Brown',
-      mqtypr: 32,
-      mpricepr: 10000
+      mname: 'material 1',
+      vname: 'John Brown',
+      mqty: 32,
+      mprice: 10000
     },
     {
-      mnamepr: 'material 1',
-      vnamepr: 'John Brown',
-      mqtypr: 32,
-      mpricepr: 10000
-    },
-    {
-      mnamepr: 'material 1',
-      vnamepr: 'John Brown',
-      mqtypr: 32,
-      mpricepr: 10000
+      mname: 'material 1',
+      vname: 'John Brown',
+      mqty: 32,
+      mprice: 10000
     }
-    
   ];
-  
-  
-
+*/
   ngOnInit(): void {
     this.datatransfer.getPoTableData().subscribe( (data) => this.listOfData2 = data );
-    this.datatransfer.getPrTableData().subscribe( (data) => this.listOfData1 = data );
   }
 
   submitform(){
