@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IMReport_Data } from './data_interfaces/IMReport_Data';
 import { moniterDP_Data } from './data_interfaces/moniterDP_data';
 import { moniterPP_Data } from './data_interfaces/moniterPP_Data';
+import { moniterRSM_Data } from './data_interfaces/moniterRSM_Data[]';
 import { poData } from './data_interfaces/poData';
 import { prData } from './data_interfaces/prData';
 import { supplierData } from './data_interfaces/supplierData';
@@ -43,8 +45,17 @@ export class DatatransferService {
     return this.http.get<moniterPP_Data[]>(this.baseLocalhost + "getMoniterPPTableData");
   }
 
+  getMoniterRSMTableData(){
+    return this.http.get<moniterRSM_Data[]>(this.baseLocalhost + "getMoniterRSMTableData");
+  }
+
   getSupplierInfoTableData(){
     return this.http.get<supplierData[]>(this.baseLocalhost + "getSupplierInfoTableData");
+  }
+
+  //rports
+  getIMReportData(){
+    return this.http.get<IMReport_Data[]>(this.baseLocalhost + "getIMReportData");
   }
     
 }

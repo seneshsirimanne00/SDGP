@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
 import { moniterPP_Data } from 'src/app/data_interfaces/moniterPP_Data';
 
 @Component({
@@ -8,50 +9,24 @@ import { moniterPP_Data } from 'src/app/data_interfaces/moniterPP_Data';
 })
 export class MoniterppComponent implements OnInit {
   percent : string;
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
   //listOfDataMDP : moniterPP_Data[];
+  
 //hardcoded for now
 listOfDataMPP: moniterPP_Data[] = [
   {
     pName:'Mudith Jayasanka' ,
-    mId: '0001',
-    vName:'Venura rajapaksha' ,
-    vId: '001',
-    mQty:'2000' ,
-
-  },
-  {
-    pName:'Mudith Jayasanka' ,
-    mId: '0001',
-    vName:'Venura rajapaksha' ,
-    vId: '001',
-    mQty:'2000' ,
-
-  },
-  {
-    pName:'Mudith Jayasanka' ,
-    mId: '0001',
-    vName:'Venura rajapaksha' ,
-    vId: '001',
-    mQty:'2000' ,
-
-  },
-  {
-    pName:'Mudith Jayasanka' ,
-    mId: '0001',
-    vName:'Venura rajapaksha' ,
-    vId: '001',
-    mQty:'2000' ,
-
+    oId: '0001',
+    mQty:'Venura rajapaksha' ,
+    sDate: '20/11/2021',
+    fDate:'28/11/2021'
   }
 ];
 
   ngOnInit(): void {
     this.percent = "60";
+    this.datatransfer.getMoniterPPTableData().subscribe( (data) => this.listOfDataMPP = data );
   }
 
-  debugger(){
-    console.log("hooooo");
-  }
 }

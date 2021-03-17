@@ -53,11 +53,10 @@
       <tbody>
         <tr *ngFor="let data of basicTable.data">
           <td>{{data.pName}}</td>
-          <td>{{data.mId}}</td>
-          <td>{{data.vName}}</td>
-          <td>{{data.vId}}</td>
+          <td><button click ="showpercentage()">Track</button>  {{data.oId}}</td>
           <td>{{data.mQty}}</td>
-          <td (click)="debugger()" >{{data.odate}}</td>
+          <td>{{data.sDate}}</td>
+          <td>{{data.fDate}}</td>
         
       </tbody>
     </nz-table>

@@ -20,22 +20,21 @@
     <form action="/action_page.php" style="padding-top: 15%;">
       <label for="fname">Material Quantity :</label>
       <input type="text" [(ngModel)] = "matQty" id="fname" name="firstname" >
-      <label for="lname">Material Price : </label>
-      <input type="text" [(ngModel)] = "matPrice" id="lname" name="lastname">
+     <!-- <label for="lname">Material Price : </label>
+      <input type="text" [(ngModel)] = "matPrice" id="lname" name="lastname"> -->
      
     </form>
   </div>
 
   <div class="col-4" style="padding-left: 3%; height: 300px;">
   
-    <div style="height: 53%;">
+    <div style="height: 62%;">
         <h3  style="padding-left: 25%;">Po Info</h3>
         <p> Material Name : {{matName}}</p>
         <p> Material Qty     : {{matQty}} </p>
         <p>Vendor Name   : {{vendorName}} </p>
         <p>Material Price   : {{matPrice}} </p>
     </div>
-
     <form action="/action_page.php">
       <input type="submit" value="Submit" (click)="submitform()">
     </form>
@@ -48,18 +47,21 @@
     <nz-table #basicTable [nzData]="listOfData2" style="padding-top: 1%;">
       <thead>
         <tr>
+          <th>Order Id</th>
           <th>Material name</th>
           <th>Vendor name</th>
           <th>Material Qty</th>
           <th>Material Price</th>
+          <th>Total Price</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
+          <td>{{data.orderid}}<button (click)="acceptPo()" >ACCEPT</button></td>
           <td>{{data.mname}}</td>
           <td>{{data.vname}}</td>
           <td>{{data.mqty}}</td>
-          <td> Rs. {{data.mprice}}   <button>ACCEPT</button></td>
+          <td> Rs. {{data.mprice}}</td>
       </tbody>
     </nz-table> 
   </div>
