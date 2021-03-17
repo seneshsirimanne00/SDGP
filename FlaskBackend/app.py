@@ -27,9 +27,9 @@ def getPoTableData():
     dictList = []
     orders = main.getPoData()
     for order in orders:
-        orderDict = main.getLabeledDict(["mname", "vname", "mqty", "mprice"],
+        orderDict = main.getLabeledDict(["mname", "vname", "mqty", "mprice" , "orderid" , "totalMatPrice"],
                                         [order.getMatName(), order.getSupplierName(), order.getMatQty(),
-                                         order.getUnitCost()])
+                                         order.getUnitCost() , order.getId() , order.getTotalCost() ])
         dictList.append(orderDict)
     return jsonify(dictList)
 
@@ -40,9 +40,9 @@ def getPrData():
     dictList = []
     orders = main.getPrData()
     for order in orders:
-        orderDict = main.getLabeledDict(["mnamepr", "vnamepr", "mqtypr", "mpricepr"],
+        orderDict = main.getLabeledDict(["mnamepr", "vnamepr", "mqtypr", "mpricepr" , "orderid" , "totalMatPrice"],
                                         [order.getMatName(), order.getSupplierName(), order.getMatQty(),
-                                         order.getUnitCost()])
+                                         order.getUnitCost()  , order.getId() , order.getTotalCost() ])
         dictList.append(orderDict)
     return jsonify(dictList)
 
@@ -77,14 +77,11 @@ def saveDb():
 
 @app.route("/confirmPO", methods=["POST"])
 def confirmPO():
-    order = request.get_data().decode('utf-8')
-
-"""
-@app.route("/getPrData" , methods=["GET"])
-def getPrData():
+    orderId = request.get_data().decode('utf-8')
+    main.confirmPoOrder(int(orderId))
+    return "Confirmed PO"
 
 
-"""
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 
 IN THE FRONTEND

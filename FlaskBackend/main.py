@@ -162,6 +162,10 @@ class Main:
     def save(self):
         self.database.save()
 
+    def confirmPoOrder(self , orderId):
+        self.database.confirmPoOrder(orderId)
+
+
     # Main Methods --!>
 
     # Console Methods <!--

@@ -7,8 +7,6 @@
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order.py" beforeDir="false" afterPath="$PROJECT_DIR$/order.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/stock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supplier.py" beforeDir="false" afterPath="$PROJECT_DIR$/supplier.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +181,7 @@
       <workItem from="1615779777463" duration="4830000" />
       <workItem from="1615784797460" duration="12433000" />
       <workItem from="1615883207145" duration="10495000" />
-      <workItem from="1615957348963" duration="26037000" />
+      <workItem from="1615957348963" duration="28810000" />
     </task>
     <servers />
   </component>
@@ -212,7 +210,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/FlaskBackend$FlaskBackend.coverage" NAME="FlaskBackend Coverage Results" MODIFIED="1615784988099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/FlaskBackend$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1615991347673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/FlaskBackend$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1615994884245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FlaskBackend$main.coverage" NAME="main Coverage Results" MODIFIED="1615883424687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -25,8 +25,8 @@ class Order:
         self.orderType = "rawMatOrder"
         self.materialName = materialName
         self.orderDuration = orderDuration
-        self.materialQuantity = materialQuantity
-        self.unitPrice = unitPrice
+        self.materialQuantity = int(materialQuantity)
+        self.unitPrice = float(unitPrice)
         self.orderId = orderId
         self.supplierName = supplierName
 
