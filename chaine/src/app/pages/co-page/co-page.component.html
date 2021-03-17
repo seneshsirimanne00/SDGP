@@ -57,7 +57,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{data.orderid}}<button>ACCEPT</button></td>
+          <td>{{data.orderid}}<button (click)="acceptPo(data.orderid)">ACCEPT</button></td>
           <td>{{data.mname}}</td>
           <td>{{data.vname}}</td>
           <td>{{data.mqty}}</td>
