@@ -75,8 +75,8 @@ def saveDb():
     return "Database Saved"
 
 @app.route("/confirmPO", methods=["POST"])
-def confirm
-
+def confirmPO():
+    order = request.get_data().decode('utf-8')
 
 """
 @app.route("/getPrData" , methods=["GET"])
