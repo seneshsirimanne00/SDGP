@@ -1,8 +1,8 @@
 export interface moniterPP_Data{
     pName: string;
-    mId: string;
-    vName: string;
-    vId: string;
+    oId: string;
     mQty: string;
+    sDate: string;
+    fDate: string;
 
 }

@@ -51,6 +51,10 @@ export class CoPageComponent implements OnInit {
     this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName,this.matPrice).subscribe( (data) => this.listOfData2);
   }
 
+  acceptPo(){
+    //this is the method made for the button in the po table
+  }
+
 
 
 }
