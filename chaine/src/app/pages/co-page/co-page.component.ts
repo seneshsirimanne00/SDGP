@@ -19,26 +19,16 @@ export class CoPageComponent implements OnInit {
 
   constructor(private datatransfer : DatatransferService) { }
 
- // listOfData2 : poData[];// for po table
+  //listOfData2 : poData[];// for po table
   
   listOfData2: poData[] = [
     {
+      orderid: 1,
       mname: 'material 1',
       vname: 'John Brown',
       mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
-    },
-    {
-      mname: 'material 1',
-      vname: 'John Brown',
-      mqty: 32,
-      mprice: 10000
+      mprice: 10000,
+      totalMatPrice :2000
     }
   ];
 
