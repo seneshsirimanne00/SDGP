@@ -45,6 +45,24 @@ class Order:
     def getId(self):
         return self.orderId
 
+    def isConfirmed(self):
+        return self.confirmed
+
+    def getMatName(self):
+        return self.materialName
+
+    def getMatQty(self):
+        return self.materialQuantity
+
+    def getTotalCost(self):
+        total = self.unitPrice * self.materialQuantity
+        return total
+
+    def getSupplierName(self):
+        return self.supplierName
+
+    def getUnitCost(self):
+        return self.unitPrice
     """
     ====================================================================================================================
     """

@@ -38,6 +38,9 @@ class Stock:
         else:
             return False
 
+    def getRawMatOrders(self):
+        return self.rawMatOrders
+
     def getProductList(self):
         return self.__productList
 

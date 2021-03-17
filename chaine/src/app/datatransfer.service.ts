@@ -18,7 +18,7 @@ export class DatatransferService {
   sendPurchaseOrderForm(rawMatName : String , matQty :String , supplierName : String , matPrice : String){
     var obj = rawMatName +"," + matQty +"," + supplierName +"," + matPrice
     console.log(obj); 
-    return this.http.post<string>( this.baseLocalhost + "enter" , obj);
+    return this.http.post<string>( this.baseLocalhost + "addPoRequest" , obj);
     
   }
 
@@ -32,7 +32,6 @@ export class DatatransferService {
   }
 
   getPrTableData(){
-    console.log("Getting Pr Data");
     return this.http.get<prData[]>(this.baseLocalhost + "getPrData");
   }
 

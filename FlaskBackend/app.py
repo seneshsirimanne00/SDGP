@@ -14,7 +14,7 @@ def helloWorld():
     return jsonify(message="ree")
 
 
-@app.route("/enter", methods=["POST"])
+@app.route("/addPoRequest", methods=["POST"])
 def addPoRequest():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
@@ -24,16 +24,27 @@ def addPoRequest():
 
 @app.route("/getPoData", methods=["GET"])
 def getPoTableData():
-    testRecord = {"mname": "Banana", "vname": "Wickramasinhe", "mqty": "15", "mprice": "2"}
-    return jsonify([testRecord])
+    dictList = []
+    orders = main.getPoData()
+    for order in orders:
+        orderDict = main.getLabeledDict(["mname", "vname", "mqty", "mprice"],
+                                        [order.getMatName(), order.getSupplierName(), order.getMatQty(),
+                                         order.getUnitCost()])
+        dictList.append(orderDict)
+    return jsonify(dictList)
 
 
 # Product Requisition table holds the data with the CONFIRMED product orders
 @app.route("/getPrData", methods=["GET"])
 def getPrData():
-    testRecord = {"mnamepr": "Children", "vnamepr": "Malith", "mqtypr": "69", "mpricepr": "420"}
-    data = [testRecord, testRecord, testRecord]
-    return jsonify(testRecord)
+    dictList = []
+    orders = main.getPrData()
+    for order in orders:
+        orderDict = main.getLabeledDict(["mnamepr", "vnamepr", "mqtypr", "mpricepr"],
+                                        [order.getMatName(), order.getSupplierName(), order.getMatQty(),
+                                         order.getUnitCost()])
+        dictList.append(orderDict)
+    return jsonify(dictList)
 
 
 @app.route("/createSupplier", methods=["POST"])
@@ -52,7 +63,7 @@ def getSupplierInfoTableData():
     supplierDictArr = []
     for supplier in suppliers:
         supDict = main.getLabeledDict(["sname", "mname", "avgOtime", "mUp"],
-                                      [supplier.getName(), str(supplier.getMaterials()) , supplier.getDeliveryTime(),
+                                      [supplier.getName(), str(supplier.getMaterials()), supplier.getDeliveryTime(),
                                        str(supplier.material_pricePerUnit)])
         supplierDictArr.append(supDict)
     return jsonify(supplierDictArr)
@@ -63,7 +74,16 @@ def saveDb():
     main.save();
     return "Database Saved"
 
+@app.route("/confirmPO", methods=["POST"])
+def confirm
 
+
+"""
+@app.route("/getPrData" , methods=["GET"])
+def getPrData():
+
+
+"""
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 
 IN THE FRONTEND

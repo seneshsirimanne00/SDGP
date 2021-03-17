@@ -107,7 +107,6 @@ class Main:
             newDict[str(labels[x])] = data[x]
         return newDict
 
-
     # Helper Methods --!>
 
     # Main Methods <!--
@@ -123,7 +122,6 @@ class Main:
 
         orderDuration = supObj.getDeliveryTime()
         self.database.getStock().placeRawMatOrder(rawMatName, orderDuration, rawMatQty, matPricePerUnit, supplierName)
-        print("This Print works?")
         self.database.getStock().viewRawMatOrders()  # Displaying to console. Debug
         return "PO Request Added"
 
@@ -138,6 +136,23 @@ class Main:
             supplierObj = self.database.getSupplier(supplierName)
             supplierObj.addMaterial(matName, unitPrice)
             return "Supplier Created"
+
+    # All unconfirmed orders stay in PO(PURCHASE ORDER) table while confirmed orders are shown in PR table
+    def getPoData(self):
+        orderList = self.database.getStock().getRawMatOrders()
+        unconfirmed_orderList = []
+        for order in orderList:
+            if not order.isConfirmed():
+                unconfirmed_orderList.append(order)
+        return unconfirmed_orderList
+
+    def getPrData(self):
+        orderList = self.database.getStock().getRawMatOrders()
+        confirmed_orderList = []
+        for order in orderList:
+            if order.isConfirmed():
+                confirmed_orderList.append(order)
+        return confirmed_orderList
 
     def getSuppliersInfo(self):
         return self.database.getAllSuppliers()
