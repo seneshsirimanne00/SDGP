@@ -6,6 +6,7 @@ import { moniterPP_Data } from './data_interfaces/moniterPP_Data';
 import { moniterRSM_Data } from './data_interfaces/moniterRSM_Data[]';
 import { poData } from './data_interfaces/poData';
 import { prData } from './data_interfaces/prData';
+import { prodReport_Data } from './data_interfaces/ProdReport_Data';
 import { supplierData } from './data_interfaces/supplierData';
 
 @Injectable({
@@ -53,9 +54,17 @@ export class DatatransferService {
     return this.http.get<supplierData[]>(this.baseLocalhost + "getSupplierInfoTableData");
   }
 
-  //rports
+  //reports
   getIMReportData(){
     return this.http.get<IMReport_Data[]>(this.baseLocalhost + "getIMReportData");
+  }
+
+  getRMSReportData(){
+    return this.http.get<IMReport_Data[]>(this.baseLocalhost + "getRMSReportData");
+  }
+
+  getPReportData(){
+    return this.http.get<prodReport_Data[]>(this.baseLocalhost + "getPReportData");
   }
     
 }

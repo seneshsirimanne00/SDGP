@@ -9,7 +9,7 @@ import { poData } from 'src/app/data_interfaces/poData';
   styleUrls: ['./co-page.component.css']
 })
 export class CoPageComponent implements OnInit {
-
+  orderid :string;
   //variables for the form
   matName : String;
   vendorName : String;
@@ -19,8 +19,8 @@ export class CoPageComponent implements OnInit {
 
   constructor(private datatransfer : DatatransferService) { }
 
-  listOfData2 : poData[];// for po table
-  /*
+ // listOfData2 : poData[];// for po table
+  
   listOfData2: poData[] = [
     {
       mname: 'material 1',
@@ -41,7 +41,7 @@ export class CoPageComponent implements OnInit {
       mprice: 10000
     }
   ];
-*/
+
   ngOnInit(): void {
     this.datatransfer.getPoTableData().subscribe( (data) => this.listOfData2 = data );
   }
@@ -51,7 +51,8 @@ export class CoPageComponent implements OnInit {
     this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName,this.matPrice).subscribe( (data) => this.listOfData2);
   }
 
-  acceptPo(){
+  acceptPo(orderid){
+    console.log(orderid)
     //this is the method made for the button in the po table
   }
 
