@@ -149,5 +149,7 @@ class Database:
             raise Exception("Supplier Not Found!")
         supplierObj.addMaterial(materialName, unitCost)
 
+    def confirmPoOrder(self, orderId):
+        self.__stock.confirmRawMatOrder(orderId)
 
     # ------------------------------------------------------------------------------------------------------------------

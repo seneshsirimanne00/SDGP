@@ -3,4 +3,6 @@ export interface prData{
     vnamepr: string;
     mqtypr: number;
     mpricepr: number;
+    orderid:number;
+    totalMatPrice : number;
 }
