@@ -18,7 +18,7 @@ def helloWorld():
 def addPoRequest():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
-    response = main.addPoRequest(data[0], data[1], data[2], data[3])
+    response = main.addPoRequest(data[0], data[1], data[2])
     return jsonify(response)
 
 
@@ -73,13 +73,13 @@ def getSupplierInfoTableData():
 @app.route("/saveData", methods=["GET", "POST"])
 def saveDb():
     main.save();
-    return "Database Saved"
+    return jsonify("Database Saved")
 
 @app.route("/confirmPO", methods=["POST"])
 def confirmPO():
     orderId = request.get_data().decode('utf-8')
     main.confirmPoOrder(int(orderId))
-    return "Confirmed PO"
+    return jsonify("Confirmed PO")
 
 
 """

@@ -18,8 +18,8 @@ export class DatatransferService {
 
   baseLocalhost : String = "http://127.0.0.1:5000/";
 
-  sendPurchaseOrderForm(rawMatName : String , matQty :String , supplierName : String , matPrice : String){
-    var obj = rawMatName +"," + matQty +"," + supplierName +"," + matPrice
+  sendPurchaseOrderForm(rawMatName : String , matQty :String , supplierName : String ){
+    var obj = rawMatName +"," + matQty +"," + supplierName 
     console.log(obj); 
     return this.http.post<string>( this.baseLocalhost + "addPoRequest" , obj);
     
@@ -65,6 +65,10 @@ export class DatatransferService {
 
   getPReportData(){
     return this.http.get<prodReport_Data[]>(this.baseLocalhost + "getPReportData");
+  }
+
+  confirmPoOrder(orderId : number){
+    return this.http.post<number>(this.baseLocalhost + "confirmPO" , orderId)
   }
     
 }

@@ -38,6 +38,11 @@ class Supplier:
                 return True
         return False
 
+    def getPriceOf(self, itemName):
+        for x in range(len(self.materials)):
+            if itemName.lower() == self.materials[x].lower():
+                return self.material_pricePerUnit[x]
+        raise Exception("Supplier Does not Sell this item!")
     """
     ====================================================================================================================
     """

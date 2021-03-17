@@ -14,7 +14,6 @@ export class CoPageComponent implements OnInit {
   matName : String;
   vendorName : String;
   matQty : String;
-  matPrice : String;
 
 
   constructor(private datatransfer : DatatransferService) { }
@@ -49,17 +48,22 @@ export class CoPageComponent implements OnInit {
   ];
 */
   ngOnInit(): void {
+    this.updatePoTable();
+  }
+
+  updatePoTable(){
     this.datatransfer.getPoTableData().subscribe( (data) => this.listOfData2 = data );
   }
 
   submitform(){
-    console.log(" data going ");
-    this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName,this.matPrice).subscribe( (data) => this.listOfData2);
+    this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName).subscribe();
+    this.updatePoTable();
   }
 
   acceptPo(orderidaccept){
     console.log(orderidaccept)
     //this is the method made for the button in the po table
+    this.datatransfer.confirmPoOrder(orderidaccept).subscribe();
   }
 
 
