@@ -24,9 +24,22 @@ export class SupplierinfoComponent implements OnInit {
   }
   ];
 */
+  supplierName : String;
+  avgOrderTime : String;
+  rawMat : String;
+  pricePerUnit : String;
 
   ngOnInit(): void {
-   this.datatransfer.getSupplierInfoTableData().subscribe( (data) => this.listOfDataSupplierInfo = data);
+    this.refreshTable();
+  }
+
+  refreshTable(){
+    this.datatransfer.getSupplierInfoTableData().subscribe( (data) => this.listOfDataSupplierInfo = data);
+  }
+
+  submitNewSupplier(){
+    this.datatransfer.sendNewSupplierForm(this.supplierName , this.avgOrderTime , this.rawMat , this.pricePerUnit).subscribe();
+    this.refreshTable();
   }
 
 }

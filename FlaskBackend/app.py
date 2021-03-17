@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from main import Main
+from supplier import Supplier
 
 app = Flask(__name__)
 CORS(app)
@@ -14,7 +15,7 @@ def helloWorld():
 
 
 @app.route("/enter", methods=["POST"])
-def sendPoRequest():
+def addPoRequest():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
     response = main.addPoRequest(data[0], data[1], data[2], data[3])
@@ -34,15 +35,33 @@ def getPrData():
     data = [testRecord, testRecord, testRecord]
     return jsonify(testRecord)
 
-@app.route("/createSupplier" , methods=["POST"])
+
+@app.route("/createSupplier", methods=["POST"])
 def createSuppler():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
-    main.createSupplier(data[0], data[1], data[2], data[3])
-    print("Debug[Flask] - CreateSupplier")
+    # Suppliername , matName , orderTime , unitPrice
+    returnMsg = main.createSupplier(data[0], data[1], data[2], data[3])
+    print("Debug[Flask] - CreateSupplier ", data, returnMsg)
+    return jsonify(returnMsg)
 
 
-    return jsonify()
+@app.route("/getSupplierInfoTableData", methods=["GET"])
+def getSupplierInfoTableData():
+    suppliers = main.getSuppliersInfo()
+    supplierDictArr = []
+    for supplier in suppliers:
+        supDict = main.getLabeledDict(["sname", "mname", "avgOtime", "mUp"],
+                                      [supplier.getName(), str(supplier.getMaterials()) , supplier.getDeliveryTime(),
+                                       str(supplier.material_pricePerUnit)])
+        supplierDictArr.append(supDict)
+    return jsonify(supplierDictArr)
+
+
+@app.route("/saveData", methods=["GET", "POST"])
+def saveDb():
+    main.save();
+    return "Database Saved"
 
 
 """

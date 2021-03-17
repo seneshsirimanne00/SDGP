@@ -22,6 +22,11 @@ export class DatatransferService {
     
   }
 
+  sendNewSupplierForm(supplierName : String , orderTime : String , matName : String , matUnitPrice : String){
+    var obj = supplierName +","+ matName +","+ orderTime +","+ matUnitPrice;
+    return this.http.post<string>(this.baseLocalhost + "createSupplier" , obj);
+  }
+
   getPoTableData(){
     return this.http.get<poData[]>(this.baseLocalhost + "getPoData");
   }

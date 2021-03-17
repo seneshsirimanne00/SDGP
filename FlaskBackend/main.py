@@ -89,11 +89,31 @@ class Main:
             return False
         return True
 
+    def listIsInt(self, arr):
+        try:
+            converted = []
+            for element in arr:
+                converted.append(int(element))
+        except Exception as e:
+            # print("Main Exception " , e)
+            # Made to crash whenever ivalid data comes through, For now! till it can be handled withing frontend itself
+            raise Exception("Incorrect Datatype Passed!" + str(arr))
+
+    def getLabeledDict(self, labels, data):
+        if (len(labels) != len(data)):
+            raise Exception("Non-equal quantity of Labels and Data")
+        newDict = {}
+        for x in range(len(labels)):
+            newDict[str(labels[x])] = data[x]
+        return newDict
+
+
     # Helper Methods --!>
 
     # Main Methods <!--
 
     def addPoRequest(self, rawMatName, rawMatQty, supplierName, matPricePerUnit):
+        self.listIsInt([rawMatQty, matPricePerUnit])
         if not self.supplierExists(supplierName):
             return "Supplier Does not exist!"
         supObj = self.database.getSupplier(supplierName)
@@ -105,12 +125,25 @@ class Main:
         self.database.getStock().placeRawMatOrder(rawMatName, orderDuration, rawMatQty, matPricePerUnit, supplierName)
         print("This Print works?")
         self.database.getStock().viewRawMatOrders()  # Displaying to console. Debug
+        return "PO Request Added"
 
-    # SENEEEEEEEEEEEEEEEEEEEEEEEESh - We decided that one supplier may sell mutiple materials (Adjust GUI for this)
-    def createSupplier(self, supplierName, matName, orderTime, supDescription):
-        self.database.createSupplier(supplierName, orderTime, supDescription)
-        supplierObj = self.database.getSupplier(supplierName)
-        supplierObj.addMaterial(matName , price) #
+    def createSupplier(self, supplierName, matName, orderTime, unitPrice):
+        self.listIsInt([orderTime, unitPrice])
+        if self.supplierExists(supplierName):
+            supObj = self.database.getSupplier(supplierName)
+            supObj.addMaterial(matName, unitPrice)
+            return "Supplier Updated"
+        else:
+            self.database.createSupplier(supplierName, orderTime)
+            supplierObj = self.database.getSupplier(supplierName)
+            supplierObj.addMaterial(matName, unitPrice)
+            return "Supplier Created"
+
+    def getSuppliersInfo(self):
+        return self.database.getAllSuppliers()
+
+    def save(self):
+        self.database.save()
 
     # Main Methods --!>
 

@@ -12,17 +12,17 @@
     <h2>New SupplierForm</h2>
     <form action="/action_page.php">
       <label for="fname">Supplier Name :</label>
-      <input type="text" id="fname" name="firstname" >
+      <input type="text" id="fname" name="firstname" [(ngModel)] = "supplierName">
       <label for="lname">Material Name:</label>
-      <input type="text" id="lname" name="lastname" >
+      <input type="text" id="lname" name="lastname" [(ngModel)] = "rawMat">
     </form>
   </div>
   <div class="col-4" style="padding-left: 5%; height: 250px;">
     <form action="/action_page.php" style="padding-top: 15%;">
       <label for="lname">Average Order Time</label>
-      <input type="text" id="fname" name="firstname" >
+      <input type="text" id="fname" name="firstname" [(ngModel)] = "avgOrderTime">
       <label for="lname">Material Unit Price: </label>
-      <input type="text" id="lname" name="lastname">
+      <input type="text" id="lname" name="lastname" [(ngModel)] = "pricePerUnit">
     </form>
   </div>
 
@@ -33,7 +33,7 @@
     </div>
 
     <form action="/action_page.php">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" (click) = "submitNewSupplier()">
     </form>
     
   </div>

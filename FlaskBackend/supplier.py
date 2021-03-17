@@ -2,19 +2,15 @@ class Supplier:
     # List of materials a single supplier could provide since some suppliers may provide more than one material
     materials = []
     material_pricePerUnit = []
-    description = ""
 
     def __init__(self, id, supplierName, deliveryTime):
         self.id = id
         self.supplierName = supplierName
-        self.deliveryTime = deliveryTime
-
-    def setDescription(self , desc):
-        self.description = desc
+        self.deliveryTime = int(deliveryTime)
 
     def addMaterial(self, name, price):
         self.materials.append(name)
-        self.material_pricePerUnit.append(price)
+        self.material_pricePerUnit.append(float(price))
 
     def getDeliveryTime(self):
         return self.deliveryTime
@@ -42,7 +38,7 @@ class Supplier:
     """
 
     def getAllData(self):
-        return [self.materials, self.material_pricePerUnit, self.id, self.supplierName, self.deliveryTime , self.description]
+        return [self.materials, self.material_pricePerUnit, self.id, self.supplierName, self.deliveryTime]
 
     def setAllData(self, data):
         self.materials = data[0]
@@ -50,7 +46,6 @@ class Supplier:
         self.id = data[2]
         self.supplierName = data[3]
         self.deliveryTime = data[4]
-        self.description = data[5]
 
     def __str__(self):
         return "Supplier[ ID:" + self.id + " name:" + self.supplierName + " deliveryTime" + self.deliveryTime + " ]"

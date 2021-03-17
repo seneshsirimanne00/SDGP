@@ -49,6 +49,14 @@ class Database:
                 emptyProduct.setAllData(productData)
                 self.__products.append(emptyProduct)
 
+        self.suppliers = []
+        loadedSuppliers = loadFromFile(self.savePath + self.__companyName + "_supplierData.dat")
+        if loadedSuppliers is not None:
+            for supplierData in loadedSuppliers:
+                supplierObj = Supplier(0,"PLACEHOLDER_NAME" , 0)
+                supplierObj.setAllData(supplierData)
+                self.suppliers.append(supplierObj)
+
     def save(self):
         def saveToFile(data, filename):
             with open(filename, "wb") as file:
@@ -62,6 +70,13 @@ class Database:
                 product_detail_list.append(prod.getAllData())
 
         saveToFile(product_detail_list, self.savePath + self.__companyName + "_productData.dat")
+
+        supplierList = []
+        if len(self.suppliers) != 0:
+            for supplier in self.suppliers:
+                supplierList.append(supplier.getAllData())
+        saveToFile(supplierList , self.savePath + self.__companyName + "_supplierData.dat")
+
 
     # ------------------------------------------------------------------------------------------------------------------
 
@@ -81,7 +96,7 @@ class Database:
             raise Exception("Product Not found!")
 
     def getStock(self):
-        return [self.__stock.getProductList(), self.__stock.getQuantityList()]
+        return self.__stock
 
     def displayProducts(self):
         for prod in self.__products:
@@ -110,10 +125,9 @@ class Database:
                 biggest = supplier.getId()
         return biggest
 
-    def createSupplier(self, supplierName, deliveryTime , description):
+    def createSupplier(self, supplierName, deliveryTime):
         # ID will be automatically set
         supplier = Supplier(self.nextSupplierID(), supplierName, deliveryTime)
-        supplier.setDescription(description)
         # This supplier does not have any materials set YET. Add material method must be called to add materials to a
         # supplier . This is done cause one supplier has the ability to sell multiple materials
         self.suppliers.append(supplier)
@@ -123,6 +137,9 @@ class Database:
             if (supplierName.lower() == supplier.getName().lower()):  # Making sure there checked on the same case
                 return supplier
         return None  # Returning none means supplier not found
+
+    def getAllSuppliers(self):
+        return self.suppliers
 
     def addSupplierMat(self, supplierName, materialName, unitCost):
         supplierObj = self.getSupplier(supplierName)
