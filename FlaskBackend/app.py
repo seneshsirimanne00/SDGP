@@ -51,6 +51,7 @@ def getPrData():
 def createSuppler():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
+    print("CREATE SUPPLIER DATA AT FLASK - " , data)
     # Suppliername , matName , orderTime , unitPrice
     returnMsg = main.createSupplier(data[0], data[1], data[2], data[3])
     print("Debug[Flask] - CreateSupplier ", data, returnMsg)

@@ -1,14 +1,19 @@
 class Supplier:
-    # List of materials a single supplier could provide since some suppliers may provide more than one material
-    materials = []
-    material_pricePerUnit = []
 
     def __init__(self, id, supplierName, deliveryTime):
         self.id = id
         self.supplierName = supplierName
         self.deliveryTime = int(deliveryTime)
+        # List of materials a single supplier could provide since some suppliers may provide more than one material
+        self.materials = []
+        self.material_pricePerUnit = []
 
     def addMaterial(self, name, price):
+        print("SupplierOBJ[adding Mat]-",name,price)
+        for mat in self.materials:
+            if mat.lower() == name.lower():  # Same material cannot be added twice
+                return
+
         self.materials.append(name)
         self.material_pricePerUnit.append(float(price))
 
@@ -48,4 +53,4 @@ class Supplier:
         self.deliveryTime = data[4]
 
     def __str__(self):
-        return "Supplier[ ID:" + self.id + " name:" + self.supplierName + " deliveryTime" + self.deliveryTime + " ]"
+        return "Supplier[ ID:" + str(self.id) + " name:" + self.supplierName + " deliveryTime:" + str(self.deliveryTime) + str(self.materials) + " ]"

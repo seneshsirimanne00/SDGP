@@ -2,16 +2,17 @@ from order import Order
 
 
 class Stock:
-    __productList = []
-    __quantityList = []
-    __rawMatNames = []
-    __rawMatQuantities = []
-
-    rawMatOrderId = 0 #Tracking the last used ID for rawMaterialOrders
-    rawMatOrders = []  # List of Order objects
 
     def __init__(self):
         self.rawMatOrderId = 0
+
+        self.__productList = []
+        self.__quantityList = []
+        self.__rawMatNames = []
+        self.__rawMatQuantities = []
+
+        self.rawMatOrderId = 0  # Tracking the last used ID for rawMaterialOrders
+        self.rawMatOrders = []  # List of Order objects
 
     def addProduct(self, name, amount):
         self.__productList.append(name)

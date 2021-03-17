@@ -10,11 +10,8 @@ class Database:
     New object created with company name in constructor, this allows database to load and save data belonging to
     that given company
     """
-    __products = []
-    savePath = "saveData/"
 
-    # Holds a list of suppliers who provide the company with rawMaterials
-    suppliers = []
+    savePath = "saveData/"
 
     def __init__(self, companyName):
         """
@@ -22,6 +19,10 @@ class Database:
         """
         self.__stock = Stock()  # Creates empty stock
         self.__companyName = companyName
+
+        self.products = []
+        # Holds a list of suppliers who provide the company with rawMaterials
+        self.suppliers = []
         self.load()
 
     # [Save Load Section]-----------------------------------------------------------------------------------------------
@@ -41,13 +42,13 @@ class Database:
         if loadedStockData is not None:
             self.__stock.setAllData(loadedStockData)
 
-        self.__products = []
+        self.products = []
         loadedProductData = loadFromFile(self.savePath + self.__companyName + "_productData.dat")
         if loadedProductData is not None:
             for productData in loadedProductData:
                 emptyProduct = Product("empty", 0)
                 emptyProduct.setAllData(productData)
-                self.__products.append(emptyProduct)
+                self.products.append(emptyProduct)
 
         self.suppliers = []
         loadedSuppliers = loadFromFile(self.savePath + self.__companyName + "_supplierData.dat")
@@ -65,8 +66,8 @@ class Database:
         saveToFile(self.__stock.getAllData(), self.savePath + self.__companyName + "_stockData.dat")
 
         product_detail_list = []
-        if len(self.__products) != 0:
-            for prod in self.__products:
+        if len(self.products) != 0:
+            for prod in self.products:
                 product_detail_list.append(prod.getAllData())
 
         saveToFile(product_detail_list, self.savePath + self.__companyName + "_productData.dat")
@@ -88,7 +89,7 @@ class Database:
 
     def getProduct(self, prodName):
         found = False
-        for each_product in self.__products:
+        for each_product in self.products:
             if each_product.getName().upper() == prodName.upper():
                 found = True
                 return each_product
@@ -99,7 +100,7 @@ class Database:
         return self.__stock
 
     def displayProducts(self):
-        for prod in self.__products:
+        for prod in self.products:
             print("Product : ", str(prod))
 
     def addSales(self, prodName, dataframe):
@@ -108,11 +109,11 @@ class Database:
         prod.getSales().addMultipleSales(dataframe)
 
     def getProducts(self):
-        return self.__products
+        return self.products
 
     def createProduct(self, name, costPerUnit):
         newProd = Product(name, costPerUnit)
-        self.__products.append(newProd)
+        self.products.append(newProd)
 
     # ------------------------------------------------------------------------------------------------------------------
 
@@ -123,18 +124,19 @@ class Database:
         for supplier in self.suppliers:
             if supplier.getId() > biggest:
                 biggest = supplier.getId()
-        return biggest
+        return biggest +1
 
     def createSupplier(self, supplierName, deliveryTime):
         # ID will be automatically set
         supplier = Supplier(self.nextSupplierID(), supplierName, deliveryTime)
         # This supplier does not have any materials set YET. Add material method must be called to add materials to a
         # supplier . This is done cause one supplier has the ability to sell multiple materials
+        print("Empty Supplier Created -" , str(supplier) )
         self.suppliers.append(supplier)
 
     def getSupplier(self, supplierName):
         for supplier in self.suppliers:
-            if (supplierName.lower() == supplier.getName().lower()):  # Making sure there checked on the same case
+            if supplierName.lower() == supplier.getName().lower():  # Making sure there checked on the same case
                 return supplier
         return None  # Returning none means supplier not found
 

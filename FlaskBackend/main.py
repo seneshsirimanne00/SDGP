@@ -129,11 +129,13 @@ class Main:
         self.listIsInt([orderTime, unitPrice])
         if self.supplierExists(supplierName):
             supObj = self.database.getSupplier(supplierName)
+            print("Debug[Main Createsupplier(Existing)] -", str(supObj), supObj.getMaterials())
             supObj.addMaterial(matName, unitPrice)
             return "Supplier Updated"
         else:
             self.database.createSupplier(supplierName, orderTime)
             supplierObj = self.database.getSupplier(supplierName)
+            print("Debug[Main Createsupplier(New)] -", str(supplierObj))
             supplierObj.addMaterial(matName, unitPrice)
             return "Supplier Created"
 
@@ -161,6 +163,16 @@ class Main:
         self.database.save()
 
     # Main Methods --!>
+
+    # Console Methods <!--
+
+    def displaySuppliers(self):
+        supList = self.database.getAllSuppliers()
+        for supplier in supList:
+            print(str(supplier), end=" ")
+        print()
+
+    # Console Methods --!>
 
 
 """

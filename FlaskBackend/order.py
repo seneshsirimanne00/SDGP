@@ -2,12 +2,6 @@ import time
 
 
 class Order:
-    # Orders can be RawMatOrders or Product Orders
-
-    orderType = None
-
-    confirmed = False
-    completed = False
 
     def __init__(self):
         self.supplierName = ""
@@ -19,6 +13,12 @@ class Order:
         self.orderStartTime = 0
         self.orderDuration = 0
         self.orderEndTime = 0
+
+        # Orders can be RawMatOrders or Product Orders
+        self.orderType = None
+
+        self.confirmed = False
+        self.completed = False
 
     def setRawMatOrder(self, materialName, orderDuration, materialQuantity, unitPrice, orderId, supplierName):
         # Raw Material Order Must be accepted by an admin
@@ -63,6 +63,7 @@ class Order:
 
     def getUnitCost(self):
         return self.unitPrice
+
     """
     ====================================================================================================================
     """
