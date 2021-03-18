@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
+import { RMSReport_Data } from 'src/app/data_interfaces/RMSReport_Data';
 
 @Component({
   selector: 'app-reportrms',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportrmsComponent implements OnInit {
 
-  constructor() { }
+  constructor( private datatransfer : DatatransferService) { }
 
-  ngOnInit(): void {
+  listOfDataRMSR : RMSReport_Data[];// for po table
+  /*
+  listOfDataRMSR : RMSReport_Data[] = [
+    {
+    mname: string;
+    mid: string;
+    vname: string;
+    vid: string;
+    mqty: number;
+    odate: string;
+    edate: string;
+    }
+   ];
+   */
+	
+   ngOnInit(): void {
+     this.datatransfer.getRMSReportData().subscribe( (data) => this.listOfDataRMSR = data );
+     
   }
 
 }

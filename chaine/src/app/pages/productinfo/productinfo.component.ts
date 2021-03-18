@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
+import { ProductInfoData } from 'src/app/data_interfaces/ProductInfoData';
 
 @Component({
   selector: 'app-productinfo',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductinfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
-  ngOnInit(): void {
+  listOfDataPInfo : ProductInfoData[];// for table
+  /*
+  listOfDataPInfo : ProductInfoData[] = [
+    {
+      pname: string;
+    rmaterials: string;
+    rmqty: string;
+    ptime: string;
+    }
+   ];
+  */
+	
+   ngOnInit(): void {
+     this.datatransfer.getProductInfoTableData().subscribe( (data) => this.listOfDataPInfo = data );
+     
   }
 
 }

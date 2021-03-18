@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
+import { RMStatusData } from 'src/app/data_interfaces/RMStatusData';
 
 @Component({
   selector: 'app-rmstatus',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RmstatusComponent implements OnInit {
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
-  ngOnInit(): void {
+  listOfDataRMStatus : RMStatusData[];// for table
+  /*
+  listOfDataRMStatus : RMStatusData[] = [
+    {
+      mname: string;
+    mid: string;
+    vname: string;
+    vid: string;
+    mqty: string;
+    odate: string;
+    edate: string;
+    eprice: string;
+    }
+   ];
+  */
+	
+   ngOnInit(): void {
+     this.datatransfer.getRawMaterialStatusData().subscribe( (data) => this.listOfDataRMStatus = data );
+     
   }
 
 }

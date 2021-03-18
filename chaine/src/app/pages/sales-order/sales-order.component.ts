@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
+import { salesOrderData } from 'src/app/data_interfaces/salesOrderData';
 
 @Component({
   selector: 'app-sales-order',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalesOrderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
-  ngOnInit(): void {
+  listOfDataSalesOrder : salesOrderData[];// for table
+  /*
+  listOfDataSalesOrder : salesOrderData[] = [
+    {
+    cname: string;
+    cid: string;
+    pname: string;
+    qty: string;
+    daddress: string;
+    oid: string;
+    odate: string;
+    adtime: string;
+    }
+   ];
+  */
+	
+   ngOnInit(): void {
+     this.datatransfer.getSalesOrderTableData().subscribe( (data) => this.listOfDataSalesOrder = data );
+     
   }
 
 }

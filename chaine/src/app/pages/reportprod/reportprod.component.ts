@@ -26,6 +26,7 @@ listOfDataPR: prodReport_Data[]  = [
   }
 ];
   ngOnInit(): void {
+    this.datatransfer.getPReportData().subscribe( (data) => this.listOfDataPR = data );
   }
 
 }

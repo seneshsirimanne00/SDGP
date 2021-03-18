@@ -42,7 +42,7 @@
     <div>
       <h2>Product information Table</h2>
       <h6>This table includes info about data of Items made by the company</h6>
-      <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">   
+      <nz-table #basicTable [nzData]="listOfDataPInfo" style="padding-top: 1%;">   
         <thead>
           <tr>
             <th>Product Name</th>
@@ -54,10 +54,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let data of basicTable.data">
-            <td>{{data.mname}}</td>
-            <td>{{data.mid}}</td>
-            <td>{{data.vname}}</td>
-            <td>{{data.mqty}}</td>
+            <td>{{data.pname}}</td>
+            <td>{{data.rmaterials}}</td>
+            <td>{{data.rmqty}}</td>
+            <td>{{data.ptime}}</td>
         
         </tbody>
       </nz-table>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
+import { RMRFReport_Data } from 'src/app/data_interfaces/RMRFReport_Data';
+import { RMSReport_Data } from 'src/app/data_interfaces/RMSReport_Data';
 
 @Component({
   selector: 'app-reportrmrforecast',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportrmrforecastComponent implements OnInit {
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
-  ngOnInit(): void {
+  listOfDataRMRF : RMRFReport_Data[];// for table
+  /*
+  listOfDataRMRF : RMRFReport_Data[] = [
+    {
+      date: string;
+      pid: string;
+      rmid: number;
+      qty: string;
+    }
+   ];
+  */
+	
+   ngOnInit(): void {
+     this.datatransfer.getRMRForecastReportData().subscribe( (data) => this.listOfDataRMRF = data );
+     
   }
 
 }

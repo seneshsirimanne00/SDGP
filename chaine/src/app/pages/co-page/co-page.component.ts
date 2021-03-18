@@ -10,6 +10,7 @@ import { poData } from 'src/app/data_interfaces/poData';
 })
 export class CoPageComponent implements OnInit {
   orderidaccept :string;
+  
   //variables for the form
   matName : String;
   vendorName : String;

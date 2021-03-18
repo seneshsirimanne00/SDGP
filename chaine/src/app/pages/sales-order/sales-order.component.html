@@ -35,11 +35,14 @@
   <div class="col-4" style="padding-left: 4%; height: 400px;">
     <div style="height: 65.5%;">
         <h3  style="padding-left: 25%;">Po Info</h3>
-        <p> Material Name : Material 1 </p>
-        <p> Material Qty     : 1000 </p>
-        <p>Vendor Name   : vendor name </p>
-        <p>Expected Date : dd/mm/yy </p>
-        <p>Expected Price: Rs 10000.00 </p>
+        <p> Customer name : </p>
+        <p> Customer Id :  </p>
+        <p> Product Name :  </p>
+        <p> Order Id : </p>
+        <p> Order Date :  </p>
+        <p> Quantity : </p>
+        <p> Delivery Address :  </p>
+        <p> Average Delivery time : </p>
     </div>
 
     <form action="/action_page.php">
@@ -51,7 +54,7 @@
    <div>
     <h2>Sales order Table</h2>
     <h6>These are the sales orders for the month </h6>
-    <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">
+    <nz-table #basicTable [nzData]="listOfDataSalesOrder" style="padding-top: 1%;">
       <thead>
         <tr>
           <th>Customer name</th>
@@ -66,14 +69,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{data.mname}}</td>
-          <td>{{data.mid}}</td>
-          <td>{{data.vname}}</td>
-          <td>{{data.vid}}</td>
-          <td>{{data.mqty}}</td>
+          <td>{{data.cname}}</td>
+          <td>{{data.cid}}</td>
+          <td>{{data.pname}}</td>
+          <td>{{data.qty}}</td>
+          <td>{{data.daddress}}</td>
+          <td>{{data.oid}}</td>
           <td>{{data.odate}}</td>
-          <td>{{data.edate}}</td>
-          <td>{{data.eprice}}</td>
+          <td>{{data.adtime}}</td>
       </tbody>
     </nz-table>
   </div>

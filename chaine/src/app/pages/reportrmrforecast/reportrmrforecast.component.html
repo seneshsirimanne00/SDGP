@@ -18,7 +18,7 @@
   </div>
 
    <div>
-    <nz-table #basicTable [nzData]=" " style="padding-top: 1%;">
+    <nz-table #basicTable [nzData]="listOfDataRMRF" style="padding-top: 1%;">
       <thead>
         <tr>
           <th>Date</th>
@@ -30,14 +30,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{data.mname}}</td>
-          <td>{{data.mid}}</td>
-          <td>{{data.vname}}</td>
-          <td>{{data.vid}}</td>
-          <td>{{data.mqty}}</td>
-          <td>{{data.odate}}</td>
-          <td>{{data.edate}}</td>
-          <td>{{data.eprice}}</td>
+          <td>{{data.date}}</td>
+          <td>{{data.pid}}</td>
+          <td>{{data.rmid}}</td>
+          <td>{{data.qty}}</td>
+          
       </tbody>
     </nz-table>
   </div>
