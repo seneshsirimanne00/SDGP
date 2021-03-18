@@ -24,7 +24,7 @@ class Order:
         # Raw Material Order Must be accepted by an admin
         self.orderType = "rawMatOrder"
         self.materialName = materialName
-        self.orderDuration = orderDuration
+        self.orderDuration = orderDuration * 1000
         self.materialQuantity = int(materialQuantity)
         self.unitPrice = float(unitPrice)
         self.orderId = orderId
@@ -37,10 +37,25 @@ class Order:
         self.orderEndTime = self.orderStartTime + self.orderDuration
 
     def getProgress(self):
+        if not self.confirmed:
+            return 0
+        if self.completed:
+            return 100
+        print("EndTime ",self.orderEndTime , "Start Time ",self.orderStartTime , "sub= ",self.orderEndTime-self.orderStartTime)
         percent = (time.time()) / (self.orderEndTime - self.orderStartTime)
         if percent > 1:
             percent = 1
         return percent * 100
+
+    # Returns materials for restocking
+    def getMaterials(self):
+        print("debug[GetMaterials]-:",self.getProgress())
+        if self.getProgress() < 100:
+            raise Exception("Order Not Complete! Completion :", self.getProgress())
+        if not self.completed:
+            self.completed = True
+            return self.materialName, self.materialQuantity
+        return None,None
 
     def getId(self):
         return self.orderId

@@ -172,6 +172,10 @@ class Main:
     def confirmPoOrder(self, orderId):
         self.database.confirmPoOrder(orderId)
 
+    def getStockData(self):
+        self.database.getStock().restockCompletedOrders()
+        return self.database.getStock()
+
     # Main Methods --!>
 
     # Console Methods <!--

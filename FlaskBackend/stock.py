@@ -56,12 +56,35 @@ class Stock:
         self.__rawMatQuantities[self.__rawMatNames.index(name)] += amount
         return
 
+    # Figures out if RawMat needs to be added(newly) to stock or Restocked
+    def addOrRestock(self, name, amount):
+        if name in self.__rawMatNames:
+            self.restockRawMat(name, amount)
+        else:
+            self.addRawMat(name, amount)
+
     def reduceRawMat(self, name, amount):
         if self.__rawMatQuantities[self.__rawMatNames.index(name)] >= amount:
             self.__rawMatQuantities[self.__rawMatNames.index(name)] -= amount
             return True
         else:
             return False
+
+    def getRawMatNames(self):
+        return self.__rawMatNames
+
+    def getRawMatQtys(self):
+        return self.__rawMatQuantities
+
+    # Checks all the orders made and if any order progress==100 but not set to completed, those orders will be used
+    # to restock and will then be set to complete because its fully complete when order is collected
+    def restockCompletedOrders(self):
+        for order in self.rawMatOrders:
+            if order.getProgress() >= 100:
+                rawMatName, matQty = order.getMaterials()
+                if rawMatName is not None:
+                    self.addOrRestock(rawMatName, matQty)
+                    print("Debug[Restock Completed] - ", rawMatName, matQty)
 
     # Order is placed but one must use an admin account to confirm it
     def placeRawMatOrder(self, materialName, orderDuration, materialQuantity, price, supplierName):
@@ -72,7 +95,7 @@ class Stock:
 
     # View Raw Mat in console
     def viewRawMatOrders(self):
-        print("Debug[viewRawMatOrders] : " , self.rawMatOrders)
+        print("Debug[viewRawMatOrders] : ", self.rawMatOrders)
         for order in self.rawMatOrders:
             print(str(order))
 
@@ -81,7 +104,7 @@ class Stock:
         for eachOrder in self.rawMatOrders:
             if eachOrder.getId() == int(id):
                 eachOrder.confirmOrder()
-                return
+                print("Debug[Confirm Order]-", id)
 
     """
     ====================================================================================================================
@@ -93,7 +116,7 @@ class Stock:
             orderDataList.append(order.getAllData())
 
         return [self.__productList, self.__quantityList, self.__rawMatNames, self.__rawMatQuantities,
-                self.rawMatOrderId , orderDataList]
+                self.rawMatOrderId, orderDataList]
 
     def setAllData(self, stockData):
         self.__productList = stockData[0]

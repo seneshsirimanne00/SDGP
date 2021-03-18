@@ -83,7 +83,18 @@ def confirmPO():
 
 @app.route("/getMonitorRSMTableData" , methods=["GET"])
 def getStockData():
-    
+    #This is used for stock table which requires only item names and quantities
+    stock = main.getStockData()
+    rawMatNames = stock.getRawMatNames()
+    matQtys = stock.getRawMatQtys()
+
+    dictArray = []
+    for x in range(len(rawMatNames)):
+        stockDict = main.getLabeledDict(["mname", "qty"]  , [rawMatNames[x] , matQtys[x] ] )
+        dictArray.append(stockDict)
+
+    print("Stock Data : " , dictArray)
+    return jsonify(dictArray)
 
 
 """
