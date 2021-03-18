@@ -81,6 +81,10 @@ def confirmPO():
     main.confirmPoOrder(int(orderId))
     return jsonify("Confirmed PO")
 
+@app.route("/getMonitorRSMTableData" , methods=["GET"])
+def getStockData():
+    
+
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

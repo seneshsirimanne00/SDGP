@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IMReport_Data } from './data_interfaces/IMReport_Data';
 import { moniterDP_Data } from './data_interfaces/moniterDP_data';
 import { moniterPP_Data } from './data_interfaces/moniterPP_Data';
-import { moniterRSM_Data } from './data_interfaces/moniterRSM_Data[]';
+import { moniterRSM_Data } from './data_interfaces/moniterRSM_Data';
 import { poData } from './data_interfaces/poData';
 import { prData } from './data_interfaces/prData';
 import { prodReport_Data } from './data_interfaces/ProdReport_Data';
@@ -47,7 +47,7 @@ export class DatatransferService {
   }
 
   getMoniterRSMTableData(){
-    return this.http.get<moniterRSM_Data[]>(this.baseLocalhost + "getMoniterRSMTableData");
+    return this.http.get<moniterRSM_Data[]>(this.baseLocalhost + "getMonitorRSMTableData");
   }
 
   getSupplierInfoTableData(){

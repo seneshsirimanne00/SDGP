@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatatransferService } from 'src/app/datatransfer.service';
-import { moniterRSM_Data } from 'src/app/data_interfaces/moniterRSM_Data[]';
+import { moniterRSM_Data } from 'src/app/data_interfaces/moniterRSM_Data';
 
 @Component({
   selector: 'app-moniterrsm',
@@ -11,7 +11,9 @@ export class MoniterrsmComponent implements OnInit {
 
   constructor(private datatransfer:DatatransferService) { }
 
-  //listOfDataRSM : moniterRSM_Data[];
+  listOfDataRSM : moniterRSM_Data[];
+
+  /*
 //hardcoded for now
 listOfDataRSM: moniterRSM_Data[] = [
   {
@@ -39,6 +41,7 @@ listOfDataRSM: moniterRSM_Data[] = [
 
   }
 ];
+*/
 
 
   ngOnInit(): void {

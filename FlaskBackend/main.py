@@ -112,6 +112,9 @@ class Main:
     # Main Methods <!--
 
     def addPoRequest(self, rawMatName, rawMatQty, supplierName):
+        rawMatName = rawMatName.strip().title()  # Strip removes leading or trailing whitespaces.
+        supplierName = supplierName.strip().title()  # title camelcases the str
+
         self.listIsInt([rawMatQty])
         if not self.supplierExists(supplierName):
             return "Supplier Does not exist!"
@@ -127,6 +130,9 @@ class Main:
         return "PO Request Added"
 
     def createSupplier(self, supplierName, matName, orderTime, unitPrice):
+        supplierName = supplierName.strip()
+        matName = matName.strip()
+
         self.listIsInt([orderTime, unitPrice])
         if self.supplierExists(supplierName):
             supObj = self.database.getSupplier(supplierName)
@@ -163,9 +169,8 @@ class Main:
     def save(self):
         self.database.save()
 
-    def confirmPoOrder(self , orderId):
+    def confirmPoOrder(self, orderId):
         self.database.confirmPoOrder(orderId)
-
 
     # Main Methods --!>
 
