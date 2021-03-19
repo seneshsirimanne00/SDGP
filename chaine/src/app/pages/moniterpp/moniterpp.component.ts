@@ -11,10 +11,10 @@ export class MoniterppComponent implements OnInit {
   percent : string;
   constructor(private datatransfer : DatatransferService) { }
 
-  listOfDataMDP : moniterPP_Data[];
+  //listOfDataMDP : moniterPP_Data[];
   
 //hardcoded for now
-/*
+
 listOfDataMPP: moniterPP_Data[] = [
   {
     pName:'Mudith Jayasanka' ,
@@ -24,7 +24,7 @@ listOfDataMPP: moniterPP_Data[] = [
     fDate:'28/11/2021'
   }
 ];
-*/
+
 
   ngOnInit(): void {
     this.percent = "60";
