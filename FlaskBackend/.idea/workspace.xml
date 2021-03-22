@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5599d35c-0850-4295-9ea4-a2cb6e3b55f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FlaskBackend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FlaskBackend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/prediction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savedata/train.csv" beforeDir="false" />
-    </list>
+    <list default="true" id="5599d35c-0850-4295-9ea4-a2cb6e3b55f2" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -242,7 +237,7 @@
       <workItem from="1616216107439" duration="12205000" />
       <workItem from="1616380950447" duration="1513000" />
       <workItem from="1616398512092" duration="5498000" />
-      <workItem from="1616416142682" duration="2909000" />
+      <workItem from="1616416142682" duration="3528000" />
     </task>
     <servers />
   </component>
