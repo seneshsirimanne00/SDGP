@@ -151,6 +151,7 @@ class Main:
         orderList = self.database.getStock().getRawMatOrders()
         unconfirmed_orderList = []
         for order in orderList:
+            print(order.getAllData())
             if not order.isConfirmed():
                 unconfirmed_orderList.append(order)
         return unconfirmed_orderList

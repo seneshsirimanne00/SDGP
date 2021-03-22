@@ -28,7 +28,7 @@ def getPoTableData():
     orders = main.getPoData()
     for order in orders:
         orderDict = main.getLabeledDict(["mname", "vname", "mqty", "mprice" , "orderid" , "totalMatPrice"],
-                                        [order.getMatName(), order.getSupplierName(), order.getMatQty(),
+                                        [order.getItemName(), order.getSupplierName(), order.getQuantity(),
                                          order.getUnitCost() , order.getId() , order.getTotalCost() ])
         dictList.append(orderDict)
     return jsonify(dictList)
@@ -41,7 +41,7 @@ def getPrData():
     orders = main.getPrData()
     for order in orders:
         orderDict = main.getLabeledDict(["mnamepr", "vnamepr", "mqtypr", "mpricepr" , "orderid" , "totalMatPrice"],
-                                        [order.getMatName(), order.getSupplierName(), order.getMatQty(),
+                                        [order.getItemName(), order.getSupplierName(), order.getQuantity(),
                                          order.getUnitCost()  , order.getId() , order.getTotalCost() ])
         dictList.append(orderDict)
     return jsonify(dictList)

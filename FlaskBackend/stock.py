@@ -1,18 +1,16 @@
-from order import Order
+from rawMatOrder import RawMatOrder
 
 
 class Stock:
 
     def __init__(self):
-        self.rawMatOrderId = 0
-
         self.__productList = []
         self.__quantityList = []
         self.__rawMatNames = []
         self.__rawMatQuantities = []
 
-        self.rawMatOrderId = 0  # Tracking the last used ID for rawMaterialOrders
         self.rawMatOrders = []  # List of Order objects
+        self.productionOrders = []  # Product Orders
 
     def addProduct(self, name, amount):
         self.__productList.append(name)
@@ -39,15 +37,6 @@ class Stock:
         else:
             return False
 
-    def getRawMatOrders(self):
-        return self.rawMatOrders
-
-    def getProductList(self):
-        return self.__productList
-
-    def getQuantityList(self):
-        return self.__quantityList
-
     def addRawMat(self, name, quantity):
         self.__rawMatNames.append(name)
         self.__rawMatQuantities.append(quantity)
@@ -70,27 +59,33 @@ class Stock:
         else:
             return False
 
-    def getRawMatNames(self):
-        return self.__rawMatNames
+    # Helper Methods <!--
 
-    def getRawMatQtys(self):
-        return self.__rawMatQuantities
+    def nextRawMatId(self):
+        biggest = 0
+        for order in self.rawMatOrders:
+            if order.getId() > biggest:
+                biggest = order.getId
+        return biggest + 1
+
+    # Helper Methods --!>
+
+    # Raw Material Orders <!---
 
     # Checks all the orders made and if any order progress==100 but not set to completed, those orders will be used
     # to restock and will then be set to complete because its fully complete when order is collected
     def restockCompletedOrders(self):
         for order in self.rawMatOrders:
-            if order.getProgress() >= 100:
-                rawMatName, matQty = order.getMaterials()
-                if rawMatName is not None:
-                    self.addOrRestock(rawMatName, matQty)
-                    print("Debug[Restock Completed] - ", rawMatName, matQty)
+            orderNotCollected = not order.isCompleted()
+            if (order.getProgress()) >= 100 and orderNotCollected:
+                rawMatName, matQty = order.collect()
+                self.addOrRestock(rawMatName, matQty)
+                print("Debug[Restock Completed] - ", rawMatName, matQty)
 
     # Order is placed but one must use an admin account to confirm it
     def placeRawMatOrder(self, materialName, orderDuration, materialQuantity, price, supplierName):
-        newOrder = Order()
-        newOrder.setRawMatOrder(materialName, orderDuration, materialQuantity, price, self.rawMatOrderId, supplierName)
-        self.rawMatOrderId += 1
+        newOrder = RawMatOrder()
+        newOrder.setOrder(materialName, price, materialQuantity, supplierName, orderDuration, self.nextRawMatId())
         self.rawMatOrders.append(newOrder)
 
     # View Raw Mat in console
@@ -103,8 +98,35 @@ class Stock:
     def confirmRawMatOrder(self, id):
         for eachOrder in self.rawMatOrders:
             if eachOrder.getId() == int(id):
-                eachOrder.confirmOrder()
+                eachOrder.confirm()
                 print("Debug[Confirm Order]-", id)
+
+    # Raw Material Orders --!>
+
+    # Product Orders <!--
+
+
+
+    # Product Orders --!>
+
+    # Getter Setter Methods <!--
+
+    def getRawMatNames(self):
+        return self.__rawMatNames
+
+    def getRawMatQtys(self):
+        return self.__rawMatQuantities
+
+    def getRawMatOrders(self):
+        return self.rawMatOrders
+
+    def getProductList(self):
+        return self.__productList
+
+    def getQuantityList(self):
+        return self.__quantityList
+
+    # Getter Setter Methods  --!>
 
     """
     ====================================================================================================================
@@ -115,18 +137,16 @@ class Stock:
         for order in self.rawMatOrders:
             orderDataList.append(order.getAllData())
 
-        return [self.__productList, self.__quantityList, self.__rawMatNames, self.__rawMatQuantities,
-                self.rawMatOrderId, orderDataList]
+        return [self.__productList, self.__quantityList, self.__rawMatNames, self.__rawMatQuantities, orderDataList]
 
     def setAllData(self, stockData):
         self.__productList = stockData[0]
         self.__quantityList = stockData[1]
         self.__rawMatNames = stockData[2]
         self.__rawMatQuantities = stockData[3]
-        self.rawMatOrderId = stockData[4]
 
         self.rawMatOrders = []
-        for orderData in stockData[5]:
-            order = Order()
+        for orderData in stockData[4]:
+            order = RawMatOrder()
             order.setAllData(orderData)
             self.rawMatOrders.append(order)

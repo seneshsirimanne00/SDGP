@@ -54,7 +54,7 @@ class Database:
         loadedSuppliers = loadFromFile(self.savePath + self.__companyName + "_supplierData.dat")
         if loadedSuppliers is not None:
             for supplierData in loadedSuppliers:
-                supplierObj = Supplier(0,"PLACEHOLDER_NAME" , 0)
+                supplierObj = Supplier(0, "PLACEHOLDER_NAME", 0)
                 supplierObj.setAllData(supplierData)
                 self.suppliers.append(supplierObj)
 
@@ -76,8 +76,7 @@ class Database:
         if len(self.suppliers) != 0:
             for supplier in self.suppliers:
                 supplierList.append(supplier.getAllData())
-        saveToFile(supplierList , self.savePath + self.__companyName + "_supplierData.dat")
-
+        saveToFile(supplierList, self.savePath + self.__companyName + "_supplierData.dat")
 
     # ------------------------------------------------------------------------------------------------------------------
 
@@ -124,14 +123,14 @@ class Database:
         for supplier in self.suppliers:
             if supplier.getId() > biggest:
                 biggest = supplier.getId()
-        return biggest +1
+        return biggest + 1
 
     def createSupplier(self, supplierName, deliveryTime):
         # ID will be automatically set
         supplier = Supplier(self.nextSupplierID(), supplierName, deliveryTime)
         # This supplier does not have any materials set YET. Add material method must be called to add materials to a
         # supplier . This is done cause one supplier has the ability to sell multiple materials
-        print("Empty Supplier Created -" , str(supplier) )
+        print("Empty Supplier Created -", str(supplier))
         self.suppliers.append(supplier)
 
     def getSupplier(self, supplierName):

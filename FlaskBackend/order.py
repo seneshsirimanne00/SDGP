@@ -4,104 +4,91 @@ import time
 class Order:
 
     def __init__(self):
-        self.supplierName = ""
-        self.materialName = ""
-        self.materialQuantity = 0
-        self.unitPrice = 0
+        self.startTime = 0
+        self.endTime = 0
+        self.duration = 0
+
+        self.itemName = ""
+        self.unitCost = 0
+        self.quantity = 0
         self.orderId = 0
-
-        self.orderStartTime = 0
-        self.orderDuration = 0
-        self.orderEndTime = 0
-
-        # Orders can be RawMatOrders or Product Orders
-        self.orderType = None
 
         self.confirmed = False
         self.completed = False
 
-    def setRawMatOrder(self, materialName, orderDuration, materialQuantity, unitPrice, orderId, supplierName):
-        # Raw Material Order Must be accepted by an admin
-        self.orderType = "rawMatOrder"
-        self.materialName = materialName
-        self.orderDuration = orderDuration * 1000
-        self.materialQuantity = int(materialQuantity)
-        self.unitPrice = float(unitPrice)
-        self.orderId = orderId
-        self.supplierName = supplierName
-
-    def confirmOrder(self):
-        # Start the timer for how long the order takes to complete
+    def confirm(self):
         self.confirmed = True
-        self.orderStartTime = time.time()
-        self.orderEndTime = self.orderStartTime + self.orderDuration
+        self.startTime = time.time()
+        self.endTime = self.startTime + self.duration
 
     def getProgress(self):
         if not self.confirmed:
             return 0
         if self.completed:
             return 100
-        print("EndTime ",self.orderEndTime , "Start Time ",self.orderStartTime , "sub= ",self.orderEndTime-self.orderStartTime)
-        percent = (time.time()) / (self.orderEndTime - self.orderStartTime)
+        percent = (time.time()) / (self.endTime - self.startTime)
         if percent > 1:
             percent = 1
         return percent * 100
 
-    # Returns materials for restocking
-    def getMaterials(self):
-        print("debug[GetMaterials]-:",self.getProgress())
+    # Can run ONCE, AFTER order has been set to complete
+    def _orderCollectable(self):
+        print("Collecting order REEEEEEEEEE")
         if self.getProgress() < 100:
-            raise Exception("Order Not Complete! Completion :", self.getProgress())
+            return False
         if not self.completed:
             self.completed = True
-            return self.materialName, self.materialQuantity
-        return None,None
+            return True
+        return False
+
+    def _setOrder(self, itemName, unitCost, quantity, orderId, duration):
+        self.itemName = itemName
+        self.unitCost = float(unitCost)
+        self.quantity = int(quantity)
+        self.orderId = int(orderId)
+        self.duration = float(duration)
+
+    # Getters Setters <!--
 
     def getId(self):
         return self.orderId
 
+    def isCompleted(self):
+        return self.completed
+
     def isConfirmed(self):
         return self.confirmed
 
-    def getMatName(self):
-        return self.materialName
+    def getItemName(self):
+        return self.itemName
 
-    def getMatQty(self):
-        return self.materialQuantity
-
-    def getTotalCost(self):
-        total = self.unitPrice * self.materialQuantity
-        return total
-
-    def getSupplierName(self):
-        return self.supplierName
+    def getQuantity(self):
+        return self.quantity
 
     def getUnitCost(self):
-        return self.unitPrice
+        return self.unitCost
+
+    def getTotalCost(self):
+        return self.quantity * self.unitCost
+
+    # Getters Setters --!>
 
     """
     ====================================================================================================================
     """
 
-    def getAllData(self):
-        return [self.orderType, self.confirmed, self.completed, self.supplierName, self.materialName,
-                self.materialQuantity, self.unitPrice, self.orderId, self.orderStartTime, self.orderDuration,
-                self.orderEndTime]
+    # Get set method names are different here to prevent child classes from overriding them
+    def getAllData_parent(self):
+        return [self.startTime, self.endTime, self.duration, self.itemName, self.unitCost, self.quantity, self.orderId,
+                self.confirmed, self.completed]
 
-    def setAllData(self, orderData):
-        self.orderType = orderData[0]
-        self.confirmed = orderData[1]
-        self.completed = orderData[2]
-        self.supplierName = orderData[3]
-        self.materialName = orderData[4]
-        self.materialQuantity = orderData[5]
-        self.unitPrice = orderData[6]
-        self.orderId = orderData[7]
-        self.orderStartTime = orderData[8]
-        self.orderDuration = orderData[9]
-        self.orderEndTime = orderData[10]
-
-    def __str__(self):
-        return "Order[ " + self.supplierName + " matName :" + self.materialName + " matQuantity :" + str(
-            self.materialQuantity) + " unitPrice :" + str(self.unitPrice) + " OrderId :" + str(
-            self.orderId) + " Confirmed :" + str(self.confirmed) + " completed :" + str(self.completed) + " ]"
+    def setAllData_parent(self, data):
+        self.startTime = data[0]
+        self.endTime = data[1]
+        self.duration = data[2]
+        self.itemName = data[3]
+        self.unitCost = data[4]
+        self.quantity = data[5]
+        self.orderId = data[6]
+        self.confirmed = data[7]
+        self.completed = data[8]
