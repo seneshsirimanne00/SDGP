@@ -37,6 +37,16 @@ export class DatatransferService {
     return this.http.post<string>(this.baseLocalhost + "createSupplier" , obj);
   }
 
+  sendNewSalesOrderForm(customername : string,productname : string,deliveryaddress: string,qty : string,orderdate : string){
+    var obj = customername +","+ productname +","+ deliveryaddress +","+ qty +","+ orderdate;
+    return this.http.post<string>(this.baseLocalhost + "createNewSalesOrder" , obj);
+  }
+
+  sendNewProductForm( Productname : string ,rawmaterils :string,prodtime:string,rawmaterialqty : string){
+    var obj = Productname +","+ rawmaterils +","+ prodtime +","+ rawmaterialqty;
+    return this.http.post<string>(this.baseLocalhost + "createNewProduct" , obj);
+  }
+
   getPoTableData(){
     return this.http.get<poData[]>(this.baseLocalhost + "getPoData");
   }

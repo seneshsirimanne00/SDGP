@@ -9,6 +9,16 @@ import { salesOrderData } from 'src/app/data_interfaces/salesOrderData';
 })
 export class SalesOrderComponent implements OnInit {
 
+
+  // variables for form
+   
+  customername : string;
+  productname : string;
+  deliveryaddress: string;
+  qty : string;
+  orderdate: string;
+
+
   constructor(private datatransfer : DatatransferService) { }
 
   listOfDataSalesOrder : salesOrderData[];// for table
@@ -30,6 +40,10 @@ export class SalesOrderComponent implements OnInit {
    ngOnInit(): void {
      this.datatransfer.getSalesOrderTableData().subscribe( (data) => this.listOfDataSalesOrder = data );
      
+  }
+
+  submitForm(){
+    this.datatransfer.sendNewSalesOrderForm(this.customername,this.productname,this.deliveryaddress,this.qty,this.orderdate).subscribe();
   }
 
 }

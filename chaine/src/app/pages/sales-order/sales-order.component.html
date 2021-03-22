@@ -6,29 +6,23 @@
 <!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
 <div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;">
 
-  <div class="col-4" style="padding-left: 5%; height: 400px;">
+  <div class="col-4" style="padding-left: 5%; height: 320px;">
     <h2>Sales Order Form</h2>
     <form action="/action_page.php">
       <label for="fname">Customer name :</label>
-      <input type="text" id="fname" name="firstname" >
+      <input type="text" [(ngModel)]="customername" id="fname"name="firstname" >
       <label for="lname">Product Name :</label>
-      <input type="text" id="lname" name="lastname" >
+      <input type="text"  [(ngModel)]="productname" id="lname" name="firstname" >
       <label for="fname">Delivery Address :</label>
-      <input type="text" id="fname" name="firstname" >
-      <label for="lname">Order Date : </label>
-      <input type="text" id="lname" name="lastname" >
+      <input type="text"  [(ngModel)]="deliveryaddress"id="fname"name="firstname" >
     </form>
   </div>
-  <div class="col-4" style="padding-left: 5%; height: 400px;">
+  <div class="col-4" style="padding-left: 5%; height: 320px;">
     <form action="/action_page.php" style="padding-top: 15%;">
-      <label for="fname">Customer Id :</label>
-      <input type="text" id="fname" name="firstname" >
       <label for="lname">Quantity :</label>
-      <input type="text" id="lname" name="lastname">
-      <label for="fname">Order Id :</label>
-      <input type="text" id="fname" name="firstname" >
-      <label for="lname">Average Delivery time :</label>
-      <input type="text" id="lname" name="lastname" >
+      <input type="text" [(ngModel)]="qty" id="lname" name="firstname">
+      <label for="lname">Order Date : </label>
+      <input type="text" [(ngModel)]="orderdate"  id="lname" name="firstname" >
     </form>
   </div>
 
@@ -36,17 +30,14 @@
     <div style="height: 65.5%;">
         <h3  style="padding-left: 25%;">Po Info</h3>
         <p> Customer name : </p>
-        <p> Customer Id :  </p>
         <p> Product Name :  </p>
-        <p> Order Id : </p>
         <p> Order Date :  </p>
         <p> Quantity : </p>
         <p> Delivery Address :  </p>
-        <p> Average Delivery time : </p>
     </div>
 
     <form action="/action_page.php">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" (click)="submitForm()">
     </form>
     
   </div>
@@ -58,7 +49,6 @@
       <thead>
         <tr>
           <th>Customer name</th>
-          <th>Customer Id</th>
           <th>Product name</th>
           <th>Qty </th>
           <th>Delivery Address</th>
@@ -70,7 +60,6 @@
       <tbody>
         <tr *ngFor="let data of basicTable.data">
           <td>{{data.cname}}</td>
-          <td>{{data.cid}}</td>
           <td>{{data.pname}}</td>
           <td>{{data.qty}}</td>
           <td>{{data.daddress}}</td>

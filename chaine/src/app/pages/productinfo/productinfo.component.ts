@@ -9,6 +9,12 @@ import { ProductInfoData } from 'src/app/data_interfaces/ProductInfoData';
 })
 export class ProductinfoComponent implements OnInit {
 
+  //form variables
+  Productname : string ;
+  rawmaterils :string; 
+  prodtime:string;
+  rawmaterialqty : string;
+
   constructor(private datatransfer : DatatransferService) { }
 
   listOfDataPInfo : ProductInfoData[];// for table
@@ -26,6 +32,11 @@ export class ProductinfoComponent implements OnInit {
    ngOnInit(): void {
      this.datatransfer.getProductInfoTableData().subscribe( (data) => this.listOfDataPInfo = data );
      
+  }
+
+  submitform(){
+    this.datatransfer.sendNewProductForm(this.Productname,this.rawmaterils,this.prodtime,this.rawmaterialqty).subscribe();
+
   }
 
 }

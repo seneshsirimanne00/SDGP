@@ -8,33 +8,35 @@
   <!--<img src="/assets/topbar.png" alt="topbar" style="height: 20px;">-->
 <div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;">
 
-    <div class="col-4" style="padding-left: 5%; height: 250px;">
+    <div class="col-4" style="padding-left: 5%; height: 240px;">
         <h2>New Product Form</h2>
         <form action="/action_page.php">
           <label for="fname">Product Name :</label>
-          <input type="text" id="fname" name="firstname" >
+          <input type="text" id="fname" [(ngModel)]="Productname" name="firstname" >
           <label for="lname">Raw Materials:</label>
-          <input type="text" id="lname" name="lastname" >
+          <input type="text" id="lname" [(ngModel)]="rawmaterils" name="lastname" >
           
         </form>
       </div>
-      <div class="col-4" style="padding-left: 5%; height: 250px;">
+      <div class="col-4" style="padding-left: 5%; height: 240px;">
         <form action="/action_page.php" style="padding-top: 15%;">
           <label for="fname">Production time :</label>
-          <input type="text" id="fname" name="firstname" >
+          <input type="text" id="fname" [(ngModel)]="prodtime" name="firstname" >
           <label for="lname">Raw Material Qty : </label>
-          <input type="text" id="lname" name="lastname">
+          <input type="text" id="lname" [(ngModel)]="rawmaterialqty" name="lastname">
         </form>
       </div>
     
-      <div class="col-4" style="padding-left: 4%; height: 250px;">
+      <div class="col-4" style="padding-left: 4%; height: 240px;">
         <div style="height: 65.5%;">
             <h3  style="padding-left: 25%;">Product Info</h3>
-            <p> Material Name : Material 1 </p>
+            <p> Product Name  : {{Productname}} </p>
+            <p> Production time : {{prodtime}} </p>
+            <p> Raw Material Qty : {{rawmaterialqty}} </p>
         </div>
     
         <form action="/action_page.php">
-          <input type="submit" value="Submit">
+          <input type="submit" value="Submit" (click)="submitform()">
         </form>
         
       </div>
