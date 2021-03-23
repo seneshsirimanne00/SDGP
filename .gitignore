@@ -2,7 +2,7 @@
 /shelf/
 FlaskBackend/.idea/workspace.xml
 FlaskBackend/__pycache__/
-venv/
+FlaskBackend/venv/
 # Datasource local storage ignored files
 /../../../../../../../../../:\UNI WORK\SDGP\Implementation\Initial Backend\GIT\SDGP\FlaskBackend\.idea/dataSources/
 /dataSources.local.xml
