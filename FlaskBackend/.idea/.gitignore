@@ -1,6 +1,7 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+__pycache__/
 # Datasource local storage ignored files
 /../../../../../../../../../:\UNI WORK\SDGP\Implementation\Initial Backend\GIT\SDGP\FlaskBackend\.idea/dataSources/
 /dataSources.local.xml
