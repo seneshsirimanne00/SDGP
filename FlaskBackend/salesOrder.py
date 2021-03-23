@@ -1,7 +1,7 @@
 from order import Order
 
 
-class ProductOrder(Order):
+class SalesOrder(Order):
 
     def __init__(self):
         super().__init__()
