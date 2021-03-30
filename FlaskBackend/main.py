@@ -1,6 +1,5 @@
 from appDatabase import AppDatabase
 from database import Database
-from prediction import Prediction
 
 
 class Main:
@@ -174,7 +173,44 @@ class Main:
         self.database.confirmPoOrder(orderId)
 
     def getStockData(self):
-        self.database.getStock().restockCompletedOrders()
+        self.database.getStock().restockCompletedRawOrders()
+        return self.database.getStock()
+
+    # Also known as Sales order // Can only be added if Product of given name is being sold
+    def addProductionOrder(self):
+        stock = self.database.getStock()
+
+    # Add a new product for the company // Can only be added if the company has suppliers with the required materials
+    def addProduct(self, name, materialNames, materialQtys, productionTime):
+        def getTotalCost(matNames, quantities):
+            # Gets the material costs of the from the cheapest Supplier
+            totalCost = 0
+            suppliers = self.database.getAllSuppliers()
+            quantityIndex = 0
+            for singleMat in matNames:
+                matObtainable = False  # Tracks if each material is obtainable by the suppliers
+                for supplier in suppliers:
+                    if supplier.doesSell(singleMat):
+                        matObtainable = True
+                        totalCost += (supplier.getPriceOf(singleMat) * float(quantities[quantityIndex]))
+                        continue
+                if not matObtainable:  # If material cannot be obtained by any suppliers
+                    return None
+                quantityIndex += 1
+            return totalCost
+
+        stock = self.database.getStock()
+        if stock.hasProduct(name):
+            print("Product : ", name, "already Exists!")
+            return
+
+        costPerUnit = getTotalCost(materialNames, materialQtys)
+        if costPerUnit is not None:  # Product will only be added if all materials are obtainable by current suppliers
+            stock.addProduct(name, costPerUnit, materialNames, materialQtys, productionTime)
+        else:
+            print("Some/All materials of product unattainable by current suppliers. Product not added")
+
+    def getStock(self):
         return self.database.getStock()
 
     # Main Methods --!>

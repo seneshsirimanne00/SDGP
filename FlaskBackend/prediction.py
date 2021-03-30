@@ -1,16 +1,15 @@
-from __future__ import division
-from datetime import datetime, timedelta,date
+"""from __future__ import division
+from datetime import datetime, timedelta, date
 import pandas as pd
 import numpy as np
 import statsmodels.formula.api as smf
 
-
 import warnings
+
 warnings.filterwarnings("ignore")
 
-
-#import keras
-"""from keras.layers import Dense
+# import keras
+from keras.layers import Dense
 from keras.models import Sequential
 from keras.optimizers import Adam
 from keras.callbacks import EarlyStopping
@@ -18,18 +17,19 @@ from keras.utils import np_utils
 from keras.layers import LSTM
 from sklearn.model_selection import KFold, cross_val_score, train_test_split
 from sklearn.preprocessing import MinMaxScaler
-"""
+
+
 class Prediction:
     __predictedSales = 0
 
     def __init__(self):
-        #self.salesData = salesData
         self.setupLearn()
 
     def setupLearn(self):
-        """
+
         print("debug[starting learn]")
-        df_sales = pd.read_csv('savedata/train.csv')
+        df_sales = pd.read_csv('salesData/train - train.csv')
+       # print(df_sales)
         df_sales['date'] = pd.to_datetime(df_sales['date'])
 
         df_sales['date'] = df_sales['date'].dt.year.astype('str') + '-' + df_sales['date'].dt.month.astype(
@@ -37,6 +37,7 @@ class Prediction:
         df_sales['date'] = pd.to_datetime(df_sales['date'])
         # groupby date and sum the sales
         df_sales = df_sales.groupby('date').sales.sum().reset_index()
+        #print(df_sales)
 
         df_diff = df_sales.copy()
         # add previous sales to the next row
@@ -59,7 +60,7 @@ class Prediction:
         model_fit = model.fit()
         # Extract the adjusted r-squared
         regression_adj_rsq = model_fit.rsquared_adj
-        print(regression_adj_rsq)
+        ##print(regression_adj_rsq)
 
         df_model = df_supervised.drop(['sales', 'date'], axis=1)
         # split train and test set
@@ -85,14 +86,13 @@ class Prediction:
         model.compile(loss='mean_squared_error', optimizer='adam')
         model.fit(X_train, y_train, epochs=100, batch_size=1, verbose=1, shuffle=False)
 
-        print("--Predicting--")
         y_pred = model.predict(X_test, batch_size=1)
 
         y_pred = y_pred.reshape(y_pred.shape[0], 1, y_pred.shape[1])
         # rebuild test set for inverse transform
         pred_test_set = []
         for index in range(0, len(y_pred)):
-            print(np.concatenate([y_pred[index], X_test[index]], axis=1))
+            ##print(np.concatenate([y_pred[index], X_test[index]], axis=1))
             pred_test_set.append(np.concatenate([y_pred[index], X_test[index]], axis=1))
         # reshape pred_test_set
         pred_test_set = np.array(pred_test_set)
@@ -110,8 +110,8 @@ class Prediction:
             result_list.append(result_dict)
         df_result = pd.DataFrame(result_list)
         # for multistep prediction, replace act_sales with the predicted sales
-        print(df_result)"""
-        return
+        print(df_result)
+        return df_result
 
     def getSalesData(self):
         return
@@ -130,3 +130,4 @@ class Prediction:
 
     def setAllData(self, predictedSales):
         self.__predictedSales = predictedSales
+"""
