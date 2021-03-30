@@ -1,6 +1,7 @@
 # Default ignored files
 /shelf/
 FlaskBackend/.idea/workspace.xml
+FlaskBackend/.idea/misc.xml
 FlaskBackend/__pycache__/
 FlaskBackend/venv/
 # Datasource local storage ignored files
