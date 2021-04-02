@@ -1,4 +1,4 @@
-"""from __future__ import division
+from __future__ import division
 from datetime import datetime, timedelta, date
 import pandas as pd
 import numpy as np
@@ -130,4 +130,3 @@ class Prediction:
 
     def setAllData(self, predictedSales):
         self.__predictedSales = predictedSales
-"""
