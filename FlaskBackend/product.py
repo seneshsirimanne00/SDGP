@@ -44,3 +44,7 @@ class Product(object):
         self.rawMatNames = productData[2]
         self.rawMatQtys = productData[3]
         self.productionTime = productData[4]
+
+    def __str__(self):
+        data = "Name: "+ self.name + " / Cost: " + self.costPerUnit + " /rawMatsInProduct : "  + self.rawMatNames + " /prodcution time : " + self.productionTime
+        return data
