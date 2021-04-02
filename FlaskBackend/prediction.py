@@ -28,7 +28,7 @@ class Prediction:
     def setupLearn(self):
 
         print("debug[starting learn]")
-        df_sales = pd.read_csv('salesData/train - train.csv')
+        df_sales = pd.read_csv('saveddata/train.csv')
        # print(df_sales)
         df_sales['date'] = pd.to_datetime(df_sales['date'])
 
@@ -111,6 +111,10 @@ class Prediction:
         df_result = pd.DataFrame(result_list)
         # for multistep prediction, replace act_sales with the predicted sales
         print(df_result)
+
+        np_array = df_result.to_numpy()
+        print(np_array)
+
         return df_result
 
     def getSalesData(self):
