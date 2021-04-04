@@ -22,7 +22,6 @@ class Database:
         self.__stock = Stock()  # Creates empty stock
         self.__companyName = companyName
 
-        self.products = []
         # Holds a list of suppliers who provide the company with rawMaterials
         self.suppliers = []
         self.load()
@@ -49,14 +48,6 @@ class Database:
         if loadedStockData is not None:
             self.__stock.setAllData(loadedStockData)
 
-        self.products = []
-        loadedProductData = loadFromFile(self.savePath + self.__companyName + "_productData.dat")
-        if loadedProductData is not None:
-            for productData in loadedProductData:
-                emptyProduct = Product("empty", 0)
-                emptyProduct.setAllData(productData)
-                self.products.append(emptyProduct)
-
         self.suppliers = []
         loadedSuppliers = loadFromFile(self.savePath + self.__companyName + "_supplierData.dat")
         if loadedSuppliers is not None:
@@ -72,13 +63,6 @@ class Database:
 
         saveToFile(self.__stock.getAllData(), self.savePath + self.__companyName + "_stockData.dat")
 
-        product_detail_list = []
-        if len(self.products) != 0:
-            for prod in self.products:
-                product_detail_list.append(prod.getAllData())
-
-        saveToFile(product_detail_list, self.savePath + self.__companyName + "_productData.dat")
-
         supplierList = []
         if len(self.suppliers) != 0:
             for supplier in self.suppliers:
@@ -91,37 +75,9 @@ class Database:
         # NOT IMPLEMENTED
         return
 
-    # [Product Section]-------------------------------------------------------------------------------------------------
-
-    def getProduct(self, prodName):
-        found = False
-        for each_product in self.products:
-            if each_product.getName().upper() == prodName.upper():
-                found = True
-                return each_product
-        if not found:
-            raise Exception("Product Not found!")
-
     def getStock(self):
         return self.__stock
 
-    def displayProducts(self):
-        for prod in self.products:
-            print("Product : ", str(prod))
-
-    def addSales(self, prodName, dataframe):
-        """This dataframe should consist of only two columns , date and sales"""
-        prod = self.getProduct(prodName)
-        prod.getSales().addMultipleSales(dataframe)
-
-    def getProducts(self):
-        return self.products
-
-    def createProduct(self, name, costPerUnit):
-        newProd = Product(name, costPerUnit)
-        self.products.append(newProd)
-
-    # ------------------------------------------------------------------------------------------------------------------
 
     # [Supplier Segment]------------------------------------------------------------------------------------------------
 

@@ -20,10 +20,9 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 class Prediction:
-    __predictedSales = 0
 
     def __init__(self):
-        self.setupLearn()
+        self.numpy_prediction = self.setupLearn()
 
     def setupLearn(self):
 
@@ -110,12 +109,24 @@ class Prediction:
             result_list.append(result_dict)
         df_result = pd.DataFrame(result_list)
         # for multistep prediction, replace act_sales with the predicted sales
-        print(df_result)
 
         np_array = df_result.to_numpy()
-        print(np_array)
 
-        return df_result
+        return np_array
+
+    def getPredictionDates(self):
+        #Return the dates as a list of strings
+        dateList = []
+        for date in self.numpy_prediction:
+            dateList.append(date[1].strftime("%d/%m/%Y"))
+        return dateList
+
+    def getPrediction_amounts(self):
+        #the corresponding sales amounts for predicted dates as a list of integers
+        preictionValueList = []
+        for val in self.numpy_prediction:
+            preictionValueList.append( val[0] )
+        return preictionValueList
 
     def getSalesData(self):
         return
