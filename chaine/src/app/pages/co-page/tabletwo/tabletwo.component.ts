@@ -14,20 +14,24 @@ export class TabletwoComponent implements OnInit {
 listOfData1 : prData[];//for pr table
 /*
   listOfData1: prData[] = [
-    {
-      mnamepr: 'material 1',
-      vnamepr: 'John Brown',
-      mqtypr: 32,
-      mpricepr: 10000
-    },
-    {
-      mnamepr: 'material 1',
-      vnamepr: 'John Brown',
-      mqtypr: 32,
-      mpricepr: 10000
-    }
-  ]; */
-
+  {
+    mnamepr: 'material 5',
+    vnamepr: 'Jane Brown',
+    mqtypr: 68,
+    mpricepr: 20000,
+    orderid:1005,
+    totalMatPrice :500,
+  },
+  {
+    mnamepr: 'material 6',
+    vnamepr: 'adam evans',
+    mqtypr: 50,
+    mpricepr: 50000,
+    orderid:1006,
+    totalMatPrice :1000,
+  }
+  ]; 
+*/
   ngOnInit(): void {
      this.datatransfer.getPrTableData().subscribe( (data) => this.listOfData1 = data );
      

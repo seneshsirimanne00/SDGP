@@ -3,7 +3,8 @@
 [class*="col-"] {
 	float:left;
     padding: 0;
-	/*border: 1px solid red;  remove this line after */
+/*border: 1px solid red; /*remove this line after */
+
 }
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -17,6 +18,18 @@
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+
+body {
+  background-image: url(/assets/bg.png);
+/* Full height */
+  height: 100%; 
+
+/* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+ background-size: cover;
+  
+}
 
 
 input[type=text], select {
@@ -46,7 +59,7 @@ input[type=text], select {
   
   div {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #f2f2f257;
     padding: 20px;
   }
 

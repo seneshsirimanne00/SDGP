@@ -1,0 +1,95 @@
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+body {
+    background-image: url(/assets/crp.png);
+  /* Full height */
+    height: 100%; 
+
+  /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+   background-size: cover;
+    
+}
+div {
+    border-radius: 5px;
+    padding: 20px;
+  }
+.sign,.log{
+    background-color:#4351DA;
+    display:inline-block;
+    font-family:'sofia Pro',sans-serif;
+    font-size: 15px;
+    padding: 10px 26px;
+    color: aliceblue;
+    border-radius: 5px;
+}
+.sign{
+  position:absolute ;
+  top: 82%;
+  right: 65%;
+
+}
+.log{
+  position: absolute;
+  top: 82%;
+  right: 39%;
+}
+
+[class*="col-"] {
+	float:left;
+    padding: 0;
+/*border: 1px solid red; /*remove this line after */
+
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 20%;}   /*25*/
+.col-4 {width: 33.33%;} /*25*/
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 80%;}  /*75*/
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+input[type=text] {
+    width: 72%;
+    padding: 12px 20px;
+    margin: 15px ;
+    display: inline-block;
+    border: 1px solid rgb(255, 251, 251);
+    background-color: #4450bea6;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+  }
+
+  input[type=password] {
+    width: 72%;
+    padding: 12px 20px;
+    margin: 15px ;
+    display: inline-block;
+    border: 1px solid rgb(255, 251, 251);
+    background-color: #4450bea6;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+  }
+
+  input[type=email] {
+    width: 72%;
+    padding: 12px 20px;
+    margin: 15px ;
+    display: inline-block;
+    border: 1px solid rgb(255, 251, 251);
+    background-color: #4450bea6;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+  }

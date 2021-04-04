@@ -26,12 +26,12 @@ body {
 }
 .sign{
   position:absolute ;
-  top: 380px; 
-  right: 700px;
+  top: 55%; 
+  right: 48%;
 
 }
 .log{
   position: absolute;
-  top: 380px;
-  right: 550px;
+  top: 55%;
+  right: 37%;
 }

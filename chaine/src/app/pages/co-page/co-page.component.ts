@@ -19,7 +19,7 @@ export class CoPageComponent implements OnInit {
 
   constructor(private datatransfer : DatatransferService) { }
 
-  listOfData2 : poData[];// for po table
+ listOfData2 : poData[];// for po table
   /*
   listOfData2: poData[] = [
     {
