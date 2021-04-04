@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart} from 'node_modules/chart.js'
+import { DatatransferService } from '../datatransfer.service';
 
 @Component({
   selector: 'app-barchart',
@@ -8,18 +9,25 @@ import {Chart} from 'node_modules/chart.js'
 })
 export class BarchartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
+
+  barchartx : String[];
+  barcharty : number[];
 
   ngOnInit() {
+    this.datatransfer.getbargraphXData().subscribe( (data) => this.barchartx = data );
+    this.datatransfer.getbargraphYData().subscribe( (data) => this.barcharty = data );
 
     var myChart = new Chart("mychart", {
       type: 'bar',
       data: {
-          labels: ['Material 1', 'Material2', ' Material 3', 'Material 4', 'Material 5','Material 6','Material 7','Material 8'],
+          //labels: ['Material 1', 'Material2', ' Material 3', 'Material 4', 'Material 5','Material 6','Material 7','Material 8'],
+          labels: this.barchartx,
           datasets: [{
               label: 'Raw Material Qty ',
               maxBarThickness: 30,
-              data: [1200, 2190, 3000, 2450, 620,890,420,69],
+              //data: [1200, 2190, 3000, 2450, 620,890,420,69],
+              data : this.barcharty,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.7)',
                   'rgba(54, 162, 235, 0.7)',

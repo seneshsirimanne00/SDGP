@@ -112,5 +112,21 @@ export class DatatransferService {
   confirmPoOrder(orderId : number){
     return this.http.post<number>(this.baseLocalhost + "confirmPO" , orderId)
   }
+
+  getlinegraphXData(){
+    return this.http.get<String[]>(this.baseLocalhost + "getlinegraphXData");
+  }
+
+  getlinegraphYData(){
+    return this.http.get<number[]>(this.baseLocalhost + "getlinegraphYData");
+  }
+
+  getbargraphXData(){
+    return this.http.get<String[]>(this.baseLocalhost + "getbargraphXData");
+  }
+
+  getbargraphYData(){
+    return this.http.get<number[]>(this.baseLocalhost + "getbargraphYData");
+  }
     
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
 
 @Component({
   selector: 'app-companyregistrationpage',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyregistrationpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
   ngOnInit(): void {
+  }
+
+  submitform(){
+    //this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName).subscribe();
+  console.log("heloooo");
   }
 
 }
