@@ -122,6 +122,21 @@ def getProductInfoTable():
     print(dictArr)
     return jsonify(dictArr)
 
+@app.route("/getlinegraphXData" ,  methods=["GET"])
+def getLineGraphXData():
+    prediction = main.getProductPrediction("NO NAME FOR NOW")
+    return jsonify(prediction.getPredictionDates())
+
+@app.route("/getlinegraphYData" , methods=["GET"])
+def getlinegraphYData():
+    prediction = main.getProductPrediction("STILL NO NAME")
+    return jsonify(prediction.getPrediction_amounts())
+
+@app.route("/runProductPrediction")
+def runProductPrediction():
+    main.getStock().runProductPredictions()
+    return jsonify("Prediction Run")
+
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

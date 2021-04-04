@@ -64,7 +64,7 @@ class Stock:
     # Checks all the orders made and if any order progress==100 but not set to completed, those orders will be used
     # to restock and will then be set to complete because its fully complete when order is collected
     def restockCompletedRawOrders(self):
-        print("RestockCompletedRawOrders ",self.rawMatOrders)
+        print("RestockCompletedRawOrders ", self.rawMatOrders)
         for order in self.rawMatOrders:
             orderNotCollected = not order.isCompleted()
             if (order.getProgress()) >= 100 and orderNotCollected:
@@ -114,7 +114,7 @@ class Stock:
         product = Product(name, costPerUnit, materialNames, materialQtys, productionTime)
         print("Adding Product")
         self.productTypes.append(product)
-        print("Product Added",self.productTypes)
+        print("Product Added", self.productTypes)
         self.productQuantities.append(0)
 
     def hasProduct(self, productName):
@@ -122,6 +122,11 @@ class Stock:
             if product.getName().lower() == productName.lower():
                 return True
         return False
+
+    def runProductPredictions(self):
+        # Runs prediction on each product
+        for product in self.productTypes:
+            product.runPrediction()
 
     # Product/Sales Orders --!>
 
@@ -157,9 +162,10 @@ class Stock:
         rawOrderData = self.getDataOfList(self.rawMatOrders)
         prodTypeData = self.getDataOfList(self.productTypes)
         salesOrderData = self.getDataOfList(self.salesOrders)
-        print("rawOrderData",rawOrderData,"prodTypeData",prodTypeData,"salesOrderData",salesOrderData)
+        print("rawOrderData", rawOrderData, "prodTypeData", prodTypeData, "salesOrderData", salesOrderData)
 
-        return [self.productQuantities , self.__rawMatNames , self.__rawMatQuantities , rawOrderData, salesOrderData,prodTypeData]
+        return [self.productQuantities, self.__rawMatNames, self.__rawMatQuantities, rawOrderData, salesOrderData,
+                prodTypeData]
 
     def setAllData(self, stockData):
         self.productQuantities = stockData[0]
@@ -167,7 +173,7 @@ class Stock:
         self.__rawMatQuantities = stockData[2]
 
         self.rawMatOrders = []
-        print("Loaded rawMatOrders" , stockData[3])
+        print("Loaded rawMatOrders", stockData[3])
         for orderData in stockData[3]:
             order = RawMatOrder()
             order.setAllData(orderData)
@@ -179,7 +185,6 @@ class Stock:
             self.salesOrders.append(order)
         self.productTypes = []
         for productData in stockData[5]:
-            product = Product(0,0,0,0,0)
+            product = Product(0, 0, 0, 0, 0)
             product.setAllData(productData)
             self.productTypes.append(product)
-

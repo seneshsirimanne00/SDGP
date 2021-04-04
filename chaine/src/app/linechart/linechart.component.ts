@@ -15,8 +15,11 @@ export class LinechartComponent implements OnInit {
   constructor(private datatransfer : DatatransferService) {}
 
   ngOnInit() {
-    this.datatransfer.getlinegraphXData().subscribe( (data) => this.linechartx = data );
-    this.datatransfer.getlinegraphYData().subscribe( (data) => this.linecharty = data );
+    this.datatransfer.getlinegraphXData().subscribe( (data) => {this.linechartx = data; this.initGraph()} );
+    this.datatransfer.getlinegraphYData().subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
+  }
+
+  initGraph(){
 
     var myChart = new Chart("mychart1", {
       type: 'line',

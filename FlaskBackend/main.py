@@ -120,7 +120,7 @@ class Main:
             return "Supplier Does not exist!"
         supObj = self.database.getSupplier(supplierName)
         if not supObj.doesSell(rawMatName):
-            print("Supplier does not sell ",rawMatName)
+            print("Supplier does not sell ", rawMatName)
             return "Supplier Does not Sell " + rawMatName
         # If supplier Exists and Sells a given item, the PO request can be made
 
@@ -215,6 +215,13 @@ class Main:
 
     def getStock(self):
         return self.database.getStock()
+
+    def getProductPrediction(self , productName):
+        # FOR NOW NO NAME WILL BE PASSED CAUSE WE HAVE ONLY ONE DATASET
+        prodTypes = self.database.getStock().getProductTypes()
+        prediction = prodTypes[0].getPrediction()
+        # LOGIC INCOMPLETE
+        return prediction
 
     # Main Methods --!>
 

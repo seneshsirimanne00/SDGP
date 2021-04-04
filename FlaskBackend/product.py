@@ -1,4 +1,5 @@
 from salesData import SalesData
+from prediction import Prediction
 
 
 class Product(object):
@@ -13,7 +14,11 @@ class Product(object):
         self.productionTime = productionTime
 
         # self.salesData = SalesData(costPerUnit)
-        # self.prediction = Prediction(self.salesData)
+
+        self.prediction = Prediction()
+
+    def runPrediction(self):
+        self.prediction.learn()
 
     def addRawMaterial(self, materialName, materialQuantity):
         self.rawMatNames.append(materialName)
@@ -28,6 +33,9 @@ class Product(object):
     def getRawMatQtys(self):
         return self.rawMatQtys
 
+    def getPrediction(self):
+        return self.prediction
+
     def getProdTime(self):
         return self.productionTime
 
@@ -36,14 +44,15 @@ class Product(object):
     """
 
     def getAllData(self):
-        return [self.name, self.costPerUnit, self.rawMatNames, self.rawMatQtys, self.productionTime]
+        return [self.name, self.costPerUnit, self.rawMatNames, self.rawMatQtys, self.prediction.getAllData()]
 
     def setAllData(self, productData):
         self.name = productData[0]
         self.costPerUnit = productData[1]
         self.rawMatNames = productData[2]
         self.rawMatQtys = productData[3]
-        self.productionTime = productData[4]
+        print("Loaded prediction data" , productData[4])
+        self.prediction.setAllData(productData[4])
 
     def __str__(self):
         data = "Name: "+ self.name + " / Cost: " + self.costPerUnit + " /rawMatsInProduct : "  + self.rawMatNames + " /prodcution time : " + self.productionTime

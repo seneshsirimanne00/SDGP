@@ -22,13 +22,21 @@ from sklearn.preprocessing import MinMaxScaler
 class Prediction:
 
     def __init__(self):
+        self.numpy_prediction = []
+        self.predictionDates = []
+        self.predictionAmounts = []
+
+    def learn(self):
         self.numpy_prediction = self.setupLearn()
+        self.predictionDates = []
+        self.predictionAmounts = []
+
 
     def setupLearn(self):
 
         print("debug[starting learn]")
         df_sales = pd.read_csv('saveddata/train.csv')
-       # print(df_sales)
+        # print(df_sales)
         df_sales['date'] = pd.to_datetime(df_sales['date'])
 
         df_sales['date'] = df_sales['date'].dt.year.astype('str') + '-' + df_sales['date'].dt.month.astype(
@@ -36,7 +44,7 @@ class Prediction:
         df_sales['date'] = pd.to_datetime(df_sales['date'])
         # groupby date and sum the sales
         df_sales = df_sales.groupby('date').sales.sum().reset_index()
-        #print(df_sales)
+        # print(df_sales)
 
         df_diff = df_sales.copy()
         # add previous sales to the next row
@@ -115,33 +123,28 @@ class Prediction:
         return np_array
 
     def getPredictionDates(self):
-        #Return the dates as a list of strings
+        # Return the dates as a list of strings
         dateList = []
         for date in self.numpy_prediction:
             dateList.append(date[1].strftime("%d/%m/%Y"))
         return dateList
 
     def getPrediction_amounts(self):
-        #the corresponding sales amounts for predicted dates as a list of integers
+        # the corresponding sales amounts for predicted dates as a list of integers
         preictionValueList = []
         for val in self.numpy_prediction:
-            preictionValueList.append( val[0] )
+            preictionValueList.append(val[0])
         return preictionValueList
 
-    def getSalesData(self):
-        return
+    """
+    ====================================================================================================================
+    """
 
-    def train(self):
-        return
-
-    def predictNextMonth(self):
-        return
-
-    def __str__(self):
-        return "Prediction[ predictedSales:" + str(self.__predictedSales) + " ]"
 
     def getAllData(self):
-        return self.__predictedSales
+        return [self.predictionDates, self.predictionAmounts , self.numpy_prediction]
 
-    def setAllData(self, predictedSales):
-        self.__predictedSales = predictedSales
+    def setAllData(self, data):
+        self.predictionDates = data[0]
+        self.predictionAmounts = data[1]
+        self.numpy_prediction = data[2]
