@@ -2,6 +2,7 @@ from product import Product
 from stock import Stock
 from supplier import Supplier
 from salesData import SalesData
+import os
 import pickle
 
 
@@ -11,12 +12,13 @@ class Database:
     that given company
     """
 
-    savePath = "saveData/"
+    savePath = "saveddata/"
 
     def __init__(self, companyName):
         """
         Database instance is created with the company name, it loads any data related to that company
         """
+        self.createSaveDirs()
         self.__stock = Stock()  # Creates empty stock
         self.__companyName = companyName
 
@@ -24,6 +26,11 @@ class Database:
         # Holds a list of suppliers who provide the company with rawMaterials
         self.suppliers = []
         self.load()
+
+    def createSaveDirs(self):
+        #Creates save directories if they do not exist
+        if not os.path.exists("saveddata"):
+            os.mkdir("saveddata")
 
     # [Save Load Section]-----------------------------------------------------------------------------------------------
 

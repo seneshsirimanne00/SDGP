@@ -18,6 +18,7 @@ def helloWorld():
 def addPoRequest():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
+    print("Browser Passed PO Data : ",data)
     response = main.addPoRequest(data[0], data[1], data[2])
     return jsonify(response)
 

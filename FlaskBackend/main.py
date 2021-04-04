@@ -116,9 +116,11 @@ class Main:
 
         self.listIsInt([rawMatQty])
         if not self.supplierExists(supplierName):
+            print("Supplier Does not exist!")
             return "Supplier Does not exist!"
         supObj = self.database.getSupplier(supplierName)
         if not supObj.doesSell(rawMatName):
+            print("Supplier does not sell ",rawMatName)
             return "Supplier Does not Sell " + rawMatName
         # If supplier Exists and Sells a given item, the PO request can be made
 
@@ -126,6 +128,7 @@ class Main:
         matPricePerUnit = self.database.getSupplier(supplierName).getPriceOf(rawMatName)
         self.database.getStock().placeRawMatOrder(rawMatName, orderDuration, rawMatQty, matPricePerUnit, supplierName)
         self.database.getStock().viewRawMatOrders()  # Displaying to console. Debug
+        print("PO Request added")
         return "PO Request Added"
 
     def createSupplier(self, supplierName, matName, orderTime, unitPrice):
