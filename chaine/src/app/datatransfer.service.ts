@@ -52,6 +52,16 @@ export class DatatransferService {
     return this.http.post<string>(this.baseLocalhost + "searchtxt" , obj);
   }
 
+  getandsendlinegraphXData( search : String ){
+    var obj = search;
+    return this.http.post<string[]>(this.baseLocalhost + "getandsendlinegraphXData" , obj);
+  }
+
+  getandsendlinegraphyData( search : String ){
+    var obj = search;
+    return this.http.post<number[]>(this.baseLocalhost + "getandsendlinegraphyData" , obj);
+  }
+
   getPoTableData(){
     return this.http.get<poData[]>(this.baseLocalhost + "getPoData");
   }
@@ -116,14 +126,6 @@ export class DatatransferService {
 
   confirmPoOrder(orderId : number){
     return this.http.post<number>(this.baseLocalhost + "confirmPO" , orderId)
-  }
-
-  getlinegraphXData(){
-    return this.http.get<String[]>(this.baseLocalhost + "getlinegraphXData");
-  }
-
-  getlinegraphYData(){
-    return this.http.get<number[]>(this.baseLocalhost + "getlinegraphYData");
   }
 
   getbargraphXData(){

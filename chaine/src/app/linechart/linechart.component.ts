@@ -8,7 +8,7 @@ import { DatatransferService } from '../datatransfer.service';
   styleUrls: ['./linechart.component.css']
 })
 export class LinechartComponent implements OnInit {
-
+  message :String;
   search : String;
   linechartx : String[];
   linecharty : number[];
@@ -17,19 +17,16 @@ export class LinechartComponent implements OnInit {
 
   ngOnInit() {
     this.initGraph();//just to draw the graph without data 
-    //this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName).subscribe();
-    //this.datatransfer.getlinegraphXData().subscribe( (data) => {this.linechartx = data; this.initGraph()} );
-    //this.datatransfer.getlinegraphYData().subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
-    //just for testing
-
+    
   }
 
   searchthetxt(){
     this.initGraph();
-    this.datatransfer.sendlinechartsearchdata(this.search).subscribe();
     //so when the button is pressed the graphs can replace the new graph 
-    this.datatransfer.getlinegraphXData().subscribe( (data) => {this.linechartx = data; this.initGraph()} );
-    this.datatransfer.getlinegraphYData().subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
+    this.datatransfer.getandsendlinegraphXData(this.search).subscribe( (data) => {this.linechartx = data;
+      if(data.length == 0){this.message="PRODUCT YOU ENTERED IS NOT IN THE DATABASE"};
+      this.initGraph()} );
+    this.datatransfer.getandsendlinegraphyData(this.search).subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
 
   }
 
