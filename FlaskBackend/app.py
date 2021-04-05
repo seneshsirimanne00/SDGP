@@ -18,7 +18,7 @@ def helloWorld():
 def addPoRequest():
     data = request.get_data().decode('utf-8')
     data = data.split(",")
-    print("Browser Passed PO Data : ",data)
+    print("Browser Passed PO Data : ", data)
     response = main.addPoRequest(data[0], data[1], data[2])
     return jsonify(response)
 
@@ -109,28 +109,42 @@ def createNewProduct():
     matQtys = data[3].split("!")
     if len(matNames) != len(matQtys):
         return jsonify("For each mat a quantity must be provided!")
-    main.addProduct(data[0],matNames,matQtys,data[2])
+    main.addProduct(data[0], matNames, matQtys, data[2])
     return jsonify("Product Created : " + str(data[0]))
 
-@app.route("/getProductInfoTableData" , methods=["GET"])
+
+@app.route("/getProductInfoTableData", methods=["GET"])
 def getProductInfoTable():
     productTypes = main.getStock().getProductTypes()
     dictArr = []
     for type in productTypes:
-        productTypeDict = main.getLabeledDict(["pname","rmaterials","rmqty","ptime"],[type.getName() , type.getRawMatNames() , type.getRawMatQtys() , type.getProdTime()])
+        productTypeDict = main.getLabeledDict(["pname", "rmaterials", "rmqty", "ptime"],
+                                              [type.getName(), type.getRawMatNames(), type.getRawMatQtys(),
+                                               type.getProdTime()])
         dictArr.append(productTypeDict)
     print(dictArr)
     return jsonify(dictArr)
 
-@app.route("/getlinegraphXData" ,  methods=["GET"])
+
+@app.route("/getandsendlinegraphXData", methods=["POST"])
 def getLineGraphXData():
-    prediction = main.getProductPrediction("NO NAME FOR NOW")
+    name = request.get_data().decode('utf-8')
+    prediction = main.getProductPrediction(name)
+    print("Name: ",name)
+    if prediction is None:
+        return jsonify([])  # Returns Empty Arrray
     return jsonify(prediction.getPredictionDates())
 
-@app.route("/getlinegraphYData" , methods=["GET"])
+
+@app.route("/getandsendlinegraphyData", methods=["POST"])
 def getlinegraphYData():
-    prediction = main.getProductPrediction("STILL NO NAME")
+    name = request.get_data().decode('utf-8')
+    prediction = main.getProductPrediction(name)
+    print("PREDICION : ", prediction)
+    if prediction is None:
+        return jsonify([])  # Returns Empty Arrray
     return jsonify(prediction.getPrediction_amounts())
+
 
 @app.route("/runProductPrediction")
 def runProductPrediction():

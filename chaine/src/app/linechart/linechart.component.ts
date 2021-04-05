@@ -24,7 +24,7 @@ export class LinechartComponent implements OnInit {
     this.initGraph();
     //so when the button is pressed the graphs can replace the new graph 
     this.datatransfer.getandsendlinegraphXData(this.search).subscribe( (data) => {this.linechartx = data;
-      if(data.length == 0){this.message="PRODUCT YOU ENTERED IS NOT IN THE DATABASE"};
+      if(data.length == 0){this.message="PRODUCT YOU ENTERED IS NOT IN THE DATABASE"}else{this.message = ""};
       this.initGraph()} );
     this.datatransfer.getandsendlinegraphyData(this.search).subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
 

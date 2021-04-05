@@ -217,10 +217,12 @@ class Main:
         return self.database.getStock()
 
     def getProductPrediction(self , productName):
-        # FOR NOW NO NAME WILL BE PASSED CAUSE WE HAVE ONLY ONE DATASET
         prodTypes = self.database.getStock().getProductTypes()
-        prediction = prodTypes[0].getPrediction()
-        # LOGIC INCOMPLETE
+        prediction = None #Returns None if product not found
+        print("ProductTypes :")
+        for productType in prodTypes:
+            if productType.getName().lower() == productName.lower():
+                prediction = productType.getPrediction()
         return prediction
 
     # Main Methods --!>
@@ -235,36 +237,3 @@ class Main:
 
     # Console Methods --!>
 
-
-"""
-df = pd.read_excel("savedata/BatchCost_Edited.xlsx")
-print(df.head(5))
-"""
-
-"""
-db = Database("inate")
-
-db.createProduct("Amrita Jasmine", 30)
-item = db.getProduct("Amrita Jasmine")
-item.addRawMaterial("Nice smell" , 2)
-item_sales = item.getSales()
-item_sales.addSales(50400, "15.15.2020", 950000)
-
-db.save()
-"""
-
-"""db = Database("inate")
-
-pd.set_option("max_columns", None)
-
-
-import pandas as pd
-
-
-df_sales = pd.read_csv('savedata/Original.csv')
-df_sales['date'] = pd.to_datetime(df_sales['date'])
-print(df_sales.head(5))
-print("----------------")
-
-data = df_sales[['date' , 'sales']]
-print(data.head(5))"""
