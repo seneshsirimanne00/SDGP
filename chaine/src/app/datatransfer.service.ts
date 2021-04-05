@@ -47,6 +47,11 @@ export class DatatransferService {
     return this.http.post<string>(this.baseLocalhost + "createNewProduct" , obj);
   }
 
+  sendlinechartsearchdata( search : String ){
+    var obj = search;
+    return this.http.post<string>(this.baseLocalhost + "searchtxt" , obj);
+  }
+
   getPoTableData(){
     return this.http.get<poData[]>(this.baseLocalhost + "getPoData");
   }

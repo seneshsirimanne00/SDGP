@@ -9,14 +9,28 @@ import { DatatransferService } from '../datatransfer.service';
 })
 export class LinechartComponent implements OnInit {
 
+  search : String;
   linechartx : String[];
   linecharty : number[];
 
   constructor(private datatransfer : DatatransferService) {}
 
   ngOnInit() {
+    this.initGraph();//just to draw the graph without data 
+    //this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName).subscribe();
+    //this.datatransfer.getlinegraphXData().subscribe( (data) => {this.linechartx = data; this.initGraph()} );
+    //this.datatransfer.getlinegraphYData().subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
+    //just for testing
+
+  }
+
+  searchthetxt(){
+    this.initGraph();
+    this.datatransfer.sendlinechartsearchdata(this.search).subscribe();
+    //so when the button is pressed the graphs can replace the new graph 
     this.datatransfer.getlinegraphXData().subscribe( (data) => {this.linechartx = data; this.initGraph()} );
     this.datatransfer.getlinegraphYData().subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
+
   }
 
   initGraph(){

@@ -8,6 +8,15 @@ import { DatatransferService } from 'src/app/datatransfer.service';
 })
 export class CompanyregistrationpageComponent implements OnInit {
 
+  //form data
+  companyname : String;
+  companydesc : String;
+  companyAddress: String;
+  password : String;
+  retypepassword : String;
+  Companyemail : String;
+
+
   constructor(private datatransfer : DatatransferService) { }
 
   ngOnInit(): void {
