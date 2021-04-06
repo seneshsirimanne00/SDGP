@@ -143,6 +143,7 @@ def getlinegraphYData():
     print("PREDICION : ", prediction)
     if prediction is None:
         return jsonify([])  # Returns Empty Arrray
+    print("PREDICTION AMOUNts",prediction.getPrediction_amounts())
     return jsonify(prediction.getPrediction_amounts())
 
 
@@ -153,10 +154,18 @@ def runProductPrediction():
 
 @app.route("/sendCsvData" , methods=["POST"])
 def sendCSV():
-    data = request.get_data().decode('utf-8')
+    data = request.get_json()
     print(data)
-    print(data[0])
-    return jsonify("Yeetus feetus")
+    listOfRecords = []
+    for record in data:
+        line = [] #Date , store , item , sales
+        line.append(record["date"])
+        line.append(int(record["store"]))
+        line.append(int(record["item"]))
+        line.append(int(record["sales"]))
+        listOfRecords.append(line)
+    main.addCsvData(listOfRecords)
+    return jsonify("yeetus")
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

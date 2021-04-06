@@ -144,6 +144,9 @@ class Stock:
     def getProductTypes(self):
         return self.productTypes
 
+
+
+
     # Getter Setter Methods  --!>
 
     """

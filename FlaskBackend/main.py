@@ -219,11 +219,16 @@ class Main:
     def getProductPrediction(self , productName):
         prodTypes = self.database.getStock().getProductTypes()
         prediction = None #Returns None if product not found
-        print("ProductTypes :")
+        print("ProductTypes :",prodTypes)
         for productType in prodTypes:
             if productType.getName().lower() == productName.lower():
                 prediction = productType.getPrediction()
         return prediction
+
+
+    def addCsvData(self, dataList):
+        productType = self.database.getStock().getProductTypes()[0]
+        productType.getPrediction().addData(dataList)
 
     # Main Methods --!>
 

@@ -35,15 +35,16 @@ class Prediction:
 
     def addData(self ,data):
         self.dataArray = data
-        self.setupLearn()
+        print("INSIDE Prediction",data)
+        self.numpy_prediction = self.setupLearn()
 
 
 
     def setupLearn(self):
 
         print("debug[starting learn]")
-        #pd.read_csv('saveddata/train.csv')
-        df_sales = pd.DataFrame(self.dataArray , ["date" , "store" , "item" , "sales"])
+        df_sales = pd.read_csv('saveddata/train.csv')
+        #pd.DataFrame(self.dataArray , ["date" , "store" , "item" , "sales"])
         # print(df_sales)
         df_sales['date'] = pd.to_datetime(df_sales['date'])
 
@@ -127,6 +128,7 @@ class Prediction:
         # for multistep prediction, replace act_sales with the predicted sales
 
         np_array = df_result.to_numpy()
+        print("POST PREDICTION NUMPY : ",np_array)
 
         return np_array
 
