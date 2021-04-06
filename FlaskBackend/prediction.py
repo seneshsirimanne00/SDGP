@@ -21,21 +21,29 @@ from sklearn.preprocessing import MinMaxScaler
 
 class Prediction:
 
+
     def __init__(self):
         self.numpy_prediction = []
         self.predictionDates = []
         self.predictionAmounts = []
+        self.dataArray = []
 
     def learn(self):
         self.numpy_prediction = self.setupLearn()
         self.predictionDates = []
         self.predictionAmounts = []
 
+    def addData(self ,data):
+        self.dataArray = data
+        self.setupLearn()
+
+
 
     def setupLearn(self):
 
         print("debug[starting learn]")
-        df_sales = pd.read_csv('saveddata/train.csv')
+        #pd.read_csv('saveddata/train.csv')
+        df_sales = pd.DataFrame(self.dataArray , ["date" , "store" , "item" , "sales"])
         # print(df_sales)
         df_sales['date'] = pd.to_datetime(df_sales['date'])
 
