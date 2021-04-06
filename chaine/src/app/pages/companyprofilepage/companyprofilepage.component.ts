@@ -38,7 +38,7 @@ export class CompanyprofilepageComponent implements OnInit {
 
         this.csvRecords = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
         
-        console.log(this.csvRecords);
+        
         this.datatransfer.sendCSVData(this.csvRecords).subscribe();
       };
 
