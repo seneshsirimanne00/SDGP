@@ -15,6 +15,7 @@ import { RMStatusData } from './data_interfaces/RMStatusData';
 import { salesOrderData } from './data_interfaces/salesOrderData';
 import { SFReport_Data } from './data_interfaces/SFReport_Data';
 import { supplierData } from './data_interfaces/supplierData';
+import { CSVRecord } from './pages/companyprofilepage/companyprofilepage.component';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,10 @@ export class DatatransferService {
   getandsendlinegraphyData( search : String ){
     var obj = search;
     return this.http.post<number[]>(this.baseLocalhost + "getandsendlinegraphyData" , obj);
+  }
+
+  sendCSVData(csvData : CSVRecord[] ){
+    return this.http.post<CSVRecord[]>(this.baseLocalhost + "sendCsvData" , csvData);
   }
 
   getPoTableData(){

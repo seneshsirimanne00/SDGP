@@ -151,6 +151,12 @@ def runProductPrediction():
     main.getStock().runProductPredictions()
     return jsonify("Prediction Run")
 
+@app.route("/sendCsvData" , methods=["POST"])
+def sendCSV():
+    data = request.get_data().decode('utf-8')
+    print(data)
+    print(data[0])
+    return jsonify("Yeetus feetus")
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

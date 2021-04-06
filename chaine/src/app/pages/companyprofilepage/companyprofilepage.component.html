@@ -9,5 +9,38 @@
 
 <h1>vibhuda add the companyProfile part here , inside this div </h1>    
 
+<input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"/>
+
+<table>
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Date</th>
+    <th>Store</th>
+    <th>item</th>
+    <th>sales</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let csvData of csvRecords;let i = index;">
+
+    <td>{{i+1}}</td>
+    <td>
+      <span>{{csvData.date}}</span>
+    </td>
+    <td>
+      <span>{{csvData.store}}</span>
+    </td>
+    <td>
+      <span>{{csvData.item}}</span>
+    </td>
+    <td>
+      <span>{{csvData.sales}}</span>
+    </td>
+
+  </tr>
+  </tbody>
+</table>
+
 </div>
 </body>
