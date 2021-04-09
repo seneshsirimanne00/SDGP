@@ -3,6 +3,7 @@
 FlaskBackend/salesData/
 FlaskBackend/saveddata/
 FlaskBackend/.idea/workspace.xml
+FlaskBackend/.idea/FlaskBackend.iml
 FlaskBackend/.idea/misc.xml
 FlaskBackend/__pycache__/
 FlaskBackend/venv/

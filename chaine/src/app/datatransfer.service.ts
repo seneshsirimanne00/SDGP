@@ -15,7 +15,7 @@ import { RMStatusData } from './data_interfaces/RMStatusData';
 import { salesOrderData } from './data_interfaces/salesOrderData';
 import { SFReport_Data } from './data_interfaces/SFReport_Data';
 import { supplierData } from './data_interfaces/supplierData';
-import { CSVRecord } from './pages/companyprofilepage/companyprofilepage.component';
+import { CSVRecord } from './pages/productinfo/productinfo.component';
 
 @Injectable({
   providedIn: 'root'
