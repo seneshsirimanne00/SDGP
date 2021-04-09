@@ -20,23 +20,24 @@ class Order:
         self.confirmed = True
         self.startTime = time.time()
         self.endTime = self.startTime + self.duration
+        print("Start time :", self.startTime, "/ endTime : ", self.endTime)
 
     def getProgress(self):
         if not self.confirmed:
             return 0
         if self.completed:
             return 100
-        percent = (time.time()) / (self.endTime - self.startTime)
+        percent = ( time.time()  - self.startTime) / (self.endTime - self.startTime)
         if percent > 1:
             percent = 1
         return percent * 100
 
     # Can run ONCE, AFTER order has been set to complete
     def _orderCollectable(self):
-        print("Collecting order REEEEEEEEEE")
         if self.getProgress() < 100:
             return False
         if not self.completed:
+            print("ORDER collectable")
             self.completed = True
             return True
         return False
@@ -46,7 +47,7 @@ class Order:
         self.unitCost = float(unitCost)
         self.quantity = int(quantity)
         self.orderId = int(orderId)
-        self.duration = float(duration)
+        self.duration = float(duration) * 10  # To make order last longer for viewing purposes
 
     # Getters Setters <!--
 

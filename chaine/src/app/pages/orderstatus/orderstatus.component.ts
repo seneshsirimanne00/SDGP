@@ -18,16 +18,33 @@ export class OrderstatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.percent1 = "69";
-
+    this.percent1 = "0";
+    this.oid = "blank"; 
+    this.updateTable();
   }
 
   showpercentage(orderid){
-    this.oid=orderid;
+    this.oid=orderid
+    console.log("Clicked Order Id : " + orderid);
     this.datatransfer.OrderStatuspercentagedata(orderid).subscribe();
-    this.datatransfer.getOrderStatusTableData().subscribe( (data) => this.listOfDataos = data);
-    
+    this.updatePercentage();
   }
+
+  updateTable(){
+    this.datatransfer.getOrderStatusTableData().subscribe( (data) => this.listOfDataos = data);
+  }
+
+  updatePercentage(){
+    this.datatransfer.OrderStatuspercentagedata(this.oid).subscribe( (data) =>{
+      this.percent1 = data;
+      this.updateTable();
+      if(this.percent1 != "100"){
+        this.updatePercentage();
+      }
+    })
+  }
+
+
 
 
 }

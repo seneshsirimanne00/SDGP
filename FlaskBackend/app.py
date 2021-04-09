@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from main import Main
+import time
 from supplier import Supplier
 
 app = Flask(__name__)
@@ -166,6 +167,25 @@ def sendCSV():
         listOfRecords.append(line)
     main.addCsvData(listOfRecords)
     return jsonify("yeetus")
+
+
+@app.route("/OrderStatuspercentagedata" , methods=["POST"])
+def getRawOrderStatus():
+    data = request.get_data().decode('utf-8')
+    orderIndex = int(data)
+    time.sleep(0.5)
+    return jsonify(main.getRawOrderPercent(orderIndex))
+
+@app.route("/getOrderStatusTableData" , methods=["GET"])
+def getRawOrderStatusTable():
+    orders = main.getIncompleteRawOrders()
+    tableData = []
+    for order in orders:
+        orderCol = main.getLabeledDict(["mname", "oid", "qty"],[order.getItemName(), order.getId(), order.getQuantity()])
+        tableData.append(orderCol)
+    return jsonify(tableData)
+
+
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

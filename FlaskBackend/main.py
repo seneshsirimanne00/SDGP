@@ -71,9 +71,6 @@ class Main:
 
     # Helper Methods <!--
 
-    def prediction(self):
-        prd = Prediction()
-
     def getIntInput(self, message):
         number = input(message)
         try:
@@ -216,19 +213,38 @@ class Main:
     def getStock(self):
         return self.database.getStock()
 
-    def getProductPrediction(self , productName):
+    def getProductPrediction(self, productName):
         prodTypes = self.database.getStock().getProductTypes()
-        prediction = None #Returns None if product not found
-        print("ProductTypes :",prodTypes)
+        prediction = None  # Returns None if product not found
+        print("ProductTypes :", prodTypes)
         for productType in prodTypes:
             if productType.getName().lower() == productName.lower():
                 prediction = productType.getPrediction()
         return prediction
 
-
     def addCsvData(self, dataList):
         productType = self.database.getStock().getProductTypes()[0]
         productType.getPrediction().addData(dataList)
+
+    def getRawOrderPercent(self, rawOrderId):
+        rawOrderList = self.database.getStock().getRawMatOrders()
+        for rawOrder in rawOrderList:
+            if rawOrder.getId() == rawOrderId:
+                return rawOrder.getProgress()
+        print("ERROR - Frontend requested unavailable rawOrderId :",rawOrderId)
+        return 0
+
+    def getIncompleteRawOrders(self):
+        self.database.getStock().restockCompletedRawOrders()
+        #Incomplete raw orders that have been confirmed
+        rawOrderList = self.database.getStock().getRawMatOrders()
+        incompleteOrders = []
+        for rawOrder in rawOrderList:
+            if not rawOrder.isCompleted():
+                if rawOrder.isConfirmed():
+                    incompleteOrders.append(rawOrder)
+
+        return incompleteOrders
 
     # Main Methods --!>
 
@@ -241,4 +257,3 @@ class Main:
         print()
 
     # Console Methods --!>
-

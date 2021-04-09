@@ -87,7 +87,7 @@ class Stock:
 
     # Orders should be confirmed only by admin accounts
     def confirmRawMatOrder(self, orderId):
-        message = "Debug[Confirm Order] - " + str(orderId)
+        message = "Debug[Confirm RawMat Order] - " + str(orderId)
         confirmOrder(self.rawMatOrders, orderId, message)
 
     # Raw Material Orders --!>

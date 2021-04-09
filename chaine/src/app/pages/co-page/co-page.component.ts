@@ -64,7 +64,9 @@ export class CoPageComponent implements OnInit {
   acceptPo(orderidaccept){
     console.log(orderidaccept)
     //this is the method made for the button in the po table
-    this.datatransfer.confirmPoOrder(orderidaccept).subscribe();
+    this.datatransfer.confirmPoOrder(orderidaccept).subscribe( (data) =>{
+      this.updatePoTable();
+    });
   }
 
 

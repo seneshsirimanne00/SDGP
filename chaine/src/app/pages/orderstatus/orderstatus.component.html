@@ -61,7 +61,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td><button click ="showpercentage(data.orderid)">Track</button> {{data.mname}}</td>
+          <td><button (click)="showpercentage(data.oid)" >Track</button> {{data.mname}}</td>
           <td>{{data.oid}}</td>
           <td>{{data.qty}}</td>
           
