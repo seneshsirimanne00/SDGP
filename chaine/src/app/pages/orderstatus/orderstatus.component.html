@@ -19,7 +19,7 @@
 <div class="col-9" style="position: relative;;margin: left 100px; height: 100vh;  margin: 0; padding: 0;overflow: scroll;">
   <div class="col-12" style="position: relative;;margin: left 100px; height: 50vh;  margin: 0; padding: 0; background-color:white;">
    
-    <h2 style="padding-top: 2%;padding-left: 3%;">Order Status Timeline : Order 1</h2>
+    <h2 style="padding-top: 2%;padding-left: 3%;">Order Status Timeline : Order {{oid}}</h2>
     <div class="col-11" style="padding-left: 10%;padding-top: 3%; text-align: center; background-color: white;">
       <div class="col-12" style="padding: 2%;background-color: white;">
           <progress-bar [progress]= "percent1" [color]="'#488aff'"></progress-bar>
@@ -47,64 +47,26 @@
     </div>
   </div>
 
-  <div class="col-12" style="position: relative;;margin: left 100px; height: 50vh;  margin: 0; padding: 0; background-color:white;">
-   
-    <h2 style="padding-top: 2%;padding-left: 3%;">Order Status Timeline : Order 2</h2>
-    <div class="col-11" style="padding-left: 10%;padding-top: 3%; text-align: center; background-color: white;">
-      <div class="col-12" style="padding: 2%;background-color: white;">
-          <progress-bar [progress]= "percent2" [color]="'#488aff'"></progress-bar>
-            <div class="col-3" style="padding: 2%;text-align: left;background-color: white;">
-             |
-              <h3>Start</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;background-color: white;">
-              |
-              <h3>Process 1</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;background-color: white;">
-              |
-              <h3>Process 2</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;background-color: white;">
-              |
-              <h3>Process 3</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;text-align: right;background-color: white;">
-              |
-              <h3>Completed</h3>  
-            </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-12" style="position: relative;;margin: left 100px; height: 50vh;  margin: 0; padding: 0; background-color:white;">
-   
-    <h2 style="padding-top: 2%;padding-left: 3%;">Order Status Timeline : Order 3</h2>
-    <div class="col-11" style="padding-left: 10%;padding-top: 3%; text-align: center; background-color: white;">
-      <div class="col-12" style="padding: 2%;background-color: white;">
-          <progress-bar [progress]= "percent3" [color]="'#488aff'"></progress-bar>
-            <div class="col-3" style="padding: 2%;text-align: left;background-color: white;">
-             |
-              <h3>Start</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;background-color: white;">
-              |
-              <h3>Process 1</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;background-color: white;">
-              |
-              <h3>Process 2</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;background-color: white;">
-              |
-              <h3>Process 3</h3>  
-            </div>
-            <div class="col-3" style="padding: 2%;text-align: right;background-color: white;">
-              |
-              <h3>Completed</h3>  
-            </div>
-      </div>
-    </div>
+  <div>
+    <h2>Distribution Table</h2>
+    <h6> table including data about distribution for this month </h6>
+    <nz-table #basicTable [nzData]="listOfDataos" style="padding-top: 1%;">
+      <thead>
+        <tr>
+          <th>Material name</th>
+          <th>Order Id</th>
+          <th>Qty</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td><button click ="showpercentage(data.orderid)">Track</button> {{data.mname}}</td>
+          <td>{{data.oid}}</td>
+          <td>{{data.qty}}</td>
+          
+      </tbody>
+    </nz-table>
   </div>
 </div>
 </body>

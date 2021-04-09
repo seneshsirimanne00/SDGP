@@ -4,6 +4,7 @@ import { IMReport_Data } from './data_interfaces/IMReport_Data';
 import { moniterDP_Data } from './data_interfaces/moniterDP_data';
 import { moniterPP_Data } from './data_interfaces/moniterPP_Data';
 import { moniterRSM_Data } from './data_interfaces/moniterRSM_Data';
+import { OrederStatus_Data } from './data_interfaces/OrderStatus_Data';
 import { PDReport_Data } from './data_interfaces/PDReport_Data';
 import { poData } from './data_interfaces/poData';
 import { prData } from './data_interfaces/prData';
@@ -139,6 +140,15 @@ export class DatatransferService {
 
   getbargraphYData(){
     return this.http.get<number[]>(this.baseLocalhost + "getbargraphYData");
+  }
+
+  getOrderStatusTableData(){
+    return this.http.get<OrederStatus_Data[]>(this.baseLocalhost + "getOrderStatusTableData");
+  }
+
+  OrderStatuspercentagedata( id : String ){
+    var obj = id;
+    return this.http.post<string>(this.baseLocalhost + "OrderStatuspercentagedata" , obj);
   }
     
 }

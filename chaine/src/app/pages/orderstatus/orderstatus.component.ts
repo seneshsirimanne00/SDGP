@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
+import { OrederStatus_Data } from 'src/app/data_interfaces/OrderStatus_Data';
 
 @Component({
   selector: 'app-orderstatus',
@@ -8,17 +10,23 @@ import { Component, OnInit } from '@angular/core';
 export class OrderstatusComponent implements OnInit {
 
   percent1 : string;
-  percent2 : string;
-  percent3 : string;
-  constructor() { 
+  oid:String;
+
+  listOfDataos : OrederStatus_Data[];
+  
+  constructor(private datatransfer : DatatransferService) { 
   }
 
   ngOnInit(): void {
     this.percent1 = "69";
-    this.percent2 = "49";
-    this.percent3 = "29";
-    
 
+  }
+
+  showpercentage(orderid){
+    this.oid=orderid;
+    this.datatransfer.OrderStatuspercentagedata(orderid).subscribe();
+    this.datatransfer.getOrderStatusTableData().subscribe( (data) => this.listOfDataos = data);
+    
   }
 
 

@@ -20,8 +20,6 @@ listOfDataMPP: moniterPP_Data[] = [
     pName:'Mudith Jayasanka' ,
     oId: '0001',
     mQty:'Venura rajapaksha' ,
-    sDate: '20/11/2021',
-    fDate:'28/11/2021'
   }
 ];
 
