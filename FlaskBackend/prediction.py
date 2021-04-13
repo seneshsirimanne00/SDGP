@@ -21,6 +21,9 @@ from sklearn.preprocessing import MinMaxScaler
 
 class Prediction:
 
+    def update(self ):
+        print("d")
+
 
     def __init__(self):
         self.numpy_prediction = []
@@ -43,25 +46,32 @@ class Prediction:
     def setupLearn(self):
 
         print("debug[starting learn]")
-        df_sales = pd.read_csv('saveddata/train.csv')
-        #pd.DataFrame(self.dataArray , ["date" , "store" , "item" , "sales"])
-        # print(df_sales)
+       # df_sales = pd.read_csv('saveddata/train.csv')
+        data = np.array(self.dataArray)
+        df_sales = pd.DataFrame(data = data ,columns =  ["date" , "store" , "item" , "sales"] )
+        print(df_sales)
+        df_sales['sales'] = pd.to_numeric(df_sales['sales'])
         df_sales['date'] = pd.to_datetime(df_sales['date'])
+        print(df_sales.dtypes)
+        print("1")
 
         df_sales['date'] = df_sales['date'].dt.year.astype('str') + '-' + df_sales['date'].dt.month.astype(
             'str') + '-01'
         df_sales['date'] = pd.to_datetime(df_sales['date'])
         # groupby date and sum the sales
         df_sales = df_sales.groupby('date').sales.sum().reset_index()
+        df_sales['sales'] = df_sales['sales'].astype(int)
         # print(df_sales)
-
+        print("2")
         df_diff = df_sales.copy()
         # add previous sales to the next row
         df_diff['prev_sales'] = df_diff['sales'].shift(1)
+        print("3.1")
         # drop the null values and calculate the difference
         df_diff = df_diff.dropna()
+        print("3.2")
         df_diff['diff'] = (df_diff['sales'] - df_diff['prev_sales'])
-
+        print("3")
         df_supervised = df_diff.drop(['prev_sales'], axis=1)
         # adding lags
         for inc in range(1, 13):
@@ -69,7 +79,7 @@ class Prediction:
             df_supervised[field_name] = df_supervised['diff'].shift(inc)
         # drop null values
         df_supervised = df_supervised.dropna().reset_index(drop=True)
-
+        print("4")
         # Define the regression formula
         model = smf.ols(formula='diff ~ lag_1', data=df_supervised)
         # Fit the regression
@@ -81,7 +91,7 @@ class Prediction:
         df_model = df_supervised.drop(['sales', 'date'], axis=1)
         # split train and test set
         train_set, test_set = df_model[0:-6].values, df_model[-6:].values
-
+        print("5")
         scaler = MinMaxScaler(feature_range=(-1, 1))
         scaler = scaler.fit(train_set)
         # reshape training set
@@ -90,12 +100,12 @@ class Prediction:
         # reshape test set
         test_set = test_set.reshape(test_set.shape[0], test_set.shape[1])
         test_set_scaled = scaler.transform(test_set)
-
+        print("6")
         X_train, y_train = train_set_scaled[:, 1:], train_set_scaled[:, 0:1]
         X_train = X_train.reshape(X_train.shape[0], 1, X_train.shape[1])
         X_test, y_test = test_set_scaled[:, 1:], test_set_scaled[:, 0:1]
         X_test = X_test.reshape(X_test.shape[0], 1, X_test.shape[1])
-
+        print("7")
         model = Sequential()
         model.add(LSTM(4, batch_input_shape=(1, X_train.shape[1], X_train.shape[2]), stateful=True))
         model.add(Dense(1))
@@ -103,7 +113,7 @@ class Prediction:
         model.fit(X_train, y_train, epochs=100, batch_size=1, verbose=1, shuffle=False)
 
         y_pred = model.predict(X_test, batch_size=1)
-
+        print("8")
         y_pred = y_pred.reshape(y_pred.shape[0], 1, y_pred.shape[1])
         # rebuild test set for inverse transform
         pred_test_set = []
@@ -115,7 +125,7 @@ class Prediction:
         pred_test_set = pred_test_set.reshape(pred_test_set.shape[0], pred_test_set.shape[2])
         # inverse transform
         pred_test_set_inverted = scaler.inverse_transform(pred_test_set)
-
+        print("9")
         result_list = []
         sales_dates = list(df_sales[-7:].date)
         act_sales = list(df_sales[-7:].sales)
