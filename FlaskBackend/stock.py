@@ -100,6 +100,9 @@ class Stock:
                        deliveryAddress, orderDate)
         self.salesOrders.append(order)
 
+    def getProductionOrders(self):
+        return self.salesOrders
+
     def confirmProductionOrder(self, orderId):
         message = "Debug[Production Order Confirmed] - " + str(orderId)
         confirmOrder(self.salesOrders, orderId, message)
@@ -127,6 +130,12 @@ class Stock:
         # Runs prediction on each product
         for product in self.productTypes:
             product.runPrediction()
+
+    def getProduct(self , prodName):
+        for prodObj in self.productTypes:
+            if prodObj.getName().lower() == prodName.lower():
+                return prodObj
+        print("ERROR - Getting Non-existent Product")
 
     # Product/Sales Orders --!>
 

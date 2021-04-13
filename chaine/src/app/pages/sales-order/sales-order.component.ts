@@ -37,13 +37,25 @@ export class SalesOrderComponent implements OnInit {
    ];
   */
 	
-   ngOnInit(): void {
-     this.datatransfer.getSalesOrderTableData().subscribe( (data) => this.listOfDataSalesOrder = data );
-     
+  ngOnInit(): void {
+     this.loadTable();
+  }
+
+  loadTable(){
+    this.datatransfer.getSalesOrderTableData().subscribe( (data) => this.listOfDataSalesOrder = data );
   }
 
   submitForm(){
-    this.datatransfer.sendNewSalesOrderForm(this.customername,this.productname,this.deliveryaddress,this.qty,this.orderdate).subscribe();
+    this.datatransfer.sendNewSalesOrderForm(this.customername,this.productname,this.deliveryaddress,this.qty,this.orderdate).subscribe( (data) =>{
+      this.loadTable()
+    } );
+  }
+
+  confirmProductionOrder(id : string){
+    console.log("Confirmed ID : "  + id);
+    this.datatransfer.confirmProdOrder(id).subscribe( (data) => {
+      this.loadTable();
+    })
   }
 
 }

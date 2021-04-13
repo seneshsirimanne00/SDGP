@@ -72,6 +72,9 @@ class Order:
     def getTotalCost(self):
         return self.quantity * self.unitCost
 
+    def getDuration(self):
+        return self.duration
+
     # Getters Setters --!>
 
     """

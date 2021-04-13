@@ -104,7 +104,6 @@ def getStockData():
 @app.route("/createNewProduct", methods=["POST"])
 def createNewProduct():
     data = request.get_data().decode('utf-8')
-    print("newProductData",data)
     data = data.split(",")
     # prodName  , rawMatNames , productionTime , rawMatQuantities
     matNames = data[1].split("!")
@@ -121,9 +120,9 @@ def getProductInfoTable():
     productTypes = main.getStock().getProductTypes()
     dictArr = []
     for type in productTypes:
-        productTypeDict = main.getLabeledDict(["pname", "rmaterials", "rmqty", "ptime","unitCost"],
+        productTypeDict = main.getLabeledDict(["pname", "rmaterials", "rmqty", "ptime", "unitCost"],
                                               [type.getName(), type.getRawMatNames(), type.getRawMatQtys(),
-                                               type.getProdTime() , type.getCost()])
+                                               type.getProdTime(), type.getCost()])
         dictArr.append(productTypeDict)
     print(dictArr)
     return jsonify(dictArr)
@@ -133,7 +132,7 @@ def getProductInfoTable():
 def getLineGraphXData():
     name = request.get_data().decode('utf-8')
     prediction = main.getProductPrediction(name)
-    print("Name: ",name)
+    print("Name: ", name)
     if prediction is None:
         return jsonify([])  # Returns Empty Arrray
     return jsonify(prediction.getPredictionDates())
@@ -146,7 +145,7 @@ def getlinegraphYData():
     print("PREDICION : ", prediction)
     if prediction is None:
         return jsonify([])  # Returns Empty Arrray
-    print("PREDICTION AMOUNts",prediction.getPrediction_amounts())
+    print("PREDICTION AMOUNts", prediction.getPrediction_amounts())
     return jsonify(prediction.getPrediction_amounts())
 
 
@@ -155,13 +154,14 @@ def runProductPrediction():
     main.getStock().runProductPredictions()
     return jsonify("Prediction Run")
 
-@app.route("/sendCsvData" , methods=["POST"])
+
+@app.route("/sendCsvData", methods=["POST"])
 def sendCSV():
     data = request.get_json()
     print(data)
     listOfRecords = []
     for record in data:
-        line = [] #Date , store , item , sales
+        line = []  # Date , store , item , sales
         line.append(record["date"])
         line.append(int(record["store"]))
         line.append(int(record["item"]))
@@ -171,23 +171,62 @@ def sendCSV():
     return jsonify("yeetus")
 
 
-@app.route("/OrderStatuspercentagedata" , methods=["POST"])
+@app.route("/OrderStatuspercentagedata", methods=["POST"])
 def getRawOrderStatus():
     data = request.get_data().decode('utf-8')
     orderIndex = int(data)
     time.sleep(0.5)
     return jsonify(main.getRawOrderPercent(orderIndex))
 
-@app.route("/getOrderStatusTableData" , methods=["GET"])
+
+@app.route("/getOrderStatusTableData", methods=["GET"])
 def getRawOrderStatusTable():
     orders = main.getIncompleteRawOrders()
     tableData = []
     for order in orders:
-        orderCol = main.getLabeledDict(["mname", "oid", "qty"],[order.getItemName(), order.getId(), order.getQuantity()])
+        orderCol = main.getLabeledDict(["mname", "oid", "qty"],
+                                       [order.getItemName(), order.getId(), order.getQuantity()])
         tableData.append(orderCol)
     return jsonify(tableData)
 
 
+@app.route("/createNewSalesOrder", methods=["POST"])
+def createNewSalesOrder():
+    data = request.get_data().decode('utf-8')
+    print(data)
+    data = data.split(",")
+
+    # customername / productname / deliveryaddress / qty / orderdate
+    custName, prodName, address, qty, orderDate = data[0], data[1], data[2], data[3], data[4]
+
+    if main.getStock().hasProduct(prodName):
+        print("[DEBUG] - Product Exists , Adding")
+    else:
+        print("[DEBUG] - Product does not exist , skipping")
+        return jsonify("Invalid Product")
+    productOBJ = main.getStock().getProduct(prodName)
+
+    main.getStock().placeProductionOrder(productOBJ.getName(), productOBJ.getCost(), int(qty), productOBJ.getProdTime(),
+                                         custName.capitalize(), address, orderDate)
+    return jsonify("Product Added")
+
+
+@app.route("/getSalesOrderTableData", methods=["GET"])
+def getSalesOrderTableData():
+    orders = main.getStock().getProductionOrders()
+    allData = []
+    for order in orders:
+        col = main.getLabeledDict(["cname", "pname", "qty", "daddress", "oid", "odate", "adtime" , "totalCost"],
+                                  [order.getCustomerName(), order.getItemName(), order.getQuantity(),order.getAddress() , order.getId() , order.getOrderDate() , order.getDuration() ,order.getTotalCost() ])
+        allData.append(col)
+    return jsonify(allData)
+
+@app.route("/confirmSalesOrder" , methods=["POST"])
+def confirmSalesOrder():
+    data = request.get_data().decode('utf-8')
+    data = int(data)
+    
+    return jsonify("NOTHING")
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 
