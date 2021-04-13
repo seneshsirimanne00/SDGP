@@ -3,4 +3,5 @@ export interface ProductInfoData{
     rmaterials: string;
     rmqty: string;
     ptime: string;
+    unitCost : string;
 }

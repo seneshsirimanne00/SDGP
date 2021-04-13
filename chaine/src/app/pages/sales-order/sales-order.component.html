@@ -56,17 +56,19 @@
           <th>Order Id</th>
           <th>Order Date</th>
           <th>Average Delivery time</th>
+          <th>Total Cost</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{data.cname}}</td>
+          <td>{{data.cname}}<button (click)="confirmProductionOrder(data.oid)" >Confirm</button></td>
           <td>{{data.pname}}</td>
           <td>{{data.qty}}</td>
           <td>{{data.daddress}}</td>
           <td>{{data.oid}}</td>
           <td>{{data.odate}}</td>
           <td>{{data.adtime}}</td>
+          <td>{{data.totalCost}}</td>
       </tbody>
     </nz-table>
   </div>

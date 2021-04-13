@@ -150,5 +150,9 @@ export class DatatransferService {
     var obj = id;
     return this.http.post<string>(this.baseLocalhost + "OrderStatuspercentagedata" , obj);
   }
+
+  confirmProdOrder(id : string){
+    return this.http.post<string>(this.baseLocalhost + "confirmSalesOrder" , id);
+  }
     
 }
