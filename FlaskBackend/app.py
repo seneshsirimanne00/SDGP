@@ -104,11 +104,13 @@ def getStockData():
 @app.route("/createNewProduct", methods=["POST"])
 def createNewProduct():
     data = request.get_data().decode('utf-8')
+    print("newProductData",data)
     data = data.split(",")
     # prodName  , rawMatNames , productionTime , rawMatQuantities
     matNames = data[1].split("!")
     matQtys = data[3].split("!")
     if len(matNames) != len(matQtys):
+        print("For each mat a quantity must be provided!")
         return jsonify("For each mat a quantity must be provided!")
     main.addProduct(data[0], matNames, matQtys, data[2])
     return jsonify("Product Created : " + str(data[0]))
@@ -119,9 +121,9 @@ def getProductInfoTable():
     productTypes = main.getStock().getProductTypes()
     dictArr = []
     for type in productTypes:
-        productTypeDict = main.getLabeledDict(["pname", "rmaterials", "rmqty", "ptime"],
+        productTypeDict = main.getLabeledDict(["pname", "rmaterials", "rmqty", "ptime","unitCost"],
                                               [type.getName(), type.getRawMatNames(), type.getRawMatQtys(),
-                                               type.getProdTime()])
+                                               type.getProdTime() , type.getCost()])
         dictArr.append(productTypeDict)
     print(dictArr)
     return jsonify(dictArr)

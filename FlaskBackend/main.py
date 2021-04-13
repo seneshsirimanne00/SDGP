@@ -197,6 +197,7 @@ class Main:
                 if not matObtainable:  # If material cannot be obtained by any suppliers
                     return None
                 quantityIndex += 1
+            print("Total cost : " , totalCost)
             return totalCost
 
         stock = self.database.getStock()

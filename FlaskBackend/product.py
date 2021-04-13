@@ -39,6 +39,9 @@ class Product(object):
     def getProdTime(self):
         return self.productionTime
 
+    def getCost(self):
+        return self.costPerUnit
+
     """
     ====================================================================================================================
     """
