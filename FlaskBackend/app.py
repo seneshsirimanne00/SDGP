@@ -225,7 +225,7 @@ def getSalesOrderTableData():
 def confirmSalesOrder():
     data = request.get_data().decode('utf-8')
     data = int(data)
-    
+
     return jsonify("NOTHING")
 
 """

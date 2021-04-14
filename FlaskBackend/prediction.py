@@ -21,9 +21,10 @@ from sklearn.preprocessing import MinMaxScaler
 
 class Prediction:
 
-    def update(self ):
-        print("d")
-
+    def update(self, date, store , item ,sales ):
+        self.dataArray.append([date , store , item , sales])
+        print("Data added : " , self.dataArray[-1] )
+        self.setupLearn()
 
     def __init__(self):
         self.numpy_prediction = []
@@ -36,19 +37,17 @@ class Prediction:
         self.predictionDates = []
         self.predictionAmounts = []
 
-    def addData(self ,data):
+    def addData(self, data):
         self.dataArray = data
-        print("INSIDE Prediction",data)
+        print("INSIDE Prediction", data)
         self.numpy_prediction = self.setupLearn()
-
-
 
     def setupLearn(self):
 
         print("debug[starting learn]")
-       # df_sales = pd.read_csv('saveddata/train.csv')
+        # df_sales = pd.read_csv('saveddata/train.csv')
         data = np.array(self.dataArray)
-        df_sales = pd.DataFrame(data = data ,columns =  ["date" , "store" , "item" , "sales"] )
+        df_sales = pd.DataFrame(data=data, columns=["date", "store", "item", "sales"])
         print(df_sales)
         df_sales['sales'] = pd.to_numeric(df_sales['sales'])
         df_sales['date'] = pd.to_datetime(df_sales['date'])
@@ -138,7 +137,7 @@ class Prediction:
         # for multistep prediction, replace act_sales with the predicted sales
 
         np_array = df_result.to_numpy()
-        print("POST PREDICTION NUMPY : ",np_array)
+        print("POST PREDICTION NUMPY : ", np_array)
 
         return np_array
 
@@ -160,9 +159,8 @@ class Prediction:
     ====================================================================================================================
     """
 
-
     def getAllData(self):
-        return [self.predictionDates, self.predictionAmounts , self.numpy_prediction]
+        return [self.predictionDates, self.predictionAmounts, self.numpy_prediction]
 
     def setAllData(self, data):
         self.predictionDates = data[0]
