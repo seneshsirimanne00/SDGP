@@ -40,10 +40,19 @@ export class ProductinfoComponent implements OnInit {
       this.datatransfer.getProductInfoTableData().subscribe( (data) => this.listOfDataPInfo = data );
     }
 
+    csvAdded : boolean = false;
     submitform(){
+      // Sending prouct info
       this.datatransfer.sendNewProductForm(this.Productname,this.rawmaterils,this.prodtime,this.rawmaterialqty).subscribe((data) =>{
         this.updateProductInfoTabe();
       });
+      // Sending sales past sales data of the product
+      if(this.csvAdded){
+        console.log("Starting CSV File transfer");
+        this.datatransfer.sendCSVData(this.csvRecords).subscribe( (data) =>{
+          console.log("CSV File transfered");
+      });
+      }
     }
 
     fileChangeListener($event: any): void {
@@ -63,7 +72,8 @@ export class ProductinfoComponent implements OnInit {
 
           let headersRow = this.getHeaderArray(csvRecordsArray);
           this.csvRecords = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
-          this.datatransfer.sendCSVData(this.csvRecords).subscribe();
+          // this.datatransfer.sendCSVData(this.csvRecords).subscribe();
+          this.csvAdded = true;
         };
 
         reader.onerror = function () {

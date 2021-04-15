@@ -20,17 +20,19 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 class Prediction:
-
-    def update(self, date, store , item ,sales ):
-        self.dataArray.append([date , store , item , sales])
-        print("Data added : " , self.dataArray[-1] )
-        self.setupLearn()
-
     def __init__(self):
         self.numpy_prediction = []
         self.predictionDates = []
         self.predictionAmounts = []
         self.dataArray = []
+
+        # Set to false whenever new data is added. Set to true when Learning is done
+        self.predictionUpToDate = False
+
+    def update(self, date, store , item ,sales ):
+        self.dataArray.append([date , store , item , sales])
+        print("Data added : " , self.dataArray[-1] )
+        self.predictionUpToDate = False
 
     def learn(self):
         self.numpy_prediction = self.setupLearn()
@@ -40,7 +42,7 @@ class Prediction:
     def addData(self, data):
         self.dataArray = data
         print("INSIDE Prediction", data)
-        self.numpy_prediction = self.setupLearn()
+        self.predictionUpToDate = False
 
     def setupLearn(self):
 
@@ -139,6 +141,7 @@ class Prediction:
         np_array = df_result.to_numpy()
         print("POST PREDICTION NUMPY : ", np_array)
 
+        self.predictionUpToDate = True
         return np_array
 
     def getPredictionDates(self):
@@ -154,6 +157,9 @@ class Prediction:
         for val in self.numpy_prediction:
             preictionValueList.append(val[0])
         return preictionValueList
+
+    def isPredictionUpToDate(self):
+        return self.predictionUpToDate
 
     """
     ====================================================================================================================

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {Chart} from 'node_modules/chart.js'
 import { DatatransferService } from '../datatransfer.service';
 
@@ -9,7 +9,6 @@ import { DatatransferService } from '../datatransfer.service';
 })
 export class LinechartComponent implements OnInit {
   message :String;
-  search : String;
   linechartx : String[];
   linecharty : number[];
 
@@ -20,13 +19,14 @@ export class LinechartComponent implements OnInit {
     
   }
 
-  searchthetxt(){
+  searchthetxt(search : String){
+    console.log("PASSED PRODUCT NAME : " + search);
     this.initGraph();
     //so when the button is pressed the graphs can replace the new graph 
-    this.datatransfer.getandsendlinegraphXData(this.search).subscribe( (data) => {this.linechartx = data;
+    this.datatransfer.getandsendlinegraphXData(search).subscribe( (data) => {this.linechartx = data;
       if(data.length == 0){this.message="PRODUCT YOU ENTERED IS NOT IN THE DATABASE"}else{this.message = ""};
       this.initGraph()} );
-    this.datatransfer.getandsendlinegraphyData(this.search).subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
+    this.datatransfer.getandsendlinegraphyData(search).subscribe( (data) => {this.linecharty = data ; this.initGraph()} );
 
   }
 

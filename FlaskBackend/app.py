@@ -149,12 +149,6 @@ def getlinegraphYData():
     return jsonify(prediction.getPrediction_amounts())
 
 
-@app.route("/runProductPrediction")
-def runProductPrediction():
-    main.getStock().runProductPredictions()
-    return jsonify("Prediction Run")
-
-
 @app.route("/sendCsvData", methods=["POST"])
 def sendCSV():
     data = request.get_json()
@@ -227,6 +221,44 @@ def confirmSalesOrder():
     data = int(data)
 
     return jsonify("NOTHING")
+
+@app.route("/predictAll",methods=["GET"])
+def predictAllProducts():
+    main.getStock().runProductPredictions()
+    return jsonify("All product predictions up to date")
+
+@app.route("/getbargraphXData" , methods=["POST"])
+def getBarGraphXData():
+    productName = request.get_data().decode('utf-8')
+    if not main.getStock().hasProduct(productName):
+        return jsonify([])
+    productObj = main.getStock().getProduct(productName)
+    return jsonify( productObj.getRawMatNames() )
+
+
+@app.route("/getbargraphYData" , methods=["POST"])
+def getBarGraphYData():
+    productName = request.get_data().decode('utf-8')
+    if not main.getStock().hasProduct(productName):
+        return jsonify([])
+    #Product obj has data oh how many materials each item needs
+    productQtys = main.getStock().getProduct(productName).getRawMatQtys()
+    #ProdPredictions has data of how many items will be sold
+    prodPredictions = main.getProductPrediction(productName)
+
+    nextMonthPredictions =prodPredictions.getPrediction_amounts()
+    if len(nextMonthPredictions) == 0:
+        # Product has not recieved it's initial prediction yet
+        return jsonify([])
+
+    nextMonth = int(nextMonthPredictions[0])
+
+    print("Product Quantities ", productQtys)
+    for x in range(len(productQtys)):
+        productQtys[x] = int(productQtys[x]) * nextMonth
+    print("NEXT MONTH " , nextMonth , "Multiplied productQtys",productQtys)
+
+    return jsonify(productQtys)
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

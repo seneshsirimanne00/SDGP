@@ -4,13 +4,18 @@
 <div class="col-12" style=" height:68px; background-color:#f5eeee;">
 <h1 style=" height:60px; padding-top: 2%;padding-left:2%;"> <span style='font-size:305x;'>&#9900;</span> Prediction</h1>
 </div>
+<div>
+    <input type="text" placeholder="Product Name" [(ngModel)]="searchtxt">
+    <button (click)="lineChartChild.searchthetxt(searchtxt) ; barChartChild.loadData(searchtxt)" >Search</button>
+    <button (click)="updateAllPredictions()" >Update Predictions</button>
+</div>
 
 
 <div class="col-9" style="position: relative;;margin: left 100px; height: 62vh;padding-left: 18%; background-color:#ffffff;">
 <h3 style="position:absolute ;left: 10px;top: 10px;">Sales prediction chart</h3>
 <h5 style="position:absolute ;left: 10px;top: 30px;">Shows the predicted amounts of sales for a given time period</h5> 
 <div style="padding-top: 8%; background-color:#ffffff;">
-<app-linechart></app-linechart>
+<app-linechart #lineChartChild ></app-linechart>
 </div>        
 
 
@@ -19,7 +24,7 @@
 <h3 style="position:absolute ;left: 10px;top: 10px;">Monthly Raw material prediction results</h3>
 <h5 style="position:absolute ;left: 10px;top: 30px;">Shows the predicted amounts needed on a monthly basis </h5> 
 <div style="padding-top: 8%; background-color:#ffffff;">
-<app-barchart></app-barchart>
+<app-barchart #barChartChild ></app-barchart>
 </div>
 </div>
 </div>

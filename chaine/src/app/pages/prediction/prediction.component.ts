@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatatransferService } from 'src/app/datatransfer.service';
 
 @Component({
   selector: 'app-prediction',
@@ -7,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PredictionComponent implements OnInit {
 
-  constructor() { }
+  searchtxt : String;
+
+  constructor(private dataService : DatatransferService) { }
 
   ngOnInit(): void {
   }
 
+  updateAllPredictions(){
+    this.dataService.predictAll().subscribe();
+  }
   
 
 }

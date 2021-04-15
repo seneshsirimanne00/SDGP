@@ -129,13 +129,18 @@ class Stock:
     def runProductPredictions(self):
         # Runs prediction on each product
         for product in self.productTypes:
-            product.runPrediction()
+            # To Optimise , prediction will occur only if a product Prediction has not been updated
+            if not product.getPrediction().isPredictionUpToDate():
+                product.runPrediction()
 
     def getProduct(self , prodName):
         for prodObj in self.productTypes:
             if prodObj.getName().lower() == prodName.lower():
                 return prodObj
         print("ERROR - Getting Non-existent Product")
+
+    def getProductTypes(self):
+        return self.productTypes
 
     # Product/Sales Orders --!>
 

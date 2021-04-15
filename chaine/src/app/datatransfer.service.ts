@@ -134,12 +134,12 @@ export class DatatransferService {
     return this.http.post<number>(this.baseLocalhost + "confirmPO" , orderId)
   }
 
-  getbargraphXData(){
-    return this.http.get<String[]>(this.baseLocalhost + "getbargraphXData");
+  getbargraphXData(productName : String){
+    return this.http.post<String[]>(this.baseLocalhost + "getbargraphXData" , productName);
   }
 
-  getbargraphYData(){
-    return this.http.get<number[]>(this.baseLocalhost + "getbargraphYData");
+  getbargraphYData(productName : String){
+    return this.http.post<number[]>(this.baseLocalhost + "getbargraphYData" , productName);
   }
 
   getOrderStatusTableData(){
@@ -153,6 +153,10 @@ export class DatatransferService {
 
   confirmProdOrder(id : string){
     return this.http.post<string>(this.baseLocalhost + "confirmSalesOrder" , id);
+  }
+
+  predictAll(){
+    return this.http.get<string>(this.baseLocalhost + "predictAll");
   }
     
 }
