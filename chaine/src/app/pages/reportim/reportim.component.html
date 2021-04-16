@@ -13,7 +13,6 @@
         <h6>Details of the available raw materials</h6>
     </div>
     <button class="button button1">Sort by QTY</button>
-    <button class="button button1">Sort by Date</button>
     <button class="button button1">Export Report</button>
     
   </div>
@@ -25,8 +24,7 @@
           <th>Material name</th>
             <th>Material Id</th>
             <th>Qty</th>
-            <th>vendor Id </th>
-            <th>Aquire Date </th>
+            <th>Vendor Name </th>
         </tr>
       </thead>
       <tbody>
@@ -34,8 +32,7 @@
           <td>{{data.mname}}</td>
           <td>{{data.mid}}</td>
           <td>{{data.qty}}</td>
-          <td>{{data.vid}}</td>
-          <td>{{data.adate}}</td>
+          <td>{{data.vendorName}}</td>
       </tbody>
     </nz-table>
   </div>
