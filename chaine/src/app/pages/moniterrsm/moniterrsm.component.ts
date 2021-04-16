@@ -45,7 +45,11 @@ listOfDataRSM: moniterRSM_Data[] = [
 
 
   ngOnInit(): void {
-    this.datatransfer.getMoniterRSMTableData().subscribe( (data) => this.listOfDataRSM = data );
+    console.log("getting RSM Data");
+    this.datatransfer.getMoniterRSMTableData().subscribe( (data) => {
+      this.listOfDataRSM = data
+      console.log("RSM Data passed : " + data);
+    } );
   }
 
 }

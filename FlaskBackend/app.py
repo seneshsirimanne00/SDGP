@@ -92,6 +92,7 @@ def getStockData():
     rawMatNames = stock.getRawMatNames()
     matQtys = stock.getRawMatQtys()
 
+    print("RawmatName : " , rawMatNames , " / rawMatQtys : " , matQtys)
     dictArray = []
     for x in range(len(rawMatNames)):
         stockDict = main.getLabeledDict(["mname", "qty"], [rawMatNames[x], matQtys[x]])
@@ -269,6 +270,19 @@ def getIMReportData():
                                   [order.getItemName(), order.getId(), order.getQuantity(),
                                    order.getSupplierName()])
         allData.append(col)
+    return jsonify(allData)
+
+
+@app.route("/getRMSReportData" , methods=["GET"])
+def getRMSReportData():
+    allData = []
+    orders = main.getStock().getRawMatOrders()
+    for order in orders:
+        if (not order.isCompleted() ) and order.isConfirmed():
+            col = main.getLabeledDict(["mname", "mid", "vname", "mqty"],
+                                      [order.getItemName(), order.getId(), order.getSupplierName(),
+                                       order.getQuantity()])
+            allData.append(col)
     return jsonify(allData)
 
 """
