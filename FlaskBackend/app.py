@@ -233,6 +233,7 @@ def getBarGraphXData():
     if not main.getStock().hasProduct(productName):
         return jsonify([])
     productObj = main.getStock().getProduct(productName)
+    print("BarGraphXData : " , productObj.getRawMatNames())
     return jsonify( productObj.getRawMatNames() )
 
 
@@ -253,12 +254,10 @@ def getBarGraphYData():
 
     nextMonth = int(nextMonthPredictions[0])
 
-    print("Product Quantities ", productQtys)
+    totalQtys = []
     for x in range(len(productQtys)):
-        productQtys[x] = int(productQtys[x]) * nextMonth
-    print("NEXT MONTH " , nextMonth , "Multiplied productQtys",productQtys)
-
-    return jsonify(productQtys)
+        totalQtys.append( int(productQtys[x]) * nextMonth )
+    return jsonify(totalQtys)
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

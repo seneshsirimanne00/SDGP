@@ -19,11 +19,15 @@ export class BarchartComponent implements OnInit {
     }
 
     loadData(prodName : String) {
-        this.initChart();
-        this.datatransfer.getbargraphXData(prodName).subscribe((data) => this.barchartx = data);
+        this.datatransfer.getbargraphXData(prodName).subscribe((data) => {
+            this.barchartx = data;
+            console.log("X-Data : " + data);
+            this.initChart();
+        });
         this.datatransfer.getbargraphYData(prodName).subscribe((data) => {
-            this.barcharty = data
-            console.log("Y-DATA : " + data)
+            this.barcharty = data;
+            console.log("Y-DATA : " + data);
+            this.initChart();
         });
     }
 
