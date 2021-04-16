@@ -24,7 +24,9 @@ export class ReportimComponent implements OnInit {
 
   listOfDataIMR : IMReport_Data[] = [];
   ngOnInit(): void {
-    this.datatransfer.getIMReportData().subscribe( (data) => this.listOfDataIMR = data );
+    this.datatransfer.getIMReportData().subscribe( (data) => {
+      this.listOfDataIMR = data;
+    } );
   }
 
 }

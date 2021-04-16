@@ -18,16 +18,16 @@ export class ReportrmsComponent implements OnInit {
     mname: string;
     mid: string;
     vname: string;
-    vid: string;
     mqty: number;
-    odate: string;
-    edate: string;
     }
    ];
    */
 	
    ngOnInit(): void {
-     this.datatransfer.getRMSReportData().subscribe( (data) => this.listOfDataRMSR = data );
+     this.datatransfer.getRMSReportData().subscribe( (data) =>{ 
+       this.listOfDataRMSR = data;
+       console.log(data);
+      });
      
   }
 
