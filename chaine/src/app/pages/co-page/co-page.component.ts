@@ -57,8 +57,9 @@ export class CoPageComponent implements OnInit {
   }
 
   submitform(){
-    this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName).subscribe();
-    this.updatePoTable();
+    this.datatransfer.sendPurchaseOrderForm(this.matName,this.matQty,this.vendorName).subscribe((data) =>{
+      this.updatePoTable();
+    });
   }
 
   acceptPo(orderidaccept){

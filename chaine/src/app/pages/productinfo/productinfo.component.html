@@ -37,13 +37,14 @@
         </div>
     
         <form action="/action_page.php">
-          <input type="submit" value="Submit" (click)="submitform()">
+          <input type="submit" id="submitbtn" value="Submit" (click)="submitform()">
         </form>
         
       </div>
 
       <div>
         <h2>Upload previous product infomation</h2>
+        <p>choose .csv file to add previous product information </p>
         
         <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"/>
 

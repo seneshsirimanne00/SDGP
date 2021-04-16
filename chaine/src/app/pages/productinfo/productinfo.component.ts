@@ -9,6 +9,8 @@ import {ViewChild} from '@angular/core';
 })
 export class ProductinfoComponent implements OnInit {
 
+  userPreference:String;
+  count:number;
   //form variables
   Productname : string ;
   rawmaterils :string; 
@@ -34,6 +36,7 @@ export class ProductinfoComponent implements OnInit {
 	
     ngOnInit(): void {
      this.updateProductInfoTabe();
+     this.count=1;
     }
 
     updateProductInfoTabe(){
@@ -42,17 +45,54 @@ export class ProductinfoComponent implements OnInit {
 
     csvAdded : boolean = false;
     submitform(){
+      console.log("count ="+this.count)
+      if(this.count==1){
+        this.count++;
+      if (confirm("Do you want to add previous product infomation ?") == true) {
+        this.userPreference = "Data saved successfully!";
+        alert("To add previous data Choose a .csv file from the section below and then click submit again");
+        //this.datatransfer.sendNewProductForm(this.Productname,this.rawmaterils,this.prodtime,this.rawmaterialqty).subscribe((data) =>{
+        //  this.updateProductInfoTabe();
+        // });
+        console.log("count ="+this.count)
+
+    } else {
+        this.datatransfer.sendNewProductForm(this.Productname,this.rawmaterils,this.prodtime,this.rawmaterialqty).subscribe((data) =>{
+          this.updateProductInfoTabe();
+        });
+        
+    }
+  }else{
+    if(this.csvAdded){
+      console.log("Starting CSV File transfer");
+      document.getElementById("submitbtn").style.backgroundColor = "red";
+      this.datatransfer.sendCSVData(this.csvRecords).subscribe( (data) =>{
+        document.getElementById("submitbtn").style.backgroundColor = "#4450be";
+        console.log("CSV File transfered");
+      }
+    );
+  }
+    console.log("count ="+this.count)
+    this.datatransfer.sendNewProductForm(this.Productname,this.rawmaterils,this.prodtime,this.rawmaterialqty).subscribe((data) =>{
+      this.updateProductInfoTabe();
+    });
+  }
+    /*
       // Sending prouct info
       this.datatransfer.sendNewProductForm(this.Productname,this.rawmaterils,this.prodtime,this.rawmaterialqty).subscribe((data) =>{
         this.updateProductInfoTabe();
       });
       // Sending sales past sales data of the product
       if(this.csvAdded){
+        alert("Starting CSV File transfer");
         console.log("Starting CSV File transfer");
+        document.getElementById("submitbtn").style.backgroundColor = "red";
         this.datatransfer.sendCSVData(this.csvRecords).subscribe( (data) =>{
+          document.getElementById("submitbtn").style.backgroundColor = "#4450be";
           console.log("CSV File transfered");
-      });
-      }
+        }
+      );
+      }*/
     }
 
     fileChangeListener($event: any): void {

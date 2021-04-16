@@ -38,8 +38,9 @@ export class SupplierinfoComponent implements OnInit {
   }
 
   submitNewSupplier(){
-    this.datatransfer.sendNewSupplierForm(this.supplierName , this.avgOrderTime , this.rawMat , this.pricePerUnit).subscribe();
-    this.refreshTable();
+    this.datatransfer.sendNewSupplierForm(this.supplierName , this.avgOrderTime , this.rawMat , this.pricePerUnit).subscribe((data)=>{
+      this.refreshTable();
+    });
   }
 
 }
