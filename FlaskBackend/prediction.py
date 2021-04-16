@@ -41,7 +41,6 @@ class Prediction:
 
     def addData(self, data):
         self.dataArray = data
-        print("INSIDE Prediction", data)
         self.predictionUpToDate = False
 
     def setupLearn(self):
@@ -139,7 +138,6 @@ class Prediction:
         # for multistep prediction, replace act_sales with the predicted sales
 
         np_array = df_result.to_numpy()
-        print("POST PREDICTION NUMPY : ", np_array)
 
         self.predictionUpToDate = True
         return np_array
@@ -166,9 +164,10 @@ class Prediction:
     """
 
     def getAllData(self):
-        return [self.predictionDates, self.predictionAmounts, self.numpy_prediction]
+        return [self.predictionDates, self.predictionAmounts, self.numpy_prediction , self.dataArray]
 
     def setAllData(self, data):
         self.predictionDates = data[0]
         self.predictionAmounts = data[1]
         self.numpy_prediction = data[2]
+        self.dataArray = data[3]

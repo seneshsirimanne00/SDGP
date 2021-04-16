@@ -9,9 +9,9 @@ import { SFReport_Data } from 'src/app/data_interfaces/SFReport_Data';
 })
 export class ReportsalesforecastComponent implements OnInit {
 
-  constructor(private datatransfer : DatatransferService) { }
+  constructor(private datatransfer: DatatransferService) { }
 
-  listOfDataSFR : SFReport_Data[];// for table
+  listOfDataSFR: SFReport_Data[];// for table
   /*
   listOfDataSFR : SFReport_Data[] = [
     {
@@ -23,9 +23,8 @@ export class ReportsalesforecastComponent implements OnInit {
    ];
   */
 
-   ngOnInit(): void {
-    this.datatransfer.getSalesForecastReportData().subscribe( (data) => this.listOfDataSFR= data );
-    
- }
+  ngOnInit(): void {
+    this.datatransfer.getSalesForecastReportData().subscribe((data) => this.listOfDataSFR = data);
+  }
 
 }

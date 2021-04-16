@@ -4,7 +4,12 @@ from prediction import Prediction
 
 class Product(object):
 
+    globalProductId = 1
+
     def __init__(self, name, costPerUnit, materialNames, materialQtys, productionTime):
+        self.productId = self.__class__.globalProductId
+        self.__class__.globalProductId += 1
+
         self.name = name
         self.costPerUnit = costPerUnit
 
@@ -47,16 +52,17 @@ class Product(object):
     """
 
     def getAllData(self):
-        return [self.name, self.costPerUnit, self.rawMatNames, self.rawMatQtys, self.prediction.getAllData()]
+        return [self.name, self.costPerUnit, self.rawMatNames, self.rawMatQtys, self.prediction.getAllData() , self.globalProductId , self.productId]
 
     def setAllData(self, productData):
         self.name = productData[0]
         self.costPerUnit = productData[1]
         self.rawMatNames = productData[2]
         self.rawMatQtys = productData[3]
-        print("Loaded prediction data" , productData[4])
         self.prediction.setAllData(productData[4])
+        self.globalProductId = productData[5]
+        self.productId = productData[6]
 
     def __str__(self):
-        data = "Name: "+ self.name + " / Cost: " + self.costPerUnit + " /rawMatsInProduct : "  + self.rawMatNames + " /prodcution time : " + self.productionTime
+        data = "Name: "+ self.name + " / Cost: " + str(self.costPerUnit) + " /rawMatsInProduct : "  + str(self.rawMatNames) + " /prodcution time : " + str(self.productionTime) + " /Product ID : " + str(self.productId)
         return data

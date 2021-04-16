@@ -180,6 +180,7 @@ class Main:
     def addProductionOrder(self):
         stock = self.database.getStock()
 
+    lastCreatedProductName = "" # Used to track
     # Add a new product for the company // Can only be added if the company has suppliers with the required materials
     def addProduct(self, name, materialNames, materialQtys, productionTime):
         def getTotalCost(matNames, quantities):
@@ -207,6 +208,7 @@ class Main:
 
         costPerUnit = getTotalCost(materialNames, materialQtys)
         if costPerUnit is not None:  # Product will only be added if all materials are obtainable by current suppliers
+            self.lastCreatedProductName = name
             stock.addProduct(name, costPerUnit, materialNames, materialQtys, productionTime)
         else:
             print("Some/All materials of product unattainable by current suppliers. Product not added")
@@ -224,8 +226,11 @@ class Main:
         return prediction
 
     def addCsvData(self, dataList):
-        productType = self.database.getStock().getProductTypes()[0]
-        productType.getPrediction().addData(dataList)
+        productTypes = self.database.getStock().getProductTypes()
+        print("Last Product : " , self.lastCreatedProductName)
+        for productType in productTypes:
+            if productType.getName().lower() == self.lastCreatedProductName.lower():
+                productType.getPrediction().addData(dataList)
 
     def getRawOrderPercent(self, rawOrderId):
         rawOrderList = self.database.getStock().getRawMatOrders()

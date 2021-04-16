@@ -2,7 +2,6 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from main import Main
 import time
-from supplier import Supplier
 
 app = Flask(__name__)
 CORS(app)
@@ -92,7 +91,7 @@ def getStockData():
     rawMatNames = stock.getRawMatNames()
     matQtys = stock.getRawMatQtys()
 
-    print("RawmatName : " , rawMatNames , " / rawMatQtys : " , matQtys)
+    print("RawmatName : ", rawMatNames, " / rawMatQtys : ", matQtys)
     dictArray = []
     for x in range(len(rawMatNames)):
         stockDict = main.getLabeledDict(["mname", "qty"], [rawMatNames[x], matQtys[x]])
@@ -153,7 +152,7 @@ def getlinegraphYData():
 @app.route("/sendCsvData", methods=["POST"])
 def sendCSV():
     data = request.get_json()
-    print(data)
+    print("CSV Data Received")
     listOfRecords = []
     for record in data:
         line = []  # Date , store , item , sales
@@ -163,7 +162,7 @@ def sendCSV():
         line.append(int(record["sales"]))
         listOfRecords.append(line)
     main.addCsvData(listOfRecords)
-    return jsonify("yeetus")
+    return jsonify("CSV Sent")
 
 
 @app.route("/OrderStatuspercentagedata", methods=["POST"])
@@ -211,44 +210,49 @@ def getSalesOrderTableData():
     orders = main.getStock().getProductionOrders()
     allData = []
     for order in orders:
-        col = main.getLabeledDict(["cname", "pname", "qty", "daddress", "oid", "odate", "adtime" , "totalCost"],
-                                  [order.getCustomerName(), order.getItemName(), order.getQuantity(),order.getAddress() , order.getId() , order.getOrderDate() , order.getDuration() ,order.getTotalCost() ])
+        col = main.getLabeledDict(["cname", "pname", "qty", "daddress", "oid", "odate", "adtime", "totalCost"],
+                                  [order.getCustomerName(), order.getItemName(), order.getQuantity(),
+                                   order.getAddress(), order.getId(), order.getOrderDate(), order.getDuration(),
+                                   order.getTotalCost()])
         allData.append(col)
     return jsonify(allData)
 
-@app.route("/confirmSalesOrder" , methods=["POST"])
+
+@app.route("/confirmSalesOrder", methods=["POST"])
 def confirmSalesOrder():
     data = request.get_data().decode('utf-8')
     data = int(data)
 
     return jsonify("NOTHING")
 
-@app.route("/predictAll",methods=["GET"])
+
+@app.route("/predictAll", methods=["GET"])
 def predictAllProducts():
     main.getStock().runProductPredictions()
     return jsonify("All product predictions up to date")
 
-@app.route("/getbargraphXData" , methods=["POST"])
+
+@app.route("/getbargraphXData", methods=["POST"])
 def getBarGraphXData():
     productName = request.get_data().decode('utf-8')
     if not main.getStock().hasProduct(productName):
         return jsonify([])
     productObj = main.getStock().getProduct(productName)
-    print("BarGraphXData : " , productObj.getRawMatNames())
-    return jsonify( productObj.getRawMatNames() )
+    print("BarGraphXData : ", productObj.getRawMatNames())
+    return jsonify(productObj.getRawMatNames())
 
 
-@app.route("/getbargraphYData" , methods=["POST"])
+@app.route("/getbargraphYData", methods=["POST"])
 def getBarGraphYData():
     productName = request.get_data().decode('utf-8')
     if not main.getStock().hasProduct(productName):
         return jsonify([])
-    #Product obj has data oh how many materials each item needs
+    # Product obj has data oh how many materials each item needs
     productQtys = main.getStock().getProduct(productName).getRawMatQtys()
-    #ProdPredictions has data of how many items will be sold
+    # ProdPredictions has data of how many items will be sold
     prodPredictions = main.getProductPrediction(productName)
 
-    nextMonthPredictions =prodPredictions.getPrediction_amounts()
+    nextMonthPredictions = prodPredictions.getPrediction_amounts()
     if len(nextMonthPredictions) == 0:
         # Product has not recieved it's initial prediction yet
         return jsonify([])
@@ -257,11 +261,11 @@ def getBarGraphYData():
 
     totalQtys = []
     for x in range(len(productQtys)):
-        totalQtys.append( int(productQtys[x]) * nextMonth )
+        totalQtys.append(int(productQtys[x]) * nextMonth)
     return jsonify(totalQtys)
 
 
-@app.route("/getIMReportData" , methods=["GET"])
+@app.route("/getIMReportData", methods=["GET"])
 def getIMReportData():
     allData = []
     orders = main.getStock().getRawMatOrders()
@@ -273,17 +277,31 @@ def getIMReportData():
     return jsonify(allData)
 
 
-@app.route("/getRMSReportData" , methods=["GET"])
+@app.route("/getRMSReportData", methods=["GET"])
 def getRMSReportData():
     allData = []
     orders = main.getStock().getRawMatOrders()
     for order in orders:
-        if (not order.isCompleted() ) and order.isConfirmed():
+        if (not order.isCompleted()) and order.isConfirmed():
             col = main.getLabeledDict(["mname", "mid", "vname", "mqty"],
                                       [order.getItemName(), order.getId(), order.getSupplierName(),
                                        order.getQuantity()])
             allData.append(col)
     return jsonify(allData)
+
+
+@app.route("/getSalesForecastReportData", methods=["GET"])
+def getSalesForecastReportData():
+    main.getStock().displayProductTypes()
+    # allData = []
+    # prodTypes = main.getStock().getProductTypes()
+    # for order in prodTypes:
+    #     col = main.getLabeledDict(["pname", "pid", "pqty", "thisMonth", "nextMonthPredicted"],
+    #                               [order.getName(), order.getId(), order.getSupplierName(),
+    #                                order.getQuantity()])
+    #     allData.append(col)
+    return jsonify([])
+
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

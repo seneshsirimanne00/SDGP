@@ -139,9 +139,6 @@ class Stock:
                 return prodObj
         print("ERROR - Getting Non-existent Product")
 
-    def getProductTypes(self):
-        return self.productTypes
-
     # Product/Sales Orders --!>
 
     # Getter Setter Methods <!--
@@ -158,6 +155,10 @@ class Stock:
     def getProductTypes(self):
         return self.productTypes
 
+    def displayProductTypes(self):
+        print("Displaying Products" , self.productTypes)
+        for product in self.productTypes:
+            print(product)
 
 
 
@@ -172,15 +173,12 @@ class Stock:
         print("SAVING--")
         for obj in objList:
             arr.append(obj.getAllData())
-            print(obj.getAllData())
         return arr
 
     def getAllData(self):
         rawOrderData = self.getDataOfList(self.rawMatOrders)
         prodTypeData = self.getDataOfList(self.productTypes)
         salesOrderData = self.getDataOfList(self.salesOrders)
-        print("rawOrderData", rawOrderData, "prodTypeData", prodTypeData, "salesOrderData", salesOrderData)
-
         return [self.productQuantities, self.__rawMatNames, self.__rawMatQuantities, rawOrderData, salesOrderData,
                 prodTypeData]
 
@@ -190,7 +188,6 @@ class Stock:
         self.__rawMatQuantities = stockData[2]
 
         self.rawMatOrders = []
-        print("Loaded rawMatOrders", stockData[3])
         for orderData in stockData[3]:
             order = RawMatOrder()
             order.setAllData(orderData)
