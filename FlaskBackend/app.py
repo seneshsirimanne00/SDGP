@@ -74,7 +74,7 @@ def getSupplierInfoTableData():
 
 @app.route("/saveData", methods=["GET", "POST"])
 def saveDb():
-    main.save();
+    main.save()
     return jsonify("Database Saved")
 
 
@@ -258,6 +258,18 @@ def getBarGraphYData():
     for x in range(len(productQtys)):
         totalQtys.append( int(productQtys[x]) * nextMonth )
     return jsonify(totalQtys)
+
+
+@app.route("/getIMReportData" , methods=["GET"])
+def getIMReportData():
+    allData = []
+    orders = main.getStock().getRawMatOrders()
+    for order in orders:
+        col = main.getLabeledDict(["mname", "mid", "qty", "vendorName"],
+                                  [order.getItemName(), order.getId(), order.getQuantity(),
+                                   order.getSupplierName()])
+        allData.append(col)
+    return jsonify(allData)
 
 """
 CONTACT SENESH ABOUT THIS CONNECION SEGMENT BECAUSE ILL HAVE TO RETURN ERROR MESSAGES WHICH HE WILL HAVE TO RESPOND TO 

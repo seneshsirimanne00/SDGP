@@ -13,16 +13,16 @@ export class ReportimComponent implements OnInit {
 
  // listOfDataIMR :IMReport_Data[];
 //hardcoded for now
-listOfDataIMR :IMReport_Data[] = [
-  {
-    mname:'Mudith Jayasanka' ,
-    mid: '0001',
-    qty:  1000 ,
-    vid: '20/11/2021',
-    adate:'28/11/2021'
-  }
-];
+// listOfDataIMR :IMReport_Data[] = [
+//   {
+//     mname:'grass' ,
+//     mid: '0001',
+//     qty:  1000 ,
+//     vendorName : 'kespuka'
+//   }
+// ];
 
+  listOfDataIMR : IMReport_Data[] = [];
   ngOnInit(): void {
     this.datatransfer.getIMReportData().subscribe( (data) => this.listOfDataIMR = data );
   }
