@@ -20,7 +20,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { WelcomepagemainComponent } from './pages/welcomepagemain/welcomepagemain.component';
 import { SalesOrderComponent } from './pages/sales-order/sales-order.component';
 import { MoniterppComponent } from './pages/moniterpp/moniterpp.component';
-import { MonitermdpComponent } from './pages/monitermdp/monitermdp.component';
 import { PredictionComponent } from './pages/prediction/prediction.component';
 import { RmstatusComponent } from './pages/rmstatus/rmstatus.component';
 import { OrderstatusComponent } from './pages/orderstatus/orderstatus.component';
@@ -55,7 +54,6 @@ registerLocaleData(hi);
     WelcomepagemainComponent,
     SalesOrderComponent,
     MoniterppComponent,
-    MonitermdpComponent,
     PredictionComponent,
     RmstatusComponent,
     OrderstatusComponent,

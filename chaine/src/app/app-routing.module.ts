@@ -5,7 +5,6 @@ import { CoPageComponent } from './pages/co-page/co-page.component';
 import { CompanyprofilepageComponent } from './pages/companyprofilepage/companyprofilepage.component';
 import { CompanyregistrationpageComponent } from './pages/companyregistrationpage/companyregistrationpage.component';
 import { LoginpageComponent } from './pages/loginpage/loginpage.component';
-import { MonitermdpComponent } from './pages/monitermdp/monitermdp.component';
 import { MoniterppComponent } from './pages/moniterpp/moniterpp.component';
 import { MoniterrsmComponent } from './pages/moniterrsm/moniterrsm.component';
 import { OrderstatusComponent } from './pages/orderstatus/orderstatus.component';
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: 'welcomepage',component:WelcomepagemainComponent},
   { path: 'moniterrsm',component:MoniterrsmComponent},
   { path: 'moniterpp',component:MoniterppComponent},
-  { path: 'moniterdp',component:MonitermdpComponent},
   { path: 'prediction',component:PredictionComponent},
   { path: 'salesorder',component:SalesOrderComponent},
   { path: 'rawmaterialstatus',component:RmstatusComponent},
