@@ -10,10 +10,19 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+
+  companyname :String;
+  companyslogan:String;
+  username:String;
+
   isCollapsed = true;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.companyname = "Company Name";
+    this.companyslogan = "slogan";
+    this.username="User Name";
   }
   
 
