@@ -43,10 +43,22 @@ class Prediction:
         self.dataArray = data
         self.predictionUpToDate = False
 
+    def currentMonthsData(self):
+
+        print("Acquiring current months data")
+        dataOne = np.array(self.dataArray)
+        df_salesOne = pd.DataFrame(data=dataOne, columns=["date", "store", "item", "sales"])
+        #dataOne = pd.read_csv('saveddata/train - train.csv')
+        #df_salesOne = pd.DataFrame(data=dataOne)
+        count_row = df_salesOne.shape[0]
+        df_final = df_salesOne.iloc[count_row-1]
+        np_current = df_final.to_numpy()
+        return np_current
+
     def setupLearn(self):
 
         print("debug[starting learn]")
-        # df_sales = pd.read_csv('saveddata/train.csv')
+        #df_sales = pd.read_csv('saveddata/train - train.csv')
         data = np.array(self.dataArray)
         df_sales = pd.DataFrame(data=data, columns=["date", "store", "item", "sales"])
         print(df_sales)
