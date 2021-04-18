@@ -47,6 +47,9 @@ class Product(object):
     def getCost(self):
         return self.costPerUnit
 
+    def getId(self):
+        return self.productId
+
     """
     ====================================================================================================================
     """

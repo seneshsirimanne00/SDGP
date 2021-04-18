@@ -149,6 +149,20 @@ class Prediction:
             dateList.append(date[1].strftime("%d/%m/%Y"))
         return dateList
 
+    def getPredictionAmounts(self):
+        amtList = []
+        for amount in self.numpy_prediction:
+            amtList.append(amount[0])
+        return amtList
+
+    def getNextMonthPred(self):
+        nextMonth = self.getPredictionAmounts()
+        print("next month predictions : " , nextMonth)
+        if len(nextMonth) == 0:
+            return "Not Processed"
+        return nextMonth[0]
+
+
     def getPrediction_amounts(self):
         # the corresponding sales amounts for predicted dates as a list of integers
         preictionValueList = []

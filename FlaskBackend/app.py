@@ -292,15 +292,16 @@ def getRMSReportData():
 
 @app.route("/getSalesForecastReportData", methods=["GET"])
 def getSalesForecastReportData():
-    main.getStock().displayProductTypes()
-    # allData = []
-    # prodTypes = main.getStock().getProductTypes()
-    # for order in prodTypes:
-    #     col = main.getLabeledDict(["pname", "pid", "pqty", "thisMonth", "nextMonthPredicted"],
-    #                               [order.getName(), order.getId(), order.getSupplierName(),
-    #                                order.getQuantity()])
-    #     allData.append(col)
-    return jsonify([])
+    allData = []
+    prodTypes = main.getStock().getProductTypes()
+    for product in prodTypes:
+        prediction = main.getProductPrediction(product.getName())
+        thisMonth = "Insert Current Month Sales"
+        nextMonth = prediction.getNextMonthPred()
+        col = main.getLabeledDict(["pname", "pid", "thisMonth", "nextMonthPredicted"],
+                                  [product.getName(), product.getId(), thisMonth,nextMonth])
+        allData.append(col)
+    return jsonify(allData)
 
 
 """

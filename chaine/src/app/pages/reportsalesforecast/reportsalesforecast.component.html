@@ -22,7 +22,6 @@
         <tr>
           <th>Product Name</th>
           <th>Product Id</th>
-          <th>Predicted Qty</th>
           <th>Current Month Sales</th>
           <th>Next Month's Prediction</th>
         </tr>
@@ -31,7 +30,6 @@
         <tr *ngFor="let data of basicTable.data">
           <td>{{data.pname}}</td>
           <td>{{data.pid}}</td>
-          <td>{{data.pqty}}</td>
           <td>{{data.thisMonth}}</td>
           <td>{{data.nextMonthPredicted}}</td>
       </tbody>
