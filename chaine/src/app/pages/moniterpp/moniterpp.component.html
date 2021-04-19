@@ -43,8 +43,8 @@
     <nz-table #basicTable [nzData]="listOfDataMPP" style="padding-top: 1%;">
       <thead>
         <tr>
-          <th>Product name</th>
           <th> Order Id</th>
+          <th>Product name</th>
           <th>Qty</th>
          
           
@@ -52,8 +52,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
+          <td><button (click)="track(data.oId)">Track</button>  {{data.oId}}</td>
           <td>{{data.pName}}</td>
-          <td><button click ="showpercentage()">Track</button>  {{data.oId}}</td>
           <td>{{data.mQty}}</td>
          
       </tbody>

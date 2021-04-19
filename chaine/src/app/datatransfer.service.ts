@@ -158,5 +158,9 @@ export class DatatransferService {
   predictAll(){
     return this.http.get<string>(this.baseLocalhost + "predictAll");
   }
+
+  getProductStatusPercentage(id : String){
+    return this.http.post<string>(this.baseLocalhost + "getProductPercent" , id);
+  }
     
 }

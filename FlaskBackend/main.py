@@ -252,6 +252,12 @@ class Main:
 
         return incompleteOrders
 
+    def getProdOrderPercent(self , productId):
+        prodOrderList = self.database.getStock().getProductionOrders()
+        for prodOrder in prodOrderList:
+            if prodOrder.getId() == int(productId):
+                return prodOrder.getProgress()
+        return 0
 
     # Main Methods --!>
 

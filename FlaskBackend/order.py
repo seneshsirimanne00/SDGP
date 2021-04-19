@@ -27,7 +27,8 @@ class Order:
             return 0
         if self.completed:
             return 100
-        percent = ( time.time()  - self.startTime) / (self.endTime - self.startTime)
+        print(self.startTime, self.endTime)
+        percent = (time.time() - self.startTime) / (self.endTime - self.startTime)
         if percent > 1:
             percent = 1
         return percent * 100

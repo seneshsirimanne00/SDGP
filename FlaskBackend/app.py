@@ -222,8 +222,29 @@ def getSalesOrderTableData():
 def confirmSalesOrder():
     data = request.get_data().decode('utf-8')
     data = int(data)
+    main.getStock().confirmProductionOrder(data)
 
-    return jsonify("NOTHING")
+    return jsonify("Production order Confirmed")
+
+
+@app.route("/getProductPercent" , methods=["POST"])
+def getProductPercent():
+    data = request.get_data().decode('utf-8')
+    print("Passed Prod int : " , data)
+    data = int(data)
+    time.sleep(0.5)
+    return jsonify(main.getProdOrderPercent(data))
+
+@app.route("/getMoniterPPTableData" , methods=["GET"])
+def getMoniterPPTableData():
+    prodNames = []
+    orders = main.getStock().getProductionOrders()
+    for order in orders:
+        if order.isConfirmed() and (not order.isCompleted()):
+            col = main.getLabeledDict(["pName", "oId", "mQty"],
+                                      [order.getItemName(), order.getId(), order.getQuantity()])
+            prodNames.append(col)
+    return jsonify(prodNames)
 
 
 @app.route("/predictAll", methods=["GET"])

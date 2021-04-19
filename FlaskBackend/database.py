@@ -27,7 +27,7 @@ class Database:
         self.load()
 
     def createSaveDirs(self):
-        #Creates save directories if they do not exist
+        # Creates save directories if they do not exist
         if not os.path.exists("saveddata"):
             os.mkdir("saveddata")
 
@@ -77,7 +77,6 @@ class Database:
 
     def getStock(self):
         return self.__stock
-
 
     # [Supplier Segment]------------------------------------------------------------------------------------------------
 
