@@ -252,6 +252,7 @@ def getMoniterPPTableData():
 
 @app.route("/predictAll", methods=["GET"])
 def predictAllProducts():
+    main.getStock().restockCompletedProductOrders()
     main.getStock().runProductPredictions()
     return jsonify("All product predictions up to date")
 
@@ -325,6 +326,16 @@ def getSalesForecastReportData():
         nextMonth = prediction.getNextMonthPred()
         col = main.getLabeledDict(["pname", "pid", "thisMonth", "nextMonthPredicted"],
                                   [product.getName(), product.getId(), thisMonth,nextMonth])
+        allData.append(col)
+    return jsonify(allData)
+
+@app.route("/getPReportData" , methods=["GET"])
+def getPReportData():
+    orders = main.getStock().getProductionOrders()
+    main.getStock().restockCompletedProductOrders()
+    allData = []
+    for order in orders:
+        col = main.getLabeledDict(["prodName","oid" ,"qty", "custName", "odate", "status"],[order.getItemName(),order.getId(), order.getQuantity(), order.getCustomerName(), order.getOrderDate() , order.getStatus()])
         allData.append(col)
     return jsonify(allData)
 

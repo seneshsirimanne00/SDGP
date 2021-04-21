@@ -113,6 +113,7 @@ class Stock:
             if (productionOrder.getProgress()) >= 100 and orderNotCollected:
                 productName, productQty = productionOrder.collect()
                 self.restockProduct(productName , productQty)
+                self.getProduct(productName).getPrediction().update(productionOrder.getOrderDate() , productQty)
 
     def restockProduct(self , prodName , amount):
         for prodIndex in range(len(self.productTypes)):
