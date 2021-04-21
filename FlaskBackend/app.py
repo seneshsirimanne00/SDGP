@@ -210,11 +210,12 @@ def getSalesOrderTableData():
     orders = main.getStock().getProductionOrders()
     allData = []
     for order in orders:
-        col = main.getLabeledDict(["cname", "pname", "qty", "daddress", "oid", "odate", "adtime", "totalCost"],
-                                  [order.getCustomerName(), order.getItemName(), order.getQuantity(),
-                                   order.getAddress(), order.getId(), order.getOrderDate(), order.getDuration(),
-                                   order.getTotalCost()])
-        allData.append(col)
+        if not order.isConfirmed():
+            col = main.getLabeledDict(["cname", "pname", "qty", "daddress", "oid", "odate", "adtime", "totalCost"],
+                                      [order.getCustomerName(), order.getItemName(), order.getQuantity(),
+                                       order.getAddress(), order.getId(), order.getOrderDate(), order.getDuration(),
+                                       order.getTotalCost()])
+            allData.append(col)
     return jsonify(allData)
 
 
@@ -238,9 +239,11 @@ def getProductPercent():
 @app.route("/getMoniterPPTableData" , methods=["GET"])
 def getMoniterPPTableData():
     prodNames = []
+    main.getStock().restockCompletedProductOrders()
     orders = main.getStock().getProductionOrders()
     for order in orders:
         if order.isConfirmed() and (not order.isCompleted()):
+            print("DEBUG - " , "Confirmed :",order.isConfirmed(), "Completed :" , order.isCompleted() )
             col = main.getLabeledDict(["pName", "oId", "mQty"],
                                       [order.getItemName(), order.getId(), order.getQuantity()])
             prodNames.append(col)
@@ -291,10 +294,11 @@ def getIMReportData():
     allData = []
     orders = main.getStock().getRawMatOrders()
     for order in orders:
-        col = main.getLabeledDict(["mname", "mid", "qty", "vendorName"],
-                                  [order.getItemName(), order.getId(), order.getQuantity(),
-                                   order.getSupplierName()])
-        allData.append(col)
+        if order.isCompleted():
+            col = main.getLabeledDict(["mname", "mid", "qty", "vendorName"],
+                                      [order.getItemName(), order.getId(), order.getQuantity(),
+                                       order.getSupplierName()])
+            allData.append(col)
     return jsonify(allData)
 
 

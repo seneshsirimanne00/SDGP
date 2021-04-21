@@ -49,6 +49,8 @@ class Order:
         self.quantity = int(quantity)
         self.orderId = int(orderId)
         self.duration = float(duration) * 10  # To make order last longer for viewing purposes
+        if self.duration == 0:
+            self.duration = 0.1
 
     # Getters Setters <!--
 

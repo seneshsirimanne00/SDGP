@@ -116,7 +116,7 @@ class Stock:
 
     def restockProduct(self , prodName , amount):
         for prodIndex in range(len(self.productTypes)):
-            if self.productTypes[prodIndex].lower() == prodName.lower():
+            if self.productTypes[prodIndex].getName().lower() == prodName.lower():
                 self.productQuantities[prodIndex] += amount
 
 

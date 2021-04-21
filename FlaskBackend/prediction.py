@@ -29,8 +29,8 @@ class Prediction:
         # Set to false whenever new data is added. Set to true when Learning is done
         self.predictionUpToDate = False
 
-    def update(self, date, store , item ,sales ):
-        self.dataArray.append([date , store , item , sales])
+    def update(self, date ,sales ):
+        self.dataArray.append([date , 1 , 1 , sales])
         print("Data added : " , self.dataArray[-1] )
         self.predictionUpToDate = False
 

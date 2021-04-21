@@ -55,7 +55,7 @@ class Product(object):
     """
 
     def getAllData(self):
-        return [self.name, self.costPerUnit, self.rawMatNames, self.rawMatQtys, self.prediction.getAllData() , self.globalProductId , self.productId]
+        return [self.name, self.costPerUnit, self.rawMatNames, self.rawMatQtys, self.prediction.getAllData() , self.globalProductId , self.productId , self.productionTime]
 
     def setAllData(self, productData):
         self.name = productData[0]
@@ -65,6 +65,7 @@ class Product(object):
         self.prediction.setAllData(productData[4])
         self.globalProductId = productData[5]
         self.productId = productData[6]
+        self.productionTime = productData[7]
 
     def __str__(self):
         data = "Name: "+ self.name + " / Cost: " + str(self.costPerUnit) + " /rawMatsInProduct : "  + str(self.rawMatNames) + " /prodcution time : " + str(self.productionTime) + " /Product ID : " + str(self.productId)
