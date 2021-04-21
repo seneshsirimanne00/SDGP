@@ -63,6 +63,7 @@ export class CoPageComponent implements OnInit {
   }
 
   acceptPo(orderidaccept){
+    alert("Navigate to Order Status in sidebar to check progress in your order no "+orderidaccept);
     console.log(orderidaccept)
     //this is the method made for the button in the po table
     this.datatransfer.confirmPoOrder(orderidaccept).subscribe( (data) =>{
