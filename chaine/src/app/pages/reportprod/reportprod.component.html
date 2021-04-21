@@ -19,23 +19,21 @@
     <nz-table #basicTable [nzData]="listOfDataPR" style="padding-top: 1%;">
       <thead>
         <tr>
-          <th>Product name</th>
+          <th>Product Name</th>
           <th>Qty</th>
           <th>Order ID</th>
-          <th>Customer ID</th>
+          <th>Customer Name</th>
           <th>Order Date</th>
-          <th>Expected Date</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of basicTable.data">
-          <td>{{data.pname}}</td>
+          <td>{{data.prodName}}</td>
           <td>{{data.qty}}</td>
           <td>{{data.oid}}</td>
-          <td>{{data.cid}}</td>
+          <td>{{data.custName}}</td>
           <td>{{data.odate}}</td>
-          <td>{{data.edate}}</td>
           <td>{{data.status}}</td>
       </tbody>
     </nz-table>

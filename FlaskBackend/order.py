@@ -78,6 +78,13 @@ class Order:
     def getDuration(self):
         return self.duration
 
+    def getStatus(self):
+        if self.completed:
+            return "Completed"
+        if self.confirmed:
+            return "Confirmed"
+        return "Not Confirmed"
+
     # Getters Setters --!>
 
     """

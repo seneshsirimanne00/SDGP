@@ -1,10 +1,9 @@
 export interface prodReport_Data{
-    pname: string;
+    prodName: string;
     qty: string;
     oid: string;
-    cid: string;
+    custName: string;
     odate: string;
-    edate: string;
     status: string;
 }
 
