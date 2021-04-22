@@ -322,7 +322,7 @@ def getSalesForecastReportData():
     prodTypes = main.getStock().getProductTypes()
     for product in prodTypes:
         prediction = main.getProductPrediction(product.getName())
-        thisMonth = "Insert Current Month Sales"
+        thisMonth = prediction.currentMonthsData()[0]
         nextMonth = prediction.getNextMonthPred()
         col = main.getLabeledDict(["pname", "pid", "thisMonth", "nextMonthPredicted"],
                                   [product.getName(), product.getId(), thisMonth,nextMonth])

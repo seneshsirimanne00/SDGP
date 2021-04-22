@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { DatatransferService } from '../datatransfer.service';
 
 
 
@@ -17,12 +18,16 @@ export class SidebarComponent implements OnInit {
 
   isCollapsed = true;
 
-  constructor() { }
+  constructor(private datatransfer : DatatransferService) { }
 
   ngOnInit(): void {
     this.companyname = "Company Name";
     this.companyslogan = "slogan";
     this.username="User Name";
+  }
+
+  save(){
+    this.datatransfer.saveData().subscribe();
   }
   
 

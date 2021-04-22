@@ -162,5 +162,9 @@ export class DatatransferService {
   getProductStatusPercentage(id : String){
     return this.http.post<string>(this.baseLocalhost + "getProductPercent" , id);
   }
+
+  saveData(){
+    return this.http.get<string>(this.baseLocalhost + "saveData");
+  }
     
 }
