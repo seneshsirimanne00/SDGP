@@ -208,7 +208,6 @@ class Prediction:
         pred_test_set = pred_test_set.reshape(pred_test_set.shape[0], pred_test_set.shape[2])
         # inverse transform
         pred_test_set_inverted = scaler.inverse_transform(pred_test_set)
-        print(pred_test_set_inverted)
 
         result_list = []
         # sales_dates = list(df_sales_grouped[-7:].date)
@@ -216,12 +215,11 @@ class Prediction:
         for index in range(0, len(pred_test_set_inverted)):
             result_dict = {}
             result_dict['pred_value'] = int(pred_test_set_inverted[index][0] + act_sales[index])
-
             result_list.append(result_dict)
+
         df_result = pd.DataFrame(result_list)
         date_array = df_sales_grouped.to_numpy()
         sales_dates = date_array[-1][0]
-        # date_time = sales_dates.strftime("%y/%m/%d")
         date_series = pd.date_range(sales_dates, periods=7, freq='M')
         df = pd.DataFrame(date_series)
         df = df.drop(df.index[[0]])
