@@ -3,7 +3,7 @@ from flask_cors import CORS
 from main import Main
 import time
 
-app = Flask(__name__)
+app = application = Flask(__name__)
 CORS(app)
 
 main = Main()
