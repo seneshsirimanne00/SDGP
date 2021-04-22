@@ -9,6 +9,7 @@ import { moniterPP_Data } from 'src/app/data_interfaces/moniterPP_Data';
 })
 export class MoniterppComponent implements OnInit {
   percent: string = "0";
+  orderid:String;
   constructor(private datatransfer: DatatransferService) { }
 
   listOfDataMPP : moniterPP_Data[];
@@ -33,6 +34,7 @@ export class MoniterppComponent implements OnInit {
   }
 
   track(prodId : string){
+    this.orderid=prodId;
     console.log("Passing Order ID : " + prodId);
     this.datatransfer.getProductStatusPercentage(prodId).subscribe((data)=>{
       this.loadTableData();
