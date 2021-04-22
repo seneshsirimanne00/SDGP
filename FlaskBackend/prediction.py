@@ -17,6 +17,8 @@ from keras.utils import np_utils
 from keras.layers import LSTM
 from sklearn.model_selection import KFold, cross_val_score, train_test_split
 from sklearn.preprocessing import MinMaxScaler
+from dateutil.relativedelta import *
+import datetime
 
 
 class Prediction:
@@ -86,7 +88,7 @@ class Prediction:
         print("3")
         df_supervised = df_diff.drop(['prev_sales'], axis=1)
         # adding lags
-        for inc in range(1, 13):
+        for inc in range(1, 12):
             field_name = 'lag_' + str(inc)
             df_supervised[field_name] = df_supervised['diff'].shift(inc)
         # drop null values
@@ -148,11 +150,131 @@ class Prediction:
             result_list.append(result_dict)
         df_result = pd.DataFrame(result_list)
         # for multistep prediction, replace act_sales with the predicted sales
-
         np_array = df_result.to_numpy()
+        print(np_array)
+
+        #-----------------------------------------------------------------------------------------------------
+        #starts future predictions
+        # Checking the attributes of test set
+        len(test_set)
+        print(test_set)
+        print(test_set[5:])
+
+        # Reshaping the test set
+        test_set = test_set.reshape(test_set.shape[0], test_set.shape[1])
+        test_set = scaler.transform(test_set)
+        print(test_set)
+
+        # Getting the data wanted for the predictions
+        x_input = test_set[5:]
+        x_input.shape
+        print(x_input)
+
+        temp_input = list(x_input)
+        print(temp_input)
+        temp_input = temp_input[0].tolist()
+        print(temp_input)
+
+        print(temp_input)
+
+        # demonstrate prediction for next 10 days
+        from numpy import array
+
+        lst_output = []
+        n_steps = 11
+        i = 0
+        while (i < 6):
+
+            if (len(temp_input) > 11):
+                # print(temp_input)
+                x_input = np.array(temp_input[1:])
+                print("{} day input {}".format(i, x_input))
+                x_input = x_input.reshape(1, -1)
+                x_input = x_input.reshape((1, 1, n_steps))
+                # print(x_input)
+                yhat = model.predict(x_input, verbose=0)
+                print(yhat)
+                print("whaw")
+                print("{} day output {}".format(i, yhat))
+                temp_input.extend(yhat[0].tolist())
+                temp_input = temp_input[1:]
+                # print(temp_input)
+                lst_output.extend(yhat.tolist())
+                i = i + 1
+            else:
+                x_input = x_input.reshape((1, 1, n_steps))
+                yhat = model.predict(x_input, verbose=0)
+                print(yhat[0])
+                temp_input.extend(yhat[0].tolist())
+                print(len(temp_input))
+                lst_output.extend(yhat.tolist())
+                i = i + 1
+
+        print(lst_output)
+        lst_output = np.array(lst_output)
+        print(lst_output)
+
+        lst_output = lst_output.reshape(lst_output.shape[0], 1, lst_output.shape[1])
+        # rebuild test set for inverse transform
+        pred_test_set = []
+        for index in range(0, len(lst_output)):
+            print(np.concatenate([lst_output[index], X_test[index]], axis=1))
+            pred_test_set.append(np.concatenate([lst_output[index], X_test[index]], axis=1))
+        # reshape pred_test_set
+        pred_test_set = np.array(pred_test_set)
+        pred_test_set = pred_test_set.reshape(pred_test_set.shape[0], pred_test_set.shape[2])
+        # inverse transform
+        pred_test_set_inverted = scaler.inverse_transform(pred_test_set)
+        print(pred_test_set_inverted)
+
+        result_list = []
+        sales_dates = list(df_sales[-7:].date)
+        act_sales = list(df_sales[-7:].sales)
+        for index in range(0, len(pred_test_set_inverted)):
+            result_dict = {}
+            result_dict['pred_value'] = int(pred_test_set_inverted[index][0] + act_sales[index])
+
+            result_list.append(result_dict)
+        df_result = pd.DataFrame(result_list)
+        df_result
+        # for multistep prediction, replace act_sales with the predicted sales
+
+        df_result
+
+
+        # df_sales['date'] = df_sales['date'].dt.year.astype('str') + '-' + df_sales['date'].dt.month.astype('str') + '-01'
+        date_array = df_sales.to_numpy()
+        sales_dates = date_array[-1][0]
+        print(sales_dates)
+        date_time = sales_dates.strftime("%y/%m/%d")
+        print(date_time)
+        date_series = pd.date_range(sales_dates, periods=7, freq='M')
+        print(date_series[0])
+        print(date_series)
+        df = pd.DataFrame(date_series)
+        print(df)
+
+        df = df.drop(df.index[[0]])
+
+        after_drop = df.to_numpy()
+
+        print(after_drop)
+
+        df_after = pd.DataFrame(after_drop)
+        df_after
+
+        result = pd.concat([df_result, df_after], axis=1, join='inner')
+        print(result)
+
+        Final_Numpy = result.to_numpy()
+
+        print(Final_Numpy)
+
+        # print(date_series[0])
+        # print(date_series)
 
         self.predictionUpToDate = True
-        return np_array
+        return Final_Numpy
 
     def getPredictionDates(self):
         # Return the dates as a list of strings

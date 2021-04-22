@@ -4,4 +4,4 @@ Prediction1 = Prediction()
 
 Prediction1.setupLearn()
 
-print(Prediction1.currentMonthsData())
+#print(Prediction1.currentMonthsData())
